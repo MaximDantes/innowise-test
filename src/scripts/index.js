@@ -1,6 +1,6 @@
-import handleKey from './display'
-import keys from './keys'
-import createTheme from './theme'
+import handleKey from './display.js'
+import keys from './keys.js'
+import createTheme from './theme.js'
 
 //create and render buttons
 const calculator = document.querySelector('.calculator')

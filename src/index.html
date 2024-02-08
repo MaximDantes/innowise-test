@@ -8,14 +8,23 @@
     <title>Simple calculator</title>
 </head>
 
-<body>
-<main class='main'>
-    <button class='theme-button'>theme</button>
+<body class='body'>
 
+<header>
+    <div class='theme-switch'>
+    <label class='theme-switch__swiper'>
+        <input type='checkbox' class='theme-switch__checkbox' id='theme-switch__checkbox'>
+        <span class='theme-switch__slider'></span>
+    </label>
+    <label class='theme-switch__label' for='theme-switch__checkbox'>Dark theme</label>
+    </div>
+</header>
+
+<main class='main'>
     <section class='calculator'>
         <p class='calculator__display'>0</p>
     </section>
-
 </main>
+
 </body>
 </html>

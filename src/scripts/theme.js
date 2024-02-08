@@ -1,11 +1,12 @@
 const createTheme = () => {
-    const themeButton = document.querySelector('.theme-button')
-    const main = document.querySelector('.main')
+    const themeCheckbox = document.querySelector('.theme-switch__checkbox')
+    const body = document.querySelector('.body')
 
     //detect theme from local storage
     const storageTheme = localStorage.getItem('theme')
     if (storageTheme === 'dark') {
-        main.classList.add('main_dark')
+        body.classList.add('body_dark')
+        themeCheckbox.checked = true
     }
 
     //if there is no theme in local storage, detect browser color scheme
@@ -14,18 +15,19 @@ const createTheme = () => {
             window.matchMedia &&
             window.matchMedia('(prefers-color-scheme: dark)').matches
         ) {
-            main.classList.add('main_dark')
+            body.classList.add('body_dark')
+            themeCheckbox.checked = true
         }
     }
 
     //create change them button
-    themeButton.addEventListener('click', () => {
-        if (main.classList.contains('main_dark')) {
-            main.classList.remove('main_dark')
-            localStorage.setItem('theme', 'light')
-        } else {
-            main.classList.add('main_dark')
+    themeCheckbox.addEventListener('change', (e) => {
+        if (e.currentTarget.checked) {
+            body.classList.add('body_dark')
             localStorage.setItem('theme', 'dark')
+        } else {
+            body.classList.remove('body_dark')
+            localStorage.setItem('theme', 'light')
         }
     })
 }

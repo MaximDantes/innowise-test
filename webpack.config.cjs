@@ -72,5 +72,3 @@ module.exports = {
         hot: true,
     },
 }
-
-/* eslint-enable no-undef */

@@ -1,7 +1,78 @@
-.main {
-  --button-background: #fafafa;
+.body {
+  --font-primary: #4f4f4f;
+  --font-secondary: #c2c2c2;
+  --background: #fafafa;
+  --button-background: #d0d0d0;
+  --swiper-background: #c0c0c0;
+  --border: #ababab44;
+  --calculator-background: #dcdcdc;
+
+  --accent: #2da3fd;
+
+  --font-accent: #f3f3f3;
 
   &_dark {
+    --font-primary: #c2c2c2;
+    --font-secondary: #4f4f4f;
+    --background: #333333;
     --button-background: #333333;
+    --swiper-background: #101010;
+    --calculator-background: var(--button-background);
+    --accent: #f38a3f;
+  }
+}
+
+
+.theme-switch {
+  display: flex;
+  align-items: center;
+  padding: 0 5px;
+  font-size: 20px;
+
+  &__label {
+    cursor: pointer;
+    margin: 10px;
+  }
+
+  &__swiper {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+
+  &__checkbox {
+    opacity: 0;
+    width: 0;
+    height: 0;
+
+    &:checked + .theme-switch__slider:before {
+      transform: translateX(26px);
+    }
+  }
+
+  &__slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--swiper-background);
+    transition: .4s;
+    border-radius: 34px;
+
+
+    &:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: var(--background);
+      transition: .4s;
+      border-radius: 50%;
+    }
   }
 }

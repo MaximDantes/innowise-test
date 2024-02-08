@@ -3,12 +3,11 @@
   border-radius: 10px;
   font-size: 30px;
   font-weight: bold;
-  border: #ababab44 3px solid;
+  border: var(--border) 3px solid;
   background: var(--button-background);
-  transition: background 0.5s;
 
   &:active {
-    background-color: #33333333;
+    background-color: var(--button-background)aa;
   }
 
   &_wide {
@@ -16,7 +15,7 @@
   }
 
   &_accent {
-    background: #f38a3f;
-    color: #ffffff;
+    background: var(--accent);
+    color: var(--font-accent);
   }
 }

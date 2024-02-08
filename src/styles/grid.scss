@@ -1,8 +1,13 @@
 .calculator {
   display: grid;
   margin: 0 auto;
+  padding: 10px;
   width: fit-content;
   cursor: pointer;
+  background: var(--calculator-background);
+
+  border: var(--border) 3px solid;
+  border-radius: 10px;
 
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 5px;
@@ -10,8 +15,14 @@
   &__display {
     cursor: pointer;
     text-align: right;
-    color: #000000;
-    font-size: 30px;
+    font-size: 40px;
     grid-column: span 4;
+    padding: 15px 0;
+    user-select: text;
+
+    &::selection {
+      background: var(--accent);
+      color: var(--font-accent);
+    }
   }
 }
