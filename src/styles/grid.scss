@@ -1,0 +1,17 @@
+.calculator {
+  display: grid;
+  margin: 0 auto;
+  width: fit-content;
+  cursor: pointer;
+
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 5px;
+
+  &__display {
+    cursor: pointer;
+    text-align: right;
+    color: #000000;
+    font-size: 30px;
+    grid-column: span 4;
+  }
+}

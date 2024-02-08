@@ -1,0 +1,7 @@
+.main {
+  --button-background: #fafafa;
+
+  &_dark {
+    --button-background: #333333;
+  }
+}
