@@ -1,9 +1,10 @@
 //all available keys
 
 class Key {
-    constructor(key, equivalents) {
+    constructor(key, equivalents, view) {
         this.key = key
         this.equivalents = equivalents
+        this.view = view
     }
 
     isEquivalent(value) {
@@ -14,16 +15,12 @@ class Key {
 const keys = [
     new Key('AC'),
     new Key('C', ['Backspace', 'Delete', 'c']),
-    new Key('R'),
-    new Key('^'),
     new Key('%'),
-    new Key('Abs', ['A', 'a']),
-    new Key('+-'),
-    new Key('/'),
+    new Key('/', [], '&#xF7'),
     new Key('7'),
     new Key('8'),
     new Key('9'),
-    new Key('*'),
+    new Key('*', [], '&#215'),
     new Key('4'),
     new Key('5'),
     new Key('6'),
@@ -32,6 +29,7 @@ const keys = [
     new Key('2'),
     new Key('3'),
     new Key('+'),
+    new Key('+-', [], '&plusmn'),
     new Key('0'),
     new Key('.', [',']),
     new Key('=', ['Enter']),

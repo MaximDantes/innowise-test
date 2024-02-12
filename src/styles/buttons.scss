@@ -5,9 +5,24 @@
   font-weight: bold;
   border: var(--border) 3px solid;
   background: var(--button-background);
+  position: relative;
 
-  &:active {
-    background-color: var(--button-background)aa;
+  &:focus {
+    transform: translateY(2px);
+  }
+
+  &:hover {
+    &:after {
+      content: '';
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      position: absolute;
+      border-radius: 7px;
+      background-color: var(--font-primary);
+      opacity: 0.1;
+    }
   }
 
   &_wide {

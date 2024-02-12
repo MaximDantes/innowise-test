@@ -18,7 +18,7 @@ const display = {
         } else {
             const newString = createExpressionString(this.current, key)
 
-            if (newString !== undefined) {
+            if (newString !== undefined && newString !== this.current) {
                 this.value.push(newString)
                 this.handleValueChange()
             }

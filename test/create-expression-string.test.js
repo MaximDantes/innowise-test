@@ -37,4 +37,56 @@ describe('create expression string', () => {
         expect(createExpressionString('123.23', '.')).toBe('123.23')
         expect(createExpressionString('4*128+123.23', '.')).toBe('4*128+123.23')
     })
+
+    test('prevent setting math sing after dot', () => {
+        expect(createExpressionString('123.', '+')).toBe('123+')
+    })
+
+    test('change last math sign', () => {
+        expect(createExpressionString('12*2-123+', '/')).toBe('12*2-123/')
+        expect(createExpressionString('12*2-123*', '+')).toBe('12*2-123+')
+        expect(createExpressionString('12*2-123-', '*')).toBe('12*2-123*')
+    })
+
+    test('set minus after math sign', () => {
+        expect(createExpressionString('12-', '-')).toBe('12--')
+        expect(createExpressionString('435/12+', '-')).toBe('435/12+-')
+        expect(createExpressionString('234.22/', '-')).toBe('234.22/-')
+        expect(createExpressionString('86*', '-')).toBe('86*-')
+    })
+
+    test('prevent setting three math signs in a row', () => {
+        expect(createExpressionString('12--', '-')).toBe('12--')
+        expect(createExpressionString('435/12+-', '+')).toBe('435/12+-')
+        expect(createExpressionString('234.22/-', '*')).toBe('234.22/-')
+        expect(createExpressionString('86*-', '/')).toBe('86*-')
+        expect(createExpressionString('86*-', '%')).toBe('86*-')
+    })
+
+    test('prevent setting math signs in first position', () => {
+        expect(createExpressionString('', '+')).toBe('')
+        expect(createExpressionString('', '/')).toBe('')
+        expect(createExpressionString('', '*')).toBe('')
+        expect(createExpressionString('', '-')).toBe('-')
+        expect(createExpressionString('-', '-')).toBe('-')
+    })
+
+    test('change sign', () => {
+        expect(createExpressionString('123+234/-1.2139', '+-')).toBe(
+            '123+234/1.2139'
+        )
+        expect(createExpressionString('-2.345', '+-')).toBe('2.345')
+        expect(createExpressionString('2.345', '+-')).toBe('-2.345')
+        expect(createExpressionString('43/11+23-43', '+-')).toBe('43/11+23+43')
+        expect(createExpressionString('43/11+23%-43', '+-')).toBe(
+            '43/11+23%+43'
+        )
+        expect(createExpressionString('43/11+23+43', '+-')).toBe('43/11+23-43')
+        expect(createExpressionString('', '+-')).toBe('-')
+        expect(createExpressionString('-', '+-')).toBe('')
+    })
+
+    test('prevent setting digit after %', () => {
+        expect(createExpressionString('123%', '5')).toBe('123%')
+    })
 })

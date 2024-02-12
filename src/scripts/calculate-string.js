@@ -13,10 +13,14 @@ export const round = (num, fractionalAccuracy = 6) => {
     return +`${split[0]}.${newFractional}`
 }
 
+
 const calculateString = (str) => {
-    //TODO remove eval
     str = str.replaceAll('%', '*0.01')
-    const result = eval(str)
+    str = str.replaceAll('--', '+')
+    if (['-', '+', '/', '*'].includes(str.charAt(str.length - 1))) {
+        str = str.slice(0, str.length - 1)
+    }
+    const result = new Function(`return ${str}`)()
     return String(round(result, 6))
 }
 

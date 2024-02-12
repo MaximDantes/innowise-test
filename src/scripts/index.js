@@ -8,14 +8,17 @@ const buttons = []
 
 keys.map((key) => {
     const button = document.createElement('button')
-    button.textContent = key.key
+    button.innerHTML = key.view || key.key
 
     button.classList.add('button')
-    button.addEventListener('click', () => handleKey(key.key))
+    button.addEventListener('click', () => {
+        handleKey(key.key)
+        button.blur()
+    })
 
-    if (key.key === '0') {
-        button.classList.add('button_wide')
-    }
+    // if (key.key === '0') {
+    //     button.classList.add('button_wide')
+    // }
 
     if (key.key === '=') {
         button.classList.add('button_accent')
