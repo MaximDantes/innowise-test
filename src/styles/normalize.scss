@@ -343,10 +343,6 @@ template {
  * Add the correct display in IE 10.
  */
 
-[hidden] {
-  display: none;
-}
-
 * {
   padding: 0;
   margin: 0;
@@ -433,36 +429,4 @@ h5,
 h6 {
   font-size: inherit;
   font-weight: 400;
-}
-
-.hidden {
-  display: none;
-}
-
-.wrapper {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-rows: 60px 1fr;
-  grid-template-columns: 2fr 10fr;
-  grid-gap: 10px;
-  grid-template-areas:
-    "header header"
-    "nav main";
-}
-
-@media screen and (max-device-width: 767px) {
-  .wrapper {
-    grid-template-rows: 60px auto 1fr;
-    grid-gap: 5px;
-    grid-template-areas:
-      "header header"
-      "nav nav"
-      "main main";
-  }
-}
-
-main {
-  height: 100%;
-  grid-area: main;
 }

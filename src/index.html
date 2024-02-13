@@ -1,30 +1,37 @@
-<!doctype html>
-<html lang='en'>
-<head>
-    <meta charset='UTF-8'>
-    <meta name='viewport'
-          content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0'>
-    <meta http-equiv='X-UA-Compatible' content='ie=edge'>
-    <title>Simple calculator</title>
-</head>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+        />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Simple calculator</title>
+    </head>
 
-<body class='body'>
+    <body class="body">
+        <header>
+            <div class="theme-switch">
+                <label class="theme-switch__swiper">
+                    <input
+                        type="checkbox"
+                        class="theme-switch__checkbox"
+                        id="theme-switch__checkbox"
+                    />
+                    <span class="theme-switch__slider"></span>
+                </label>
 
-<header>
-    <div class='theme-switch'>
-    <label class='theme-switch__swiper'>
-        <input type='checkbox' class='theme-switch__checkbox' id='theme-switch__checkbox'>
-        <span class='theme-switch__slider'></span>
-    </label>
-    <label class='theme-switch__label' for='theme-switch__checkbox'>Dark theme</label>
-    </div>
-</header>
+                <label class="theme-switch__label" for="theme-switch__checkbox">
+                    Dark theme
+                </label>
+            </div>
+        </header>
 
-<main class='main'>
-    <section class='calculator'>
-        <p class='calculator__display'></p>
-    </section>
-</main>
-
-</body>
+        <main class="main">
+            <section class="calculator">
+                <p class="calculator__display"></p>
+            </section>
+        </main>
+    </body>
 </html>

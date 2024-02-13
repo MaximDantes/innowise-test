@@ -1,11 +1,13 @@
 import keys from './keys.js'
 import calculateString from './calculate-string.js'
 
-const numbersOnlyRegex = /^\d+$/
-
 const createExpressionString = (oldString, newString) => {
     try {
-        if (oldString.includes('Error') || oldString.includes('Infinity')){
+        if (
+            oldString.includes('Error') ||
+            oldString.includes('Infinity') ||
+            oldString.includes('Number is too big')
+        ) {
             oldString = ''
         }
 
@@ -17,6 +19,7 @@ const createExpressionString = (oldString, newString) => {
 
         let result = oldString
 
+        const numbersOnlyRegex = /^\d+$/
         const lastChar = oldString.charAt(oldString.length - 1)
         const preLastChar = oldString.charAt(oldString.length - 2)
         const mathSigns = ['+', '-', '*', '/']
@@ -38,6 +41,10 @@ const createExpressionString = (oldString, newString) => {
             case '-':
             case '*':
             case '/': {
+                if (oldString.length === 1 && lastChar === '-') {
+                    break
+                }
+
                 if (!lastChar) {
                     if (newString === '-') {
                         result += newString
@@ -187,7 +194,7 @@ const createExpressionString = (oldString, newString) => {
 
         return result
     } catch (e) {
-        return 'Error'
+        return e.message
     }
 }
 

@@ -69,6 +69,9 @@ describe('create expression string', () => {
         expect(createExpressionString('', '*')).toBe('')
         expect(createExpressionString('', '-')).toBe('-')
         expect(createExpressionString('-', '-')).toBe('-')
+        expect(createExpressionString('-', '*')).toBe('-')
+        expect(createExpressionString('-', '%')).toBe('-')
+        expect(createExpressionString('2', '-')).toBe('2-')
     })
 
     test('change sign', () => {

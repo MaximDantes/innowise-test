@@ -2,16 +2,16 @@
   --font-primary: #4f4f4f;
   --font-secondary: #c2c2c2;
   --background: #fafafa;
-  --button-background: #d0d0d0;
+  --button-background: #e8e8e8;
   --swiper-background: #c0c0c0;
   --border: #ababab44;
-  --calculator-background: #dcdcdc;
+  --calculator-background: #ececec;
 
   --accent: #2da3fd;
 
   --font-accent: #f3f3f3;
 
-  &_dark {
+  &--dark {
     --font-primary: #c2c2c2;
     --font-secondary: #4f4f4f;
     --background: #333333;

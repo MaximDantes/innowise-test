@@ -16,10 +16,6 @@ keys.map((key) => {
         button.blur()
     })
 
-    // if (key.key === '0') {
-    //     button.classList.add('button_wide')
-    // }
-
     if (key.key === '=') {
         button.classList.add('button_accent')
     }
