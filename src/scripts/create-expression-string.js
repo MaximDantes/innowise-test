@@ -3,6 +3,10 @@ import calculateString from './calculate-string.js'
 
 const createExpressionString = (oldString, newString) => {
     try {
+        if (oldString === undefined) {
+            oldString = ''
+        }
+
         if (
             oldString.includes('Error') ||
             oldString.includes('Infinity') ||

@@ -10,6 +10,10 @@ const display = {
     handleValueChange() {
         this.current = this.value[this.value.length - 1]
 
+        if (this.current === undefined) {
+            this.current = ''
+        }
+
         //replace chars by html entities
         displayElement.innerHTML = this.current
             .split('')
