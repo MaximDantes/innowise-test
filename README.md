@@ -37,5 +37,5 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Deployment
 
-[Here](https://innowise-test.vercel.app/) you can example of this app.
+[Here](https://innowise-test.vercel.app/) you find can example of this app.
 
