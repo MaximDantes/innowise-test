@@ -1,9 +1,20 @@
-import { AddOperandCommand, AddOperatorCommand } from './Commands.js'
+import {
+    AddOperandCommand,
+    AddOperatorCommand,
+    CalculateCommand,
+    ChangeSignCommand,
+    ClearCommand,
+    HistoryBackCommand,
+} from './Commands.js'
 
 class Operation {
     constructor(command, equivalents, view) {
         this.command = command
+
+        //alternative keyboard keys for execute this command
         this.equivalents = equivalents || []
+
+        //displayed value
         this.view = view || command.value
     }
 
@@ -19,9 +30,10 @@ class Operations {
     }
 
     createValues() {
+        //all available keys
         this.values = [
-            new Operation(new AddOperandCommand('AC', this.calculator)),
-            new Operation(new AddOperandCommand('C', this.calculator), [
+            new Operation(new ClearCommand('AC', this.calculator)),
+            new Operation(new HistoryBackCommand('C', this.calculator), [
                 'Backspace',
                 'Delete',
                 'c',
@@ -55,13 +67,13 @@ class Operations {
 
             new Operation(new AddOperandCommand('+', this.calculator)),
             new Operation(
-                new AddOperandCommand('+-', this.calculator),
+                new ChangeSignCommand('+-', this.calculator),
                 [],
                 '&plusmn;'
             ),
             new Operation(new AddOperatorCommand('0', this.calculator)),
             new Operation(new AddOperatorCommand('.', this.calculator), [',']),
-            new Operation(new AddOperandCommand('=', this.calculator), [
+            new Operation(new CalculateCommand('=', this.calculator), [
                 'Enter',
             ]),
         ]

@@ -15,7 +15,11 @@ class App {
 
     undo() {}
 
-    renderUI() {
+    renderDisplay() {
+
+    }
+
+    renderButtons() {
         this.operations.values.map((item) => {
             const button = document.createElement('button')
             button.innerHTML = item.view
@@ -26,7 +30,7 @@ class App {
             }
 
             button.addEventListener('click', () => {
-                item.command.execute()
+                this.executeCommand(item.command)
                 button.blur()
             })
 
