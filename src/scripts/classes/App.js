@@ -1,17 +1,12 @@
 import Calculator from './Calculator.js'
 import Theme from './Theme.js'
 import Operations from './Operations.js'
-import keys from '../keys.js'
 
 class App {
     constructor() {
         this.calculator = new Calculator()
         this.theme = new Theme()
         this.operations = new Operations(this.calculator)
-    }
-
-    executeCommand(command) {
-        command.execute()
     }
 
     renderDisplay() {
@@ -21,7 +16,12 @@ class App {
             display.innerHTML = summary
                 .split('')
                 //replace chars for their view
-                .map((char) => keys.filter((key) => key.key === char)[0]?.view || char)
+                .map(
+                    (char) =>
+                        this.operations.values.filter(
+                            (item) => item.command.value === char
+                        )[0]?.view || char
+                )
                 .join('')
         })
     }
@@ -37,7 +37,7 @@ class App {
             }
 
             button.addEventListener('click', () => {
-                this.executeCommand(item.command)
+                item.command.execute()
                 button.blur()
             })
 

@@ -1,12 +1,10 @@
-import calculator from './Calculator.js'
-
 class Command {
     constructor(value, calculator) {
         this.calculator = calculator
         this.value = value
 
         if (this.constructor === Command) {
-            throw new Error("Abstract classes can't be instantiated.")
+            throw new Error("Abstract classes can't be instantiated")
         }
     }
 
@@ -41,7 +39,6 @@ export class ClearCommand extends Command {
     }
 
     execute() {
-        console.log(this)
         this.calculator.clear()
     }
 }
@@ -52,7 +49,7 @@ export class HistoryBackCommand extends Command {
     }
 
     execute() {
-        console.log('history back')
+        this.calculator.restore()
     }
 }
 
@@ -62,6 +59,7 @@ export class ChangeSignCommand extends Command {
     }
 
     execute() {
+        //TODO
         console.log('change sign')
     }
 }

@@ -9,7 +9,6 @@ class Theme {
         }
         const darkThemeClass = 'body--dark'
 
-
         const themeCheckbox = document.querySelector('.theme-switch__checkbox')
         const body = document.querySelector('.body')
 
