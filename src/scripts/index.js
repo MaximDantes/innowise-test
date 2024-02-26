@@ -1,6 +1,4 @@
 import App from './classes/App.js'
 
 const app = new App()
-
-app.renderButtons()
-app.setTheme()
+app.render()

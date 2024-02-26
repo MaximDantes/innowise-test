@@ -38,41 +38,41 @@ class Operations {
                 'Delete',
                 'c',
             ]),
-            new Operation(new AddOperandCommand('%', this.calculator)),
+            new Operation(new AddOperatorCommand('%', this.calculator)),
             new Operation(
-                new AddOperandCommand('/', this.calculator),
+                new AddOperatorCommand('/', this.calculator),
                 [],
                 '&#xF7;'
             ),
 
-            new Operation(new AddOperatorCommand('7', this.calculator)),
-            new Operation(new AddOperatorCommand('8', this.calculator)),
-            new Operation(new AddOperatorCommand('9', this.calculator)),
+            new Operation(new AddOperandCommand('7', this.calculator)),
+            new Operation(new AddOperandCommand('8', this.calculator)),
+            new Operation(new AddOperandCommand('9', this.calculator)),
 
             new Operation(
-                new AddOperandCommand('*', this.calculator),
+                new AddOperatorCommand('*', this.calculator),
                 [],
                 '&#215;'
             ),
 
-            new Operation(new AddOperatorCommand('4', this.calculator)),
-            new Operation(new AddOperatorCommand('5', this.calculator)),
-            new Operation(new AddOperatorCommand('6', this.calculator)),
+            new Operation(new AddOperandCommand('4', this.calculator)),
+            new Operation(new AddOperandCommand('5', this.calculator)),
+            new Operation(new AddOperandCommand('6', this.calculator)),
 
-            new Operation(new AddOperandCommand('-', this.calculator), ['_']),
+            new Operation(new AddOperatorCommand('-', this.calculator), ['_']),
 
-            new Operation(new AddOperatorCommand('1', this.calculator)),
-            new Operation(new AddOperatorCommand('2', this.calculator)),
-            new Operation(new AddOperatorCommand('3', this.calculator)),
+            new Operation(new AddOperandCommand('1', this.calculator)),
+            new Operation(new AddOperandCommand('2', this.calculator)),
+            new Operation(new AddOperandCommand('3', this.calculator)),
 
-            new Operation(new AddOperandCommand('+', this.calculator)),
+            new Operation(new AddOperatorCommand('+', this.calculator)),
             new Operation(
                 new ChangeSignCommand('+-', this.calculator),
                 [],
                 '&plusmn;'
             ),
-            new Operation(new AddOperatorCommand('0', this.calculator)),
-            new Operation(new AddOperatorCommand('.', this.calculator), [',']),
+            new Operation(new AddOperandCommand('0', this.calculator)),
+            new Operation(new AddOperandCommand('.', this.calculator), [',']),
             new Operation(new CalculateCommand('=', this.calculator), [
                 'Enter',
             ]),

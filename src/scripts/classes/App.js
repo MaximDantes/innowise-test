@@ -1,6 +1,7 @@
 import Calculator from './Calculator.js'
 import Theme from './Theme.js'
 import Operations from './Operations.js'
+import keys from '../keys.js'
 
 class App {
     constructor() {
@@ -13,10 +14,16 @@ class App {
         command.execute()
     }
 
-    undo() {}
-
     renderDisplay() {
+        const display = document.querySelector('.calculator__display')
 
+        this.calculator.subscribe((summary) => {
+            display.innerHTML = summary
+                .split('')
+                //replace chars for their view
+                .map((char) => keys.filter((key) => key.key === char)[0]?.view || char)
+                .join('')
+        })
     }
 
     renderButtons() {
@@ -47,6 +54,12 @@ class App {
 
     setTheme() {
         this.theme.createTheme()
+    }
+
+    render() {
+        this.renderButtons()
+        this.renderDisplay()
+        this.setTheme()
     }
 }
 

@@ -1,3 +1,5 @@
+import calculator from './Calculator.js'
+
 class Command {
     constructor(value, calculator) {
         this.calculator = calculator
@@ -19,7 +21,6 @@ export class AddOperatorCommand extends Command {
     }
 
     execute() {
-        console.log(this)
         this.calculator.addOperator(this.value)
     }
 }
@@ -30,7 +31,6 @@ export class AddOperandCommand extends Command {
     }
 
     execute() {
-        console.log(this)
         this.calculator.addOperand(this.value)
     }
 }
@@ -72,6 +72,6 @@ export class CalculateCommand extends Command {
     }
 
     execute() {
-        console.log('calc')
+        this.calculator.calculate()
     }
 }

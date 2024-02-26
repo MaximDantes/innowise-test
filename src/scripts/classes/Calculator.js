@@ -4,6 +4,7 @@ class Calculator {
         this.rightOperand = ''
         this.operator = ''
         this.summary = ''
+        this.observers = []
     }
 
     clear() {
@@ -11,28 +12,74 @@ class Calculator {
         this.rightOperand = ''
         this.operator = ''
         this.summary = ''
+        this.callObservers()
     }
 
     calculate() {
-        return +this.leftOperand + +this.rightOperand
+        switch (this.operator) {
+            case '+':
+                this.summary = +this.leftOperand + +this.rightOperand
+                break
+
+            case '-':
+                this.summary = +this.leftOperand - +this.rightOperand
+                break
+
+            case '/':
+                this.summary = +this.leftOperand / +this.rightOperand
+                break
+
+            case '*':
+                this.summary = +this.leftOperand * +this.rightOperand
+                break
+
+            default:
+        }
+
+        this.leftOperand = this.summary
+        this.rightOperand = ''
+
+        this.summary = String(this.summary)
+        this.callObservers()
     }
 
     addOperand(operand) {
         if (!this.operator) {
             this.leftOperand += operand
-            return
+        } else {
+            this.rightOperand += operand
         }
 
-        this.rightOperand += operand
+        this.createSummary()
+        this.callObservers()
     }
 
     addOperator(operator) {
         if (!this.operator) {
             this.operator = operator
-            return
+        } else {
+            this.calculate()
+            this.operator = operator
         }
 
-        this.calculate()
+        this.createSummary()
+        this.callObservers()
+    }
+
+    createSummary() {
+        this.summary = `${this.leftOperand} ${this.operator} ${this.rightOperand}`
+    }
+
+    subscribe(observer) {
+        this.observers.push(observer)
+    }
+
+    unsubscribe(observer) {
+        this.observers = this.observers.filter((item) => item !== observer)
+    }
+
+    callObservers() {
+        this.observers.forEach((item) => item(this.summary))
     }
 }
 
