@@ -21,10 +21,7 @@ class Theme {
 
         //if there is no theme in local storage, detect browser color scheme
         if (!storageTheme) {
-            if (
-                window.matchMedia &&
-                window.matchMedia('(prefers-color-scheme: dark)').matches
-            ) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
                 body.classList.add(darkThemeClass)
                 themeCheckbox.checked = true
             }

@@ -16,12 +16,7 @@ class App {
             display.innerHTML = summary
                 .split('')
                 //replace chars for their view
-                .map(
-                    (char) =>
-                        this.operations.values.filter(
-                            (item) => item.command.value === char
-                        )[0]?.view || char
-                )
+                .map((char) => this.operations.values.filter((item) => item.command.value === char)[0]?.view || char)
                 .join('')
         })
     }

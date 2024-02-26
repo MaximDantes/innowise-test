@@ -33,27 +33,15 @@ class Operations {
         //all available keys
         this.values = [
             new Operation(new ClearCommand('AC', this.calculator)),
-            new Operation(new HistoryBackCommand('C', this.calculator), [
-                'Backspace',
-                'Delete',
-                'c',
-            ]),
+            new Operation(new HistoryBackCommand('C', this.calculator), ['Backspace', 'Delete', 'c']),
             new Operation(new AddOperatorCommand('%', this.calculator)),
-            new Operation(
-                new AddOperatorCommand('/', this.calculator),
-                [],
-                '&#xF7;'
-            ),
+            new Operation(new AddOperatorCommand('/', this.calculator), [], '&#xF7;'),
 
             new Operation(new AddOperandCommand('7', this.calculator)),
             new Operation(new AddOperandCommand('8', this.calculator)),
             new Operation(new AddOperandCommand('9', this.calculator)),
 
-            new Operation(
-                new AddOperatorCommand('*', this.calculator),
-                [],
-                '&#215;'
-            ),
+            new Operation(new AddOperatorCommand('*', this.calculator), [], '&#215;'),
 
             new Operation(new AddOperandCommand('4', this.calculator)),
             new Operation(new AddOperandCommand('5', this.calculator)),
@@ -66,16 +54,10 @@ class Operations {
             new Operation(new AddOperandCommand('3', this.calculator)),
 
             new Operation(new AddOperatorCommand('+', this.calculator)),
-            new Operation(
-                new ChangeSignCommand('+-', this.calculator),
-                [],
-                '&plusmn;'
-            ),
+            new Operation(new ChangeSignCommand('+-', this.calculator), [], '&plusmn;'),
             new Operation(new AddOperandCommand('0', this.calculator)),
             new Operation(new AddOperandCommand('.', this.calculator), [',']),
-            new Operation(new CalculateCommand('=', this.calculator), [
-                'Enter',
-            ]),
+            new Operation(new CalculateCommand('=', this.calculator), ['Enter']),
         ]
     }
 }
