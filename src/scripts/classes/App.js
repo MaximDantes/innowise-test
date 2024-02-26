@@ -1,12 +1,12 @@
 import Calculator from './Calculator.js'
-import keys from '../keys.js'
-import handleKey from '../display.js'
 import Theme from './Theme.js'
+import Operations from './Operations.js'
 
 class App {
     constructor() {
         this.calculator = new Calculator()
         this.theme = new Theme()
+        this.operations = new Operations(this.calculator)
     }
 
     executeCommand(command) {
@@ -16,41 +16,28 @@ class App {
     undo() {}
 
     renderUI() {
-        //create and render buttons
-        const calculator = document.querySelector('.calculator')
-        const buttons = []
-
-        keys.map((key) => {
+        this.operations.values.map((item) => {
             const button = document.createElement('button')
-            button.innerHTML = key.view || key.key
+            button.innerHTML = item.view
 
             button.classList.add('button')
-            button.addEventListener('click', () => {
-                handleKey(key.key)
-                button.blur()
-            })
-
-            if (key.key === '=') {
+            if (item.view === '=') {
                 button.classList.add('button_accent')
             }
 
-            buttons.push({
-                key,
-                button,
+            button.addEventListener('click', () => {
+                item.command.execute()
+                button.blur()
             })
-        })
 
-        buttons.map((item) => {
-            calculator.appendChild(item.button)
-        })
-
-        // trigger button click for key press
-        document.addEventListener('keydown', (e) => {
-            buttons.map((item) => {
-                if (item.key.isEquivalent(e.key)) {
-                    item.button.click()
+            document.addEventListener('keydown', (e) => {
+                if (item.isEquivalent(e.key)) {
+                    button.click()
                 }
             })
+
+            const calculator = document.querySelector('.calculator')
+            calculator.appendChild(button)
         })
     }
 

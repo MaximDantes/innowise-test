@@ -21,7 +21,6 @@ module.exports = {
     },
     rules: {
         'prettier/prettier': 2,
-        'no-console': 2,
         'no-debugger': 2,
     },
 }

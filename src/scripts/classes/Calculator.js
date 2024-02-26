@@ -3,6 +3,14 @@ class Calculator {
         this.leftOperand = ''
         this.rightOperand = ''
         this.operator = ''
+        this.summary = ''
+    }
+
+    clear() {
+        this.leftOperand = ''
+        this.rightOperand = ''
+        this.operator = ''
+        this.summary = ''
     }
 
     calculate() {

@@ -1,6 +1,8 @@
 class Command {
-    constructor(calculator) {
+    constructor(value, calculator) {
         this.calculator = calculator
+        this.value = value
+
 
         if (this.constructor === Command) {
             throw new Error("Abstract classes can't be instantiated.")
@@ -12,24 +14,35 @@ class Command {
     }
 }
 
-export class Operator extends Command {
+export class AddOperatorCommand extends Command {
     constructor(value, calculator) {
-        super(calculator)
-        this.value = value
+        super(value, calculator)
     }
 
     execute() {
+        console.log(this)
         this.calculator.addOperator(this.value)
     }
 }
 
-export class Operand extends Command {
+export class AddOperandCommand extends Command {
     constructor(value, calculator) {
-        super(calculator)
-        this.value = value
+        super(value, calculator)
     }
 
     execute() {
+        console.log(this)
         this.calculator.addOperand(this.value)
+    }
+}
+
+export class ClearCommand extends Command {
+    constructor(value, calculator) {
+        super(value, calculator)
+    }
+
+    execute() {
+        console.log(this)
+        this.calculator.clear()
     }
 }
