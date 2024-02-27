@@ -160,14 +160,3 @@ export class RootCommand extends Command {
         super.execute()
     }
 }
-
-export class FactorialCommand extends Command {
-    constructor(value, calculator) {
-        super(value, calculator)
-    }
-
-    execute() {
-        //TODO
-        super.execute()
-    }
-}

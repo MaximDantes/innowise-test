@@ -27,6 +27,7 @@ const commands = {
     '/': new AddOperatorCommand('/', calculator),
     '*': new AddOperatorCommand('*', calculator),
     '=': new CalculateCommand('=', calculator),
+    '!': new AddOperatorCommand('!', calculator),
     '^': new AddOperatorCommand('^', calculator),
     '+-': new ChangeSignCommand('+-', calculator),
     AC: new ClearCommand('AC', calculator),
@@ -236,5 +237,69 @@ describe('change sign', () => {
                 return result
             })()
         ).toBe('3 +')
+    })
+})
+
+describe('factorial', () => {
+    test('1', () => {
+        expect(
+            (() => {
+                commands['AC'].execute()
+                commands[1].execute()
+                commands['!'].execute()
+                return result
+            })()
+        ).toBe('1!')
+    })
+
+    test('4!', () => {
+        expect(
+            (() => {
+                commands['AC'].execute()
+                commands[4].execute()
+                commands['!'].execute()
+                commands['='].execute()
+                return result
+            })()
+        ).toBe('24')
+    })
+
+    test('4! + ', () => {
+        expect(
+            (() => {
+                commands['AC'].execute()
+                commands[4].execute()
+                commands['!'].execute()
+                commands['+'].execute()
+                return result
+            })()
+        ).toBe('24 +')
+    })
+
+    test('15!', () => {
+        expect(
+            (() => {
+                commands['AC'].execute()
+                commands[1].execute()
+                commands[5].execute()
+                commands['!'].execute()
+                commands['='].execute()
+                return result
+            })()
+        ).toBe('1307674368000')
+    })
+
+    test('4.5!', () => {
+        expect(
+            (() => {
+                commands['AC'].execute()
+                commands[4].execute()
+                commands['.'].execute()
+                commands[5].execute()
+                commands['!'].execute()
+                commands['='].execute()
+                return result
+            })()
+        ).toBe('24')
     })
 })

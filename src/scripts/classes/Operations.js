@@ -60,6 +60,7 @@ class Operations {
             new Operation(new CalculateCommand('=', this.calculator), ['Enter']),
 
             new Operation(new AddOperatorCommand('^', this.calculator)),
+            new Operation(new AddOperatorCommand('!', this.calculator)),
         ]
     }
 }

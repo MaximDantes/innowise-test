@@ -50,6 +50,16 @@ class Calculator {
                 break
             }
 
+            case '!': {
+                //TODO float factorial
+                let result = 1
+                for (let i = 1; i <= +this.leftOperand; i++) {
+                    result *= i
+                }
+                this.summary = result
+                break
+            }
+
             default:
         }
 
@@ -61,16 +71,24 @@ class Calculator {
     }
 
     addOperand(operand) {
-        this.saveSnapshot()
+        try {
+            this.saveSnapshot()
 
-        if (!this.operator) {
-            this.leftOperand += operand
-        } else {
-            this.rightOperand += operand
+            if (!this.operator) {
+                this.leftOperand += operand
+            } else {
+                if (this.operator === '!') {
+                    this.calculate()
+                }
+
+                this.rightOperand += operand
+            }
+        } catch (e) {
+            throw new Error('Add operand error')
+        } finally {
+            this.createSummary()
+            this.callObservers()
         }
-
-        this.createSummary()
-        this.callObservers()
     }
 
     addOperator(operator) {
@@ -116,7 +134,18 @@ class Calculator {
     createSummary() {
         this.summary = ''
         if (this.leftOperand) this.summary += this.leftOperand
-        if (this.operator) this.summary += ' ' + this.operator
+        if (this.operator) {
+            if (
+                this.operator === '+' ||
+                this.operator === '-' ||
+                this.operator === '*' ||
+                this.operator === '/' ||
+                this.operator === '^'
+            ) {
+                this.summary += ' '
+            }
+            this.summary += this.operator
+        }
         if (this.rightOperand) this.summary += ' ' + this.rightOperand
     }
 
