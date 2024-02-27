@@ -4,7 +4,9 @@ import {
     CalculateCommand,
     ChangeSignCommand,
     ClearCommand,
-    HistoryBackCommand, TenToXPow,
+    CubeCommand,
+    HistoryBackCommand, PowCommand,
+    TenToXPow,
 } from './Commands.js'
 
 class Operation {
@@ -62,6 +64,8 @@ class Operations {
             new Operation(new AddOperatorCommand('^', this.calculator)),
             new Operation(new AddOperatorCommand('!', this.calculator)),
             new Operation(new TenToXPow('10^x', this.calculator)),
+            new Operation(new PowCommand('2', this.calculator), [], 'x^2'),
+            new Operation(new PowCommand('3', this.calculator), [], 'x^3'),
         ]
     }
 }

@@ -5,7 +5,9 @@ import {
     CalculateCommand,
     ChangeSignCommand,
     ClearCommand,
-    HistoryBackCommand, TenToXPow,
+    HistoryBackCommand,
+    PowCommand,
+    TenToXPow,
 } from '../src/scripts/classes/Commands.js'
 
 const calculator = new Calculator()
@@ -31,6 +33,8 @@ const commands = {
     '^': new AddOperatorCommand('^', calculator),
     '+-': new ChangeSignCommand('+-', calculator),
     '10^x': new TenToXPow('10^x', calculator),
+    'x^2': new PowCommand('2', calculator),
+    'x^3': new PowCommand('3', calculator),
     AC: new ClearCommand('AC', calculator),
     C: new HistoryBackCommand('C', calculator),
 }
@@ -354,5 +358,105 @@ describe('10 ^ x', () => {
                 return result
             })()
         ).toBe('10 ^')
+    })
+})
+
+describe('x ^ 2, x ^ 3', () => {
+    test('5 ^ 2', () => {
+        expect(
+            (() => {
+                commands['AC'].execute()
+                commands[5].execute()
+                commands['x^2'].execute()
+                return result
+            })()
+        ).toBe('5 ^ 2')
+    })
+
+    test('3.6 ^ 3', () => {
+        expect(
+            (() => {
+                commands['AC'].execute()
+                commands[3].execute()
+                commands['.'].execute()
+                commands[6].execute()
+                commands['x^3'].execute()
+                return result
+            })()
+        ).toBe('3.6 ^ 3')
+    })
+
+    test('14 ^ 2 =', () => {
+        expect(
+            (() => {
+                commands['AC'].execute()
+                commands[1].execute()
+                commands[4].execute()
+                commands['x^2'].execute()
+                commands['='].execute()
+                return result
+            })()
+        ).toBe('196')
+    })
+
+    test('3.5 ^ 3 =', () => {
+        expect(
+            (() => {
+                commands['AC'].execute()
+                commands[3].execute()
+                commands['.'].execute()
+                commands[5].execute()
+                commands['x^3'].execute()
+                commands['='].execute()
+                return result
+            })()
+        ).toBe('42.875')
+    })
+
+    test('2 + 2 ^ 2', () => {
+        expect(
+            (() => {
+                commands['AC'].execute()
+                commands[2].execute()
+                commands['+'].execute()
+                commands[2].execute()
+                commands['x^2'].execute()
+                return result
+            })()
+        ).toBe('4 ^ 2')
+    })
+
+    test('2 + 2 ^ 3 =', () => {
+        expect(
+            (() => {
+                commands['AC'].execute()
+                commands[2].execute()
+                commands['+'].execute()
+                commands[2].execute()
+                commands['x^3'].execute()
+                commands['='].execute()
+                return result
+            })()
+        ).toBe('64')
+    })
+
+    test('^ 3 =', () => {
+        expect(
+            (() => {
+                commands['AC'].execute()
+                commands['x^3'].execute()
+                return result
+            })()
+        ).toBe('')
+    })
+
+    test('^ 2 =', () => {
+        expect(
+            (() => {
+                commands['AC'].execute()
+                commands['x^2'].execute()
+                return result
+            })()
+        ).toBe('')
     })
 })

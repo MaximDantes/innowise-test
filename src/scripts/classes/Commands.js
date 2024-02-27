@@ -84,25 +84,13 @@ export class PercentCommand extends Command {
     }
 }
 
-export class SquareCommand extends Command {
+export class PowCommand extends Command {
     constructor(value, calculator) {
         super(value, calculator)
     }
 
     execute() {
-        //TODO
-        super.execute()
-    }
-}
-
-export class CubeCommand extends Command {
-    constructor(value, calculator) {
-        super(value, calculator)
-    }
-
-    execute() {
-        //TODO
-        super.execute()
+        this.calculator.pow(this.value)
     }
 }
 

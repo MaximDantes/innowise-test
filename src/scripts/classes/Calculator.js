@@ -149,6 +149,19 @@ class Calculator {
         }
     }
 
+    pow(value) {
+        if (!this.leftOperand) return
+
+        if (this.rightOperand) {
+            this.calculate()
+        }
+        this.operator = '^'
+        this.rightOperand = value
+
+        this.createSummary()
+        this.callObservers()
+    }
+
     createSummary() {
         this.summary = ''
         if (this.leftOperand) this.summary += this.leftOperand
