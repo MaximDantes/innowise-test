@@ -58,6 +58,8 @@ class Operations {
             new Operation(new AddOperandCommand('0', this.calculator)),
             new Operation(new AddOperandCommand('.', this.calculator), [',']),
             new Operation(new CalculateCommand('=', this.calculator), ['Enter']),
+
+            new Operation(new AddOperatorCommand('^', this.calculator)),
         ]
     }
 }

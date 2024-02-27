@@ -53,17 +53,6 @@ export class HistoryBackCommand extends Command {
     }
 }
 
-export class ChangeSignCommand extends Command {
-    constructor(value, calculator) {
-        super(value, calculator)
-    }
-
-    execute() {
-        //TODO
-        console.log('change sign')
-    }
-}
-
 export class CalculateCommand extends Command {
     constructor(value, calculator) {
         super(value, calculator)
@@ -71,5 +60,114 @@ export class CalculateCommand extends Command {
 
     execute() {
         this.calculator.calculate()
+    }
+}
+
+export class ChangeSignCommand extends Command {
+    constructor(value, calculator) {
+        super(value, calculator)
+    }
+
+    execute() {
+        this.calculator.changeSign()
+    }
+}
+
+export class PercentCommand extends Command {
+    constructor(value, calculator) {
+        super(value, calculator)
+    }
+
+    execute() {
+        //TODO
+        super.execute()
+    }
+}
+
+export class SquareCommand extends Command {
+    constructor(value, calculator) {
+        super(value, calculator)
+    }
+
+    execute() {
+        //TODO
+        super.execute()
+    }
+}
+
+export class CubeCommand extends Command {
+    constructor(value, calculator) {
+        super(value, calculator)
+    }
+
+    execute() {
+        //TODO
+        super.execute()
+    }
+}
+
+export class ReciprocalCommand extends Command {
+    constructor(value, calculator) {
+        super(value, calculator)
+    }
+
+    execute() {
+        //TODO
+        super.execute()
+    }
+}
+
+export class TenExponentsXCommand extends Command {
+    constructor(value, calculator) {
+        super(value, calculator)
+    }
+
+    execute() {
+        //TODO
+        super.execute()
+    }
+}
+
+export class SquareRootCommand extends Command {
+    constructor(value, calculator) {
+        super(value, calculator)
+    }
+
+    execute() {
+        //TODO
+        super.execute()
+    }
+}
+
+export class CubeRootCommand extends Command {
+    constructor(value, calculator) {
+        super(value, calculator)
+    }
+
+    execute() {
+        //TODO
+        super.execute()
+    }
+}
+
+export class RootCommand extends Command {
+    constructor(value, calculator) {
+        super(value, calculator)
+    }
+
+    execute() {
+        //TODO
+        super.execute()
+    }
+}
+
+export class FactorialCommand extends Command {
+    constructor(value, calculator) {
+        super(value, calculator)
+    }
+
+    execute() {
+        //TODO
+        super.execute()
     }
 }

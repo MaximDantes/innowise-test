@@ -40,6 +40,16 @@ class Calculator {
                 this.summary = +this.leftOperand * +this.rightOperand
                 break
 
+            case '^': {
+                //TODO float exponent
+                let result = 1
+                for (let i = 0; i < +this.rightOperand; i++) {
+                    result *= +this.leftOperand
+                }
+                this.summary = result
+                break
+            }
+
             default:
         }
 
@@ -77,8 +87,37 @@ class Calculator {
         this.callObservers()
     }
 
+    changeSign() {
+        try {
+            if (!this.operator && this.leftOperand) {
+                this.leftOperand = +this.leftOperand * -1
+                return
+            }
+
+            if (this.operator === '+') {
+                this.operator = '-'
+                return
+            }
+
+            if (this.operator === '-') {
+                this.operator = '+'
+                return
+            }
+
+            this.rightOperand = +this.rightOperand * -1
+        } catch (e) {
+            throw new Error('Change sign error')
+        } finally {
+            this.createSummary()
+            this.callObservers()
+        }
+    }
+
     createSummary() {
-        this.summary = `${this.leftOperand} ${this.operator} ${this.rightOperand}`
+        this.summary = ''
+        if (this.leftOperand) this.summary += this.leftOperand
+        if (this.operator) this.summary += ' ' + this.operator
+        if (this.rightOperand) this.summary += ' ' + this.rightOperand
     }
 
     subscribe(observer) {

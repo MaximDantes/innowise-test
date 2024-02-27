@@ -3,6 +3,7 @@ import {
     AddOperandCommand,
     AddOperatorCommand,
     CalculateCommand,
+    ChangeSignCommand,
     ClearCommand,
     HistoryBackCommand,
 } from '../src/scripts/classes/Commands.js'
@@ -26,19 +27,21 @@ const commands = {
     '/': new AddOperatorCommand('/', calculator),
     '*': new AddOperatorCommand('*', calculator),
     '=': new CalculateCommand('=', calculator),
+    '^': new AddOperatorCommand('^', calculator),
+    '+-': new ChangeSignCommand('+-', calculator),
     AC: new ClearCommand('AC', calculator),
     C: new HistoryBackCommand('C', calculator),
 }
 
-describe('calculator', () => {
-    let result = ''
+let result = ''
 
-    const getSummary = (summary) => {
-        result = summary
-    }
+const getSummary = (summary) => {
+    result = summary
+}
 
-    calculator.subscribe(getSummary)
+calculator.subscribe(getSummary)
 
+describe('calculations', () => {
     test('1 + 1', () => {
         expect(
             (() => {
@@ -107,5 +110,131 @@ describe('calculator', () => {
                 return result
             })()
         ).toBe('-2')
+    })
+
+    test('5 ^ 4', () => {
+        expect(
+            (() => {
+                commands['AC'].execute()
+                commands[5].execute()
+                commands['^'].execute()
+                commands[4].execute()
+                commands['='].execute()
+                return result
+            })()
+        ).toBe('625')
+    })
+})
+
+describe('change sign', () => {
+    test('1', () => {
+        expect(
+            (() => {
+                commands['AC'].execute()
+                commands[1].execute()
+                commands['+-'].execute()
+                return result
+            })()
+        ).toBe('-1')
+    })
+
+    test('1.22', () => {
+        expect(
+            (() => {
+                commands['AC'].execute()
+                commands[1].execute()
+                commands['.'].execute()
+                commands[2].execute()
+                commands[2].execute()
+                commands['+-'].execute()
+                return result
+            })()
+        ).toBe('-1.22')
+    })
+
+    test('', () => {
+        expect(
+            (() => {
+                commands['AC'].execute()
+                commands['+-'].execute()
+                return result
+            })()
+        ).toBe('')
+    })
+
+    test('3 * 5', () => {
+        expect(
+            (() => {
+                commands['AC'].execute()
+                commands[3].execute()
+                commands['*'].execute()
+                commands[5].execute()
+                commands['+-'].execute()
+                return result
+            })()
+        ).toBe('3 * -5')
+    })
+
+    test('3 + 5', () => {
+        expect(
+            (() => {
+                commands['AC'].execute()
+                commands[3].execute()
+                commands['+'].execute()
+                commands[5].execute()
+                commands['+-'].execute()
+                return result
+            })()
+        ).toBe('3 - 5')
+    })
+
+    test('3 / -5', () => {
+        expect(
+            (() => {
+                commands['AC'].execute()
+                commands[3].execute()
+                commands['/'].execute()
+                commands[5].execute()
+                commands['+-'].execute()
+                commands['+-'].execute()
+                return result
+            })()
+        ).toBe('3 / 5')
+    })
+
+    test('3 *', () => {
+        expect(
+            (() => {
+                commands['AC'].execute()
+                commands[3].execute()
+                commands['*'].execute()
+                commands['+-'].execute()
+                return result
+            })()
+        ).toBe('3 *')
+    })
+
+    test('3 +', () => {
+        expect(
+            (() => {
+                commands['AC'].execute()
+                commands[3].execute()
+                commands['+'].execute()
+                commands['+-'].execute()
+                return result
+            })()
+        ).toBe('3 -')
+    })
+
+    test('3 -', () => {
+        expect(
+            (() => {
+                commands['AC'].execute()
+                commands[3].execute()
+                commands['-'].execute()
+                commands['+-'].execute()
+                return result
+            })()
+        ).toBe('3 +')
     })
 })
