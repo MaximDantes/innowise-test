@@ -5,7 +5,7 @@ import {
     CalculateCommand,
     ChangeSignCommand,
     ClearCommand,
-    HistoryBackCommand,
+    HistoryBackCommand, TenToXPow,
 } from '../src/scripts/classes/Commands.js'
 
 const calculator = new Calculator()
@@ -30,6 +30,7 @@ const commands = {
     '!': new AddOperatorCommand('!', calculator),
     '^': new AddOperatorCommand('^', calculator),
     '+-': new ChangeSignCommand('+-', calculator),
+    '10^x': new TenToXPow('10^x', calculator),
     AC: new ClearCommand('AC', calculator),
     C: new HistoryBackCommand('C', calculator),
 }
@@ -124,6 +125,46 @@ describe('calculations', () => {
                 return result
             })()
         ).toBe('625')
+    })
+
+    test('5 +', () => {
+        expect(
+            (() => {
+                commands['AC'].execute()
+                commands[5].execute()
+                commands['+'].execute()
+                commands['='].execute()
+                return result
+            })()
+        ).toBe('5 +')
+    })
+
+    test('34.3 -', () => {
+        expect(
+            (() => {
+                commands['AC'].execute()
+                commands[3].execute()
+                commands[4].execute()
+                commands['.'].execute()
+                commands[3].execute()
+                commands['-'].execute()
+                commands['='].execute()
+                return result
+            })()
+        ).toBe('34.3 -')
+    })
+
+    test('23 *', () => {
+        expect(
+            (() => {
+                commands['AC'].execute()
+                commands[2].execute()
+                commands[3].execute()
+                commands['*'].execute()
+                commands['='].execute()
+                return result
+            })()
+        ).toBe('23 *')
     })
 })
 
@@ -301,5 +342,17 @@ describe('factorial', () => {
                 return result
             })()
         ).toBe('24')
+    })
+})
+
+describe('10 ^ x', () => {
+    test('', () => {
+        expect(
+            (() => {
+                commands['AC'].execute()
+                commands['10^x'].execute()
+                return result
+            })()
+        ).toBe('10 ^')
     })
 })

@@ -117,14 +117,13 @@ export class ReciprocalCommand extends Command {
     }
 }
 
-export class TenExponentsXCommand extends Command {
+export class TenToXPow extends Command {
     constructor(value, calculator) {
         super(value, calculator)
     }
 
     execute() {
-        //TODO
-        super.execute()
+        this.calculator.tenToXPow()
     }
 }
 

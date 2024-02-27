@@ -4,7 +4,7 @@ import {
     CalculateCommand,
     ChangeSignCommand,
     ClearCommand,
-    HistoryBackCommand,
+    HistoryBackCommand, TenToXPow,
 } from './Commands.js'
 
 class Operation {
@@ -61,6 +61,7 @@ class Operations {
 
             new Operation(new AddOperatorCommand('^', this.calculator)),
             new Operation(new AddOperatorCommand('!', this.calculator)),
+            new Operation(new TenToXPow('10^x', this.calculator)),
         ]
     }
 }

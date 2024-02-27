@@ -21,6 +21,8 @@ class Calculator {
     }
 
     calculate() {
+        if (!this.rightOperand && this.operator !== '!') return
+
         this.saveSnapshot()
 
         switch (this.operator) {
@@ -125,6 +127,22 @@ class Calculator {
             this.rightOperand = +this.rightOperand * -1
         } catch (e) {
             throw new Error('Change sign error')
+        } finally {
+            this.createSummary()
+            this.callObservers()
+        }
+    }
+
+    tenToXPow() {
+        try {
+            if (this.leftOperand === '10' && this.operator === '^') {
+                return
+            }
+            this.leftOperand = '10'
+            this.operator = '^'
+            this.rightOperand = ''
+        } catch (e) {
+            throw new Error('Ten to X pow error')
         } finally {
             this.createSummary()
             this.callObservers()
