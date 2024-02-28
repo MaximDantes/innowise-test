@@ -73,17 +73,6 @@ export class ChangeSignCommand extends Command {
     }
 }
 
-export class PercentCommand extends Command {
-    constructor(value, calculator) {
-        super(value, calculator)
-    }
-
-    execute() {
-        //TODO
-        super.execute()
-    }
-}
-
 export class PowCommand extends Command {
     constructor(value, calculator) {
         super(value, calculator)

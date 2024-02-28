@@ -23,7 +23,13 @@ class Calculator {
     }
 
     calculate() {
-        if (!this.rightOperand && this.operator !== '!') return
+        //all operations with only one operand
+        if (
+            !this.rightOperand &&
+            this.operator !== operationsNames.factorial &&
+            this.operator !== operationsNames.percent
+        )
+            return
 
         this.saveSnapshot()
 
@@ -63,6 +69,10 @@ class Calculator {
                 this.summary = result
                 break
             }
+
+            case operationsNames.percent:
+                this.summary = +this.leftOperand / 100
+                break
 
             default:
         }
