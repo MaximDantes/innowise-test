@@ -1,3 +1,5 @@
+import { operationsNames } from './Operations.js'
+
 class Calculator {
     constructor() {
         this.leftOperand = ''
@@ -26,23 +28,23 @@ class Calculator {
         this.saveSnapshot()
 
         switch (this.operator) {
-            case '+':
+            case operationsNames.plus:
                 this.summary = +this.leftOperand + +this.rightOperand
                 break
 
-            case '-':
+            case operationsNames.minus:
                 this.summary = +this.leftOperand - +this.rightOperand
                 break
 
-            case '/':
+            case operationsNames.div:
                 this.summary = +this.leftOperand / +this.rightOperand
                 break
 
-            case '*':
+            case operationsNames.mul:
                 this.summary = +this.leftOperand * +this.rightOperand
                 break
 
-            case '^': {
+            case operationsNames.pow: {
                 //TODO float exponent
                 let result = 1
                 for (let i = 0; i < +this.rightOperand; i++) {
@@ -52,7 +54,7 @@ class Calculator {
                 break
             }
 
-            case '!': {
+            case operationsNames.factorial: {
                 //TODO float factorial
                 let result = 1
                 for (let i = 1; i <= +this.leftOperand; i++) {
@@ -79,7 +81,7 @@ class Calculator {
             if (!this.operator) {
                 this.leftOperand += operand
             } else {
-                if (this.operator === '!') {
+                if (this.operator === operationsNames.factorial) {
                     this.calculate()
                 }
 
@@ -114,13 +116,13 @@ class Calculator {
                 return
             }
 
-            if (this.operator === '+') {
-                this.operator = '-'
+            if (this.operator === operationsNames.plus) {
+                this.operator = operationsNames.minus
                 return
             }
 
-            if (this.operator === '-') {
-                this.operator = '+'
+            if (this.operator === operationsNames.minus) {
+                this.operator = operationsNames.plus
                 return
             }
 
@@ -135,11 +137,11 @@ class Calculator {
 
     tenToXPow() {
         try {
-            if (this.leftOperand === '10' && this.operator === '^') {
+            if (this.leftOperand === '10' && this.operator === operationsNames.pow) {
                 return
             }
             this.leftOperand = '10'
-            this.operator = '^'
+            this.operator = operationsNames.pow
             this.rightOperand = ''
         } catch (e) {
             throw new Error('Ten to X pow error')
@@ -155,8 +157,9 @@ class Calculator {
         if (this.rightOperand) {
             this.calculate()
         }
-        this.operator = '^'
-        this.rightOperand = value
+
+        this.operator = operationsNames.pow
+        this.rightOperand = value.charAt(1)
 
         this.createSummary()
         this.callObservers()
@@ -167,11 +170,11 @@ class Calculator {
         if (this.leftOperand) this.summary += this.leftOperand
         if (this.operator) {
             if (
-                this.operator === '+' ||
-                this.operator === '-' ||
-                this.operator === '*' ||
-                this.operator === '/' ||
-                this.operator === '^'
+                this.operator === operationsNames.plus ||
+                this.operator === operationsNames.minus ||
+                this.operator === operationsNames.mul ||
+                this.operator === operationsNames.div ||
+                this.operator === operationsNames.pow
             ) {
                 this.summary += ' '
             }

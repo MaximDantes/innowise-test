@@ -9,34 +9,35 @@ import {
     PowCommand,
     TenToXPow,
 } from '../src/scripts/classes/Commands.js'
+import { operationsNames } from '../src/scripts/classes/Operations.js'
 
 const calculator = new Calculator()
 
 const commands = {
-    1: new AddOperandCommand('1', calculator),
-    2: new AddOperandCommand('2', calculator),
-    3: new AddOperandCommand('3', calculator),
-    4: new AddOperandCommand('4', calculator),
-    5: new AddOperandCommand('5', calculator),
-    6: new AddOperandCommand('6', calculator),
-    7: new AddOperandCommand('7', calculator),
-    8: new AddOperandCommand('8', calculator),
-    9: new AddOperandCommand('9', calculator),
-    0: new AddOperandCommand('0', calculator),
-    '.': new AddOperandCommand('.', calculator),
-    '+': new AddOperatorCommand('+', calculator),
-    '-': new AddOperatorCommand('-', calculator),
-    '/': new AddOperatorCommand('/', calculator),
-    '*': new AddOperatorCommand('*', calculator),
-    '=': new CalculateCommand('=', calculator),
-    '!': new AddOperatorCommand('!', calculator),
-    '^': new AddOperatorCommand('^', calculator),
-    '+-': new ChangeSignCommand('+-', calculator),
-    '10^x': new TenToXPow('10^x', calculator),
-    'x^2': new PowCommand('2', calculator),
-    'x^3': new PowCommand('3', calculator),
-    AC: new ClearCommand('AC', calculator),
-    C: new HistoryBackCommand('C', calculator),
+    [operationsNames.one]: new AddOperandCommand(operationsNames.one, calculator),
+    [operationsNames.two]: new AddOperandCommand(operationsNames.two, calculator),
+    [operationsNames.three]: new AddOperandCommand(operationsNames.three, calculator),
+    [operationsNames.four]: new AddOperandCommand(operationsNames.four, calculator),
+    [operationsNames.five]: new AddOperandCommand(operationsNames.five, calculator),
+    [operationsNames.six]: new AddOperandCommand(operationsNames.six, calculator),
+    [operationsNames.seven]: new AddOperandCommand(operationsNames.seven, calculator),
+    [operationsNames.eight]: new AddOperandCommand(operationsNames.eight, calculator),
+    [operationsNames.nine]: new AddOperandCommand(operationsNames.nine, calculator),
+    [operationsNames.zero]: new AddOperandCommand(operationsNames.zero, calculator),
+    [operationsNames.dot]: new AddOperandCommand(operationsNames.dot, calculator),
+    [operationsNames.plus]: new AddOperatorCommand(operationsNames.plus, calculator),
+    [operationsNames.minus]: new AddOperatorCommand(operationsNames.minus, calculator),
+    [operationsNames.div]: new AddOperatorCommand(operationsNames.div, calculator),
+    [operationsNames.mul]: new AddOperatorCommand(operationsNames.mul, calculator),
+    [operationsNames.equal]: new CalculateCommand(operationsNames.equal, calculator),
+    [operationsNames.factorial]: new AddOperatorCommand(operationsNames.factorial, calculator),
+    [operationsNames.pow]: new AddOperatorCommand(operationsNames.pow, calculator),
+    [operationsNames.changeSign]: new ChangeSignCommand(operationsNames.changeSign, calculator),
+    [operationsNames.tenPowX]: new TenToXPow(operationsNames.tenPowX, calculator),
+    [operationsNames.square]: new PowCommand(operationsNames.square, calculator),
+    [operationsNames.cube]: new PowCommand(operationsNames.cube, calculator),
+    [operationsNames.clear]: new ClearCommand(operationsNames.clear, calculator),
+    [operationsNames.historyBack]: new HistoryBackCommand(operationsNames.historyBack, calculator),
 }
 
 let result = ''
@@ -51,10 +52,10 @@ describe('calculations', () => {
     test('1 + 1', () => {
         expect(
             (() => {
-                commands[1].execute()
-                commands['+'].execute()
-                commands[1].execute()
-                commands['='].execute()
+                commands[operationsNames.one].execute()
+                commands[operationsNames.plus].execute()
+                commands[operationsNames.one].execute()
+                commands[operationsNames.equal].execute()
                 return result
             })()
         ).toBe('2')
@@ -63,12 +64,12 @@ describe('calculations', () => {
     test('10 - 5', () => {
         expect(
             (() => {
-                commands['AC'].execute()
-                commands[1].execute()
-                commands[0].execute()
-                commands['-'].execute()
-                commands[5].execute()
-                commands['='].execute()
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.one].execute()
+                commands[operationsNames.zero].execute()
+                commands[operationsNames.minus].execute()
+                commands[operationsNames.five].execute()
+                commands[operationsNames.equal].execute()
                 return result
             })()
         ).toBe('5')
@@ -77,13 +78,13 @@ describe('calculations', () => {
     test('2 * 3.3', () => {
         expect(
             (() => {
-                commands['AC'].execute()
-                commands[2].execute()
-                commands['*'].execute()
-                commands[3].execute()
-                commands['.'].execute()
-                commands[3].execute()
-                commands['='].execute()
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.two].execute()
+                commands[operationsNames.mul].execute()
+                commands[operationsNames.three].execute()
+                commands[operationsNames.dot].execute()
+                commands[operationsNames.three].execute()
+                commands[operationsNames.equal].execute()
                 return result
             })()
         ).toBe('6.6')
@@ -92,14 +93,14 @@ describe('calculations', () => {
     test('10 / 2.5', () => {
         expect(
             (() => {
-                commands['AC'].execute()
-                commands[1].execute()
-                commands[0].execute()
-                commands['/'].execute()
-                commands[2].execute()
-                commands['.'].execute()
-                commands[5].execute()
-                commands['='].execute()
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.one].execute()
+                commands[operationsNames.zero].execute()
+                commands[operationsNames.div].execute()
+                commands[operationsNames.two].execute()
+                commands[operationsNames.dot].execute()
+                commands[operationsNames.five].execute()
+                commands[operationsNames.equal].execute()
                 return result
             })()
         ).toBe('4')
@@ -108,11 +109,11 @@ describe('calculations', () => {
     test('3 - 5', () => {
         expect(
             (() => {
-                commands['AC'].execute()
-                commands[3].execute()
-                commands['-'].execute()
-                commands[5].execute()
-                commands['='].execute()
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.three].execute()
+                commands[operationsNames.minus].execute()
+                commands[operationsNames.five].execute()
+                commands[operationsNames.equal].execute()
                 return result
             })()
         ).toBe('-2')
@@ -121,11 +122,11 @@ describe('calculations', () => {
     test('5 ^ 4', () => {
         expect(
             (() => {
-                commands['AC'].execute()
-                commands[5].execute()
-                commands['^'].execute()
-                commands[4].execute()
-                commands['='].execute()
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.five].execute()
+                commands[operationsNames.pow].execute()
+                commands[operationsNames.four].execute()
+                commands[operationsNames.equal].execute()
                 return result
             })()
         ).toBe('625')
@@ -134,10 +135,10 @@ describe('calculations', () => {
     test('5 +', () => {
         expect(
             (() => {
-                commands['AC'].execute()
-                commands[5].execute()
-                commands['+'].execute()
-                commands['='].execute()
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.five].execute()
+                commands[operationsNames.plus].execute()
+                commands[operationsNames.equal].execute()
                 return result
             })()
         ).toBe('5 +')
@@ -146,13 +147,13 @@ describe('calculations', () => {
     test('34.3 -', () => {
         expect(
             (() => {
-                commands['AC'].execute()
-                commands[3].execute()
-                commands[4].execute()
-                commands['.'].execute()
-                commands[3].execute()
-                commands['-'].execute()
-                commands['='].execute()
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.three].execute()
+                commands[operationsNames.four].execute()
+                commands[operationsNames.dot].execute()
+                commands[operationsNames.three].execute()
+                commands[operationsNames.minus].execute()
+                commands[operationsNames.equal].execute()
                 return result
             })()
         ).toBe('34.3 -')
@@ -161,11 +162,11 @@ describe('calculations', () => {
     test('23 *', () => {
         expect(
             (() => {
-                commands['AC'].execute()
-                commands[2].execute()
-                commands[3].execute()
-                commands['*'].execute()
-                commands['='].execute()
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.two].execute()
+                commands[operationsNames.three].execute()
+                commands[operationsNames.mul].execute()
+                commands[operationsNames.equal].execute()
                 return result
             })()
         ).toBe('23 *')
@@ -176,9 +177,9 @@ describe('change sign', () => {
     test('1', () => {
         expect(
             (() => {
-                commands['AC'].execute()
-                commands[1].execute()
-                commands['+-'].execute()
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.one].execute()
+                commands[operationsNames.changeSign].execute()
                 return result
             })()
         ).toBe('-1')
@@ -187,12 +188,12 @@ describe('change sign', () => {
     test('1.22', () => {
         expect(
             (() => {
-                commands['AC'].execute()
-                commands[1].execute()
-                commands['.'].execute()
-                commands[2].execute()
-                commands[2].execute()
-                commands['+-'].execute()
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.one].execute()
+                commands[operationsNames.dot].execute()
+                commands[operationsNames.two].execute()
+                commands[operationsNames.two].execute()
+                commands[operationsNames.changeSign].execute()
                 return result
             })()
         ).toBe('-1.22')
@@ -201,8 +202,8 @@ describe('change sign', () => {
     test('', () => {
         expect(
             (() => {
-                commands['AC'].execute()
-                commands['+-'].execute()
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.changeSign].execute()
                 return result
             })()
         ).toBe('')
@@ -211,11 +212,11 @@ describe('change sign', () => {
     test('3 * 5', () => {
         expect(
             (() => {
-                commands['AC'].execute()
-                commands[3].execute()
-                commands['*'].execute()
-                commands[5].execute()
-                commands['+-'].execute()
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.three].execute()
+                commands[operationsNames.mul].execute()
+                commands[operationsNames.five].execute()
+                commands[operationsNames.changeSign].execute()
                 return result
             })()
         ).toBe('3 * -5')
@@ -224,11 +225,11 @@ describe('change sign', () => {
     test('3 + 5', () => {
         expect(
             (() => {
-                commands['AC'].execute()
-                commands[3].execute()
-                commands['+'].execute()
-                commands[5].execute()
-                commands['+-'].execute()
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.three].execute()
+                commands[operationsNames.plus].execute()
+                commands[operationsNames.five].execute()
+                commands[operationsNames.changeSign].execute()
                 return result
             })()
         ).toBe('3 - 5')
@@ -237,12 +238,12 @@ describe('change sign', () => {
     test('3 / -5', () => {
         expect(
             (() => {
-                commands['AC'].execute()
-                commands[3].execute()
-                commands['/'].execute()
-                commands[5].execute()
-                commands['+-'].execute()
-                commands['+-'].execute()
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.three].execute()
+                commands[operationsNames.div].execute()
+                commands[operationsNames.five].execute()
+                commands[operationsNames.changeSign].execute()
+                commands[operationsNames.changeSign].execute()
                 return result
             })()
         ).toBe('3 / 5')
@@ -251,10 +252,10 @@ describe('change sign', () => {
     test('3 *', () => {
         expect(
             (() => {
-                commands['AC'].execute()
-                commands[3].execute()
-                commands['*'].execute()
-                commands['+-'].execute()
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.three].execute()
+                commands[operationsNames.mul].execute()
+                commands[operationsNames.changeSign].execute()
                 return result
             })()
         ).toBe('3 *')
@@ -263,10 +264,10 @@ describe('change sign', () => {
     test('3 +', () => {
         expect(
             (() => {
-                commands['AC'].execute()
-                commands[3].execute()
-                commands['+'].execute()
-                commands['+-'].execute()
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.three].execute()
+                commands[operationsNames.plus].execute()
+                commands[operationsNames.changeSign].execute()
                 return result
             })()
         ).toBe('3 -')
@@ -275,10 +276,10 @@ describe('change sign', () => {
     test('3 -', () => {
         expect(
             (() => {
-                commands['AC'].execute()
-                commands[3].execute()
-                commands['-'].execute()
-                commands['+-'].execute()
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.three].execute()
+                commands[operationsNames.minus].execute()
+                commands[operationsNames.changeSign].execute()
                 return result
             })()
         ).toBe('3 +')
@@ -289,9 +290,9 @@ describe('factorial', () => {
     test('1', () => {
         expect(
             (() => {
-                commands['AC'].execute()
-                commands[1].execute()
-                commands['!'].execute()
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.one].execute()
+                commands[operationsNames.factorial].execute()
                 return result
             })()
         ).toBe('1!')
@@ -300,10 +301,10 @@ describe('factorial', () => {
     test('4!', () => {
         expect(
             (() => {
-                commands['AC'].execute()
-                commands[4].execute()
-                commands['!'].execute()
-                commands['='].execute()
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.four].execute()
+                commands[operationsNames.factorial].execute()
+                commands[operationsNames.equal].execute()
                 return result
             })()
         ).toBe('24')
@@ -312,10 +313,10 @@ describe('factorial', () => {
     test('4! + ', () => {
         expect(
             (() => {
-                commands['AC'].execute()
-                commands[4].execute()
-                commands['!'].execute()
-                commands['+'].execute()
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.four].execute()
+                commands[operationsNames.factorial].execute()
+                commands[operationsNames.plus].execute()
                 return result
             })()
         ).toBe('24 +')
@@ -324,11 +325,11 @@ describe('factorial', () => {
     test('15!', () => {
         expect(
             (() => {
-                commands['AC'].execute()
-                commands[1].execute()
-                commands[5].execute()
-                commands['!'].execute()
-                commands['='].execute()
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.one].execute()
+                commands[operationsNames.five].execute()
+                commands[operationsNames.factorial].execute()
+                commands[operationsNames.equal].execute()
                 return result
             })()
         ).toBe('1307674368000')
@@ -337,12 +338,12 @@ describe('factorial', () => {
     test('4.5!', () => {
         expect(
             (() => {
-                commands['AC'].execute()
-                commands[4].execute()
-                commands['.'].execute()
-                commands[5].execute()
-                commands['!'].execute()
-                commands['='].execute()
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.four].execute()
+                commands[operationsNames.dot].execute()
+                commands[operationsNames.five].execute()
+                commands[operationsNames.factorial].execute()
+                commands[operationsNames.equal].execute()
                 return result
             })()
         ).toBe('24')
@@ -353,21 +354,21 @@ describe('10 ^ x', () => {
     test('', () => {
         expect(
             (() => {
-                commands['AC'].execute()
-                commands['10^x'].execute()
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.tenPowX].execute()
                 return result
             })()
         ).toBe('10 ^')
     })
 })
 
-describe('x ^ 2, x ^ 3', () => {
+describe('cube and square', () => {
     test('5 ^ 2', () => {
         expect(
             (() => {
-                commands['AC'].execute()
-                commands[5].execute()
-                commands['x^2'].execute()
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.five].execute()
+                commands[operationsNames.square].execute()
                 return result
             })()
         ).toBe('5 ^ 2')
@@ -376,11 +377,11 @@ describe('x ^ 2, x ^ 3', () => {
     test('3.6 ^ 3', () => {
         expect(
             (() => {
-                commands['AC'].execute()
-                commands[3].execute()
-                commands['.'].execute()
-                commands[6].execute()
-                commands['x^3'].execute()
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.three].execute()
+                commands[operationsNames.dot].execute()
+                commands[operationsNames.six].execute()
+                commands[operationsNames.cube].execute()
                 return result
             })()
         ).toBe('3.6 ^ 3')
@@ -389,11 +390,11 @@ describe('x ^ 2, x ^ 3', () => {
     test('14 ^ 2 =', () => {
         expect(
             (() => {
-                commands['AC'].execute()
-                commands[1].execute()
-                commands[4].execute()
-                commands['x^2'].execute()
-                commands['='].execute()
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.one].execute()
+                commands[operationsNames.four].execute()
+                commands[operationsNames.square].execute()
+                commands[operationsNames.equal].execute()
                 return result
             })()
         ).toBe('196')
@@ -402,12 +403,12 @@ describe('x ^ 2, x ^ 3', () => {
     test('3.5 ^ 3 =', () => {
         expect(
             (() => {
-                commands['AC'].execute()
-                commands[3].execute()
-                commands['.'].execute()
-                commands[5].execute()
-                commands['x^3'].execute()
-                commands['='].execute()
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.three].execute()
+                commands[operationsNames.dot].execute()
+                commands[operationsNames.five].execute()
+                commands[operationsNames.cube].execute()
+                commands[operationsNames.equal].execute()
                 return result
             })()
         ).toBe('42.875')
@@ -416,11 +417,11 @@ describe('x ^ 2, x ^ 3', () => {
     test('2 + 2 ^ 2', () => {
         expect(
             (() => {
-                commands['AC'].execute()
-                commands[2].execute()
-                commands['+'].execute()
-                commands[2].execute()
-                commands['x^2'].execute()
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.two].execute()
+                commands[operationsNames.plus].execute()
+                commands[operationsNames.two].execute()
+                commands[operationsNames.square].execute()
                 return result
             })()
         ).toBe('4 ^ 2')
@@ -429,12 +430,12 @@ describe('x ^ 2, x ^ 3', () => {
     test('2 + 2 ^ 3 =', () => {
         expect(
             (() => {
-                commands['AC'].execute()
-                commands[2].execute()
-                commands['+'].execute()
-                commands[2].execute()
-                commands['x^3'].execute()
-                commands['='].execute()
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.two].execute()
+                commands[operationsNames.plus].execute()
+                commands[operationsNames.two].execute()
+                commands[operationsNames.cube].execute()
+                commands[operationsNames.equal].execute()
                 return result
             })()
         ).toBe('64')
@@ -443,8 +444,8 @@ describe('x ^ 2, x ^ 3', () => {
     test('^ 3 =', () => {
         expect(
             (() => {
-                commands['AC'].execute()
-                commands['x^3'].execute()
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.cube].execute()
                 return result
             })()
         ).toBe('')
@@ -453,8 +454,8 @@ describe('x ^ 2, x ^ 3', () => {
     test('^ 2 =', () => {
         expect(
             (() => {
-                commands['AC'].execute()
-                commands['x^2'].execute()
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.square].execute()
                 return result
             })()
         ).toBe('')
