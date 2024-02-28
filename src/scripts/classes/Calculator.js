@@ -87,7 +87,7 @@ class Calculator {
                 break
 
             case operationsNames.root:
-                //TODO
+                //TODO remove Math
                 if (String(this.leftOperand) === '2') {
                     this.summary = Math.sqrt(this.rightOperand)
                     break
@@ -96,7 +96,7 @@ class Calculator {
                     this.summary = Math.cbrt(this.rightOperand)
                     break
                 }
-                this.summary = 'TODO'
+                this.summary = Math.pow(+this.rightOperand, 1 / +this.leftOperand)
                 break
 
             default:
@@ -131,17 +131,33 @@ class Calculator {
     }
 
     addOperator(operator) {
-        this.saveSnapshot()
+        try {
+            this.saveSnapshot()
 
-        if (!this.operator) {
-            this.operator = operator
-        } else {
-            this.calculate()
-            this.operator = operator
+            if (this.leftOperand === operationsNames.minus) {
+                this.leftOperand = ''
+                return
+            }
+
+            if (!this.leftOperand) {
+                if (operator !== operationsNames.minus) return
+
+                this.leftOperand += operationsNames.minus
+                return
+            }
+
+            if (!this.operator) {
+                this.operator = operator
+            } else {
+                this.calculate()
+                this.operator = operator
+            }
+        } catch (e) {
+            throw new Error('Add operator error')
+        } finally {
+            this.createSummary()
+            this.callObservers()
         }
-
-        this.createSummary()
-        this.callObservers()
     }
 
     changeSign() {
