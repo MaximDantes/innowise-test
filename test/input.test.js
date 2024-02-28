@@ -51,7 +51,9 @@ describe('prevent to set math sign in first position', () => {
             })()
         ).toBe(operationsNames.minus)
     })
+})
 
+describe('format minus', () => {
     test('- -', () => {
         expect(
             (() => {
@@ -66,6 +68,7 @@ describe('prevent to set math sign in first position', () => {
     test('2 + -', () => {
         expect(
             (() => {
+                commands[operationsNames.clear].execute()
                 commands[operationsNames.two].execute()
                 commands[operationsNames.plus].execute()
                 commands[operationsNames.minus].execute()
@@ -77,11 +80,48 @@ describe('prevent to set math sign in first position', () => {
     test('2 * /', () => {
         expect(
             (() => {
+                commands[operationsNames.clear].execute()
                 commands[operationsNames.two].execute()
                 commands[operationsNames.mul].execute()
                 commands[operationsNames.div].execute()
                 return result
             })()
         ).toBe(`2 ${operationsNames.div}`)
+    })
+
+    test('2 + +', () => {
+        expect(
+            (() => {
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.two].execute()
+                commands[operationsNames.plus].execute()
+                commands[operationsNames.plus].execute()
+                return result
+            })()
+        ).toBe(`2 ${operationsNames.plus}`)
+    })
+
+    test('2 - -', () => {
+        expect(
+            (() => {
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.two].execute()
+                commands[operationsNames.minus].execute()
+                commands[operationsNames.minus].execute()
+                return result
+            })()
+        ).toBe(`2 ${operationsNames.plus}`)
+    })
+
+    test('2 * -', () => {
+        expect(
+            (() => {
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.two].execute()
+                commands[operationsNames.mul].execute()
+                commands[operationsNames.minus].execute()
+                return result
+            })()
+        ).toBe(`2 ${operationsNames.mul} ${operationsNames.minus}`)
     })
 })

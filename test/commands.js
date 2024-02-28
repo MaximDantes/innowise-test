@@ -5,10 +5,11 @@ import {
     AddOperatorCommand,
     CalculateCommand,
     ChangeSignCommand,
-    ClearCommand,
+    ClearCommand, DotCommand,
     HistoryBackCommand,
     OneDivX,
-    PowCommand, RootCommand,
+    PowCommand,
+    RootCommand,
     TenToXPow,
 } from '../src/scripts/classes/Commands.js'
 
@@ -25,7 +26,7 @@ export const commands = {
     [operationsNames.eight]: new AddOperandCommand(operationsNames.eight, calculator),
     [operationsNames.nine]: new AddOperandCommand(operationsNames.nine, calculator),
     [operationsNames.zero]: new AddOperandCommand(operationsNames.zero, calculator),
-    [operationsNames.dot]: new AddOperandCommand(operationsNames.dot, calculator),
+    [operationsNames.dot]: new DotCommand(operationsNames.dot, calculator),
     [operationsNames.plus]: new AddOperatorCommand(operationsNames.plus, calculator),
     [operationsNames.minus]: new AddOperatorCommand(operationsNames.minus, calculator),
     [operationsNames.div]: new AddOperatorCommand(operationsNames.div, calculator),

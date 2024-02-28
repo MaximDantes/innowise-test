@@ -24,14 +24,17 @@ class Calculator {
         this.callObservers()
     }
 
-    calculate() {
+    isOperationIncomplete = () => {
         //all operations with only one operand
-        if (
+        return (
             !this.rightOperand &&
             this.operator !== operationsNames.factorial &&
             this.operator !== operationsNames.percent
         )
-            return
+    }
+
+    calculate() {
+        if (this.isOperationIncomplete()) return
 
         this.saveSnapshot()
 
@@ -149,11 +152,51 @@ class Calculator {
             if (!this.operator) {
                 this.operator = operator
             } else {
-                this.calculate()
-                this.operator = operator
+                if (operator !== operationsNames.minus) {
+                    this.calculate()
+                    this.operator = operator
+                } else {
+                    if (this.isOperationIncomplete()) {
+                        if (this.operator === operationsNames.minus) {
+                            this.operator = operationsNames.plus
+                            return
+                        }
+
+                        if (this.operator === operationsNames.plus) {
+                            this.operator = operationsNames.minus
+                            return
+                        }
+
+                        this.rightOperand += operationsNames.minus
+                    } else {
+                        this.calculate()
+                        this.operator = operator
+                    }
+                }
             }
         } catch (e) {
             throw new Error('Add operator error')
+        } finally {
+            this.createSummary()
+            this.callObservers()
+        }
+    }
+
+    dot() {
+        try {
+            this.saveSnapshot()
+
+            let operand = this.operator ? this.rightOperand : this.leftOperand
+
+            if (operand.charAt(operand.length - 1) === operationsNames.dot) return
+
+            if (operand === '') return
+
+            operand += operationsNames.dot
+
+            this.operator ? (this.rightOperand = operand) : (this.leftOperand = operand)
+        } catch (e) {
+            throw new Error('Add dot error')
         } finally {
             this.createSummary()
             this.callObservers()

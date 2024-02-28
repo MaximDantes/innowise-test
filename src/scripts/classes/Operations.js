@@ -3,7 +3,7 @@ import {
     AddOperatorCommand,
     CalculateCommand,
     ChangeSignCommand,
-    ClearCommand,
+    ClearCommand, DotCommand,
     HistoryBackCommand,
     OneDivX,
     PowCommand,
@@ -110,7 +110,7 @@ class Operations {
             new Operation(new AddOperatorCommand(operationsNames.plus, this.calculator)),
             new Operation(new ChangeSignCommand(operationsNames.changeSign, this.calculator), [], '&plusmn;'),
             new Operation(new AddOperandCommand(operationsNames.zero, this.calculator)),
-            new Operation(new AddOperandCommand(operationsNames.dot, this.calculator), [',']),
+            new Operation(new DotCommand(operationsNames.dot, this.calculator), [',']),
             new Operation(new CalculateCommand(operationsNames.equal, this.calculator), ['Enter']),
 
             new Operation(new AddOperatorCommand(operationsNames.pow, this.calculator)),
