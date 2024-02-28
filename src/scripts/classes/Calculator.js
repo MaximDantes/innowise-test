@@ -161,6 +161,22 @@ class Calculator {
         }
     }
 
+    oneDivX() {
+        try {
+            if (this.leftOperand === '1' && this.operator === operationsNames.div) {
+                return
+            }
+            this.rightOperand = this.leftOperand
+            this.leftOperand = '1'
+            this.operator = operationsNames.div
+        } catch (e) {
+            throw new Error('One div X error')
+        } finally {
+            this.createSummary()
+            this.callObservers()
+        }
+    }
+
     pow(value) {
         if (!this.leftOperand) return
 

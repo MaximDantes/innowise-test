@@ -4,7 +4,7 @@ import {
     CalculateCommand,
     ChangeSignCommand,
     ClearCommand,
-    HistoryBackCommand,
+    HistoryBackCommand, OneDivX,
     PowCommand,
     TenToXPow,
 } from './Commands.js'
@@ -31,9 +31,13 @@ export const operationsNames = {
     equal: '=',
 
     changeSign: '+-',
+
     percent: '%',
     factorial: '!',
+
     tenPowX: '10^x',
+    oneDivX: '1/x',
+
     square: '^2',
     cube: '^3',
 
@@ -102,6 +106,7 @@ class Operations {
             new Operation(new TenToXPow(operationsNames.tenPowX, this.calculator)),
             new Operation(new PowCommand(operationsNames.square, this.calculator), [], 'x^2'),
             new Operation(new PowCommand(operationsNames.cube, this.calculator), [], 'x^3'),
+            new Operation(new OneDivX(operationsNames.oneDivX, this.calculator), [], '1/x'),
         ]
     }
 }

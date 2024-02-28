@@ -83,14 +83,13 @@ export class PowCommand extends Command {
     }
 }
 
-export class ReciprocalCommand extends Command {
+export class OneDivX extends Command {
     constructor(value, calculator) {
         super(value, calculator)
     }
 
     execute() {
-        //TODO
-        super.execute()
+        this.calculator.oneDivX()
     }
 }
 

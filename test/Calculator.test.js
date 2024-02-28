@@ -6,6 +6,7 @@ import {
     ChangeSignCommand,
     ClearCommand,
     HistoryBackCommand,
+    OneDivX,
     PowCommand,
     TenToXPow,
 } from '../src/scripts/classes/Commands.js'
@@ -34,6 +35,7 @@ const commands = {
     [operationsNames.pow]: new AddOperatorCommand(operationsNames.pow, calculator),
     [operationsNames.changeSign]: new ChangeSignCommand(operationsNames.changeSign, calculator),
     [operationsNames.tenPowX]: new TenToXPow(operationsNames.tenPowX, calculator),
+    [operationsNames.oneDivX]: new OneDivX(operationsNames.oneDivX, calculator),
     [operationsNames.square]: new PowCommand(operationsNames.square, calculator),
     [operationsNames.cube]: new PowCommand(operationsNames.cube, calculator),
     [operationsNames.percent]: new AddOperatorCommand(operationsNames.percent, calculator),
@@ -560,5 +562,78 @@ describe('percent', () => {
                 return result
             })()
         ).toBe('0.01%')
+    })
+})
+
+describe('one div x', () => {
+    test('1 / 10', () => {
+        expect(
+            (() => {
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.one].execute()
+                commands[operationsNames.zero].execute()
+                commands[operationsNames.oneDivX].execute()
+                return result
+            })()
+        ).toBe('1 / 10')
+    })
+
+    test('1 / 10 =', () => {
+        expect(
+            (() => {
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.one].execute()
+                commands[operationsNames.zero].execute()
+                commands[operationsNames.oneDivX].execute()
+                commands[operationsNames.equal].execute()
+                return result
+            })()
+        ).toBe('0.1')
+    })
+
+    test('1 / 10 + 1/x', () => {
+        expect(
+            (() => {
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.one].execute()
+                commands[operationsNames.zero].execute()
+                commands[operationsNames.oneDivX].execute()
+                commands[operationsNames.oneDivX].execute()
+                return result
+            })()
+        ).toBe('1 / 10')
+    })
+
+    test('empty + 1/x', () => {
+        expect(
+            (() => {
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.oneDivX].execute()
+                return result
+            })()
+        ).toBe('1 /')
+    })
+
+    test('empty + 1/x = ', () => {
+        expect(
+            (() => {
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.oneDivX].execute()
+                commands[operationsNames.equal].execute()
+                return result
+            })()
+        ).toBe('1 /')
+    })
+
+    test('1 / 5 +', () => {
+        expect(
+            (() => {
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.five].execute()
+                commands[operationsNames.oneDivX].execute()
+                commands[operationsNames.plus].execute()
+                return result
+            })()
+        ).toBe('0.2 +')
     })
 })
