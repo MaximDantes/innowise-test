@@ -49,18 +49,4 @@ describe('factorial', () => {
             })()
         ).toBe('1307674368000')
     })
-
-    test('4.5!', () => {
-        expect(
-            (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.four].execute()
-                commands[operationsNames.dot].execute()
-                commands[operationsNames.five].execute()
-                commands[operationsNames.factorial].execute()
-                commands[operationsNames.equal].execute()
-                return result
-            })()
-        ).toBe('24')
-    })
 })

@@ -1,4 +1,5 @@
 import { getSuperscript, operationsNames } from './Operations.js'
+import errorMessages from '../common/error-messages.js'
 
 class Calculator {
     constructor() {
@@ -9,6 +10,7 @@ class Calculator {
         this.observers = []
         this.caretaker = new CalculatorCaretaker(this)
         this.saveSnapshot()
+        return new Proxy(this, calculatorErrorHandler)
     }
 
     clear() {
@@ -43,6 +45,10 @@ class Calculator {
                 break
 
             case operationsNames.div:
+                if (+this.rightOperand === 0) {
+                    throw new Error(errorMessages.divByZero)
+                }
+
                 this.summary = +this.leftOperand / +this.rightOperand
                 break
 
@@ -51,7 +57,10 @@ class Calculator {
                 break
 
             case operationsNames.pow: {
-                //TODO float exponent
+                if (!Number.isInteger(+this.rightOperand)) {
+                    throw new Error(errorMessages.floatPow)
+                }
+
                 let result = 1
                 for (let i = 0; i < +this.rightOperand; i++) {
                     result *= +this.leftOperand
@@ -61,7 +70,10 @@ class Calculator {
             }
 
             case operationsNames.factorial: {
-                //TODO float factorial
+                if (!Number.isInteger(+this.leftOperand)) {
+                    throw new Error(errorMessages.floatFactorial)
+                }
+
                 let result = 1
                 for (let i = 1; i <= +this.leftOperand; i++) {
                     result *= i
@@ -76,11 +88,11 @@ class Calculator {
 
             case operationsNames.root:
                 //TODO
-                if (String(this.leftOperand) == '2') {
+                if (String(this.leftOperand) === '2') {
                     this.summary = Math.sqrt(this.rightOperand)
                     break
                 }
-                if (String(this.leftOperand) == '3') {
+                if (String(this.leftOperand) === '3') {
                     this.summary = Math.cbrt(this.rightOperand)
                     break
                 }
@@ -266,6 +278,12 @@ class Calculator {
     restore() {
         this.caretaker.restore()
     }
+
+    handleError(e) {
+        this.clear()
+        this.summary = e.message
+        this.callObservers()
+    }
 }
 
 export default Calculator
@@ -311,4 +329,20 @@ class CalculatorCaretaker {
             this.calculator.callObservers()
         }
     }
+}
+
+//redirect all errorMessages to Calculator.handleError
+const calculatorErrorHandler = {
+    get(target, prop) {
+        // eslint-disable-next-line no-prototype-builtins
+        return !Calculator.prototype.hasOwnProperty(prop)
+            ? target[prop]
+            : function (...args) {
+                  try {
+                      target[prop].apply(this, args)
+                  } catch (e) {
+                      target.handleError(e)
+                  }
+              }
+    },
 }
