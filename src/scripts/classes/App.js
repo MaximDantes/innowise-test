@@ -16,7 +16,10 @@ class App {
             display.innerHTML = summary
                 .split('')
                 //replace chars for their view
-                .map((char) => this.operations.values.filter((item) => item.command.value === char)[0]?.view || char)
+                .map(
+                    (char) =>
+                        this.operations.values.filter((item) => item.command.operationName === char)[0]?.view || char
+                )
                 .join('')
         })
     }
@@ -24,10 +27,10 @@ class App {
     renderButtons() {
         this.operations.values.map((item) => {
             const button = document.createElement('button')
-            button.innerHTML = item.view
+            button.innerHTML = item.buttonView
 
             button.classList.add('button')
-            if (item.view === '=') {
+            if (item.buttonView === '=') {
                 button.classList.add('button_accent')
             }
 

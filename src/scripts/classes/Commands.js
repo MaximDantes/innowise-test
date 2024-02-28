@@ -1,6 +1,7 @@
 class Command {
-    constructor(value, calculator) {
+    constructor(operationName, calculator, value) {
         this.calculator = calculator
+        this.operationName = operationName
         this.value = value
 
         if (this.constructor === Command) {
@@ -14,28 +15,28 @@ class Command {
 }
 
 export class AddOperatorCommand extends Command {
-    constructor(value, calculator) {
-        super(value, calculator)
+    constructor(operationName, calculator, value) {
+        super(operationName, calculator, value)
     }
 
     execute() {
-        this.calculator.addOperator(this.value)
+        this.calculator.addOperator(this.operationName)
     }
 }
 
 export class AddOperandCommand extends Command {
-    constructor(value, calculator) {
-        super(value, calculator)
+    constructor(operationName, calculator, value) {
+        super(operationName, calculator, value)
     }
 
     execute() {
-        this.calculator.addOperand(this.value)
+        this.calculator.addOperand(this.operationName)
     }
 }
 
 export class ClearCommand extends Command {
-    constructor(value, calculator) {
-        super(value, calculator)
+    constructor(operationName, calculator, value) {
+        super(operationName, calculator, value)
     }
 
     execute() {
@@ -44,8 +45,8 @@ export class ClearCommand extends Command {
 }
 
 export class HistoryBackCommand extends Command {
-    constructor(value, calculator) {
-        super(value, calculator)
+    constructor(operationName, calculator, value) {
+        super(operationName, calculator, value)
     }
 
     execute() {
@@ -54,8 +55,8 @@ export class HistoryBackCommand extends Command {
 }
 
 export class CalculateCommand extends Command {
-    constructor(value, calculator) {
-        super(value, calculator)
+    constructor(operationName, calculator, value) {
+        super(operationName, calculator, value)
     }
 
     execute() {
@@ -64,8 +65,8 @@ export class CalculateCommand extends Command {
 }
 
 export class ChangeSignCommand extends Command {
-    constructor(value, calculator) {
-        super(value, calculator)
+    constructor(operationName, calculator, value) {
+        super(operationName, calculator, value)
     }
 
     execute() {
@@ -74,8 +75,8 @@ export class ChangeSignCommand extends Command {
 }
 
 export class PowCommand extends Command {
-    constructor(value, calculator) {
-        super(value, calculator)
+    constructor(operationName, calculator, value) {
+        super(operationName, calculator, value)
     }
 
     execute() {
@@ -84,8 +85,8 @@ export class PowCommand extends Command {
 }
 
 export class OneDivX extends Command {
-    constructor(value, calculator) {
-        super(value, calculator)
+    constructor(operationName, calculator, value) {
+        super(operationName, calculator, value)
     }
 
     execute() {
@@ -94,8 +95,8 @@ export class OneDivX extends Command {
 }
 
 export class TenToXPow extends Command {
-    constructor(value, calculator) {
-        super(value, calculator)
+    constructor(operationName, calculator, value) {
+        super(operationName, calculator, value)
     }
 
     execute() {
@@ -103,35 +104,12 @@ export class TenToXPow extends Command {
     }
 }
 
-export class SquareRootCommand extends Command {
-    constructor(value, calculator) {
-        super(value, calculator)
-    }
-
-    execute() {
-        //TODO
-        super.execute()
-    }
-}
-
-export class CubeRootCommand extends Command {
-    constructor(value, calculator) {
-        super(value, calculator)
-    }
-
-    execute() {
-        //TODO
-        super.execute()
-    }
-}
-
 export class RootCommand extends Command {
-    constructor(value, calculator) {
-        super(value, calculator)
+    constructor(operationName, calculator, value) {
+        super(operationName, calculator, value)
     }
 
     execute() {
-        //TODO
-        super.execute()
+        this.calculator.root(this.value)
     }
 }

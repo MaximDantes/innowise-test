@@ -10,7 +10,7 @@ describe('factorial', () => {
                 commands[operationsNames.factorial].execute()
                 return result
             })()
-        ).toBe('1!')
+        ).toBe(`1${operationsNames.factorial}`)
     })
 
     test('4!', () => {
@@ -34,7 +34,7 @@ describe('factorial', () => {
                 commands[operationsNames.plus].execute()
                 return result
             })()
-        ).toBe('24 +')
+        ).toBe(`24 ${operationsNames.plus}`)
     })
 
     test('15!', () => {

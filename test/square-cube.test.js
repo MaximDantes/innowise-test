@@ -10,7 +10,7 @@ describe('cube and square', () => {
                 commands[operationsNames.square].execute()
                 return result
             })()
-        ).toBe('5 ^ 2')
+        ).toBe(`5 ${operationsNames.pow} 2`)
     })
 
     test('3.6 ^ 3', () => {
@@ -23,7 +23,7 @@ describe('cube and square', () => {
                 commands[operationsNames.cube].execute()
                 return result
             })()
-        ).toBe('3.6 ^ 3')
+        ).toBe(`3.6 ${operationsNames.pow} 3`)
     })
 
     test('14 ^ 2 =', () => {
@@ -63,7 +63,7 @@ describe('cube and square', () => {
                 commands[operationsNames.square].execute()
                 return result
             })()
-        ).toBe('4 ^ 2')
+        ).toBe(`4 ${operationsNames.pow} 2`)
     })
 
     test('2 + 2 ^ 3 =', () => {

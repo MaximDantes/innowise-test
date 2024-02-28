@@ -8,7 +8,7 @@ import {
     ClearCommand,
     HistoryBackCommand,
     OneDivX,
-    PowCommand,
+    PowCommand, RootCommand,
     TenToXPow,
 } from '../src/scripts/classes/Commands.js'
 
@@ -36,8 +36,11 @@ export const commands = {
     [operationsNames.changeSign]: new ChangeSignCommand(operationsNames.changeSign, calculator),
     [operationsNames.tenPowX]: new TenToXPow(operationsNames.tenPowX, calculator),
     [operationsNames.oneDivX]: new OneDivX(operationsNames.oneDivX, calculator),
-    [operationsNames.square]: new PowCommand(operationsNames.square, calculator),
-    [operationsNames.cube]: new PowCommand(operationsNames.cube, calculator),
+    [operationsNames.square]: new PowCommand(operationsNames.pow, calculator, 2),
+    [operationsNames.cube]: new PowCommand(operationsNames.pow, calculator, 3),
+    [operationsNames.root]: new RootCommand(operationsNames.root, calculator),
+    [operationsNames.squareRoot]: new RootCommand(operationsNames.root, calculator, 2),
+    [operationsNames.cubeRoot]: new RootCommand(operationsNames.root, calculator, 3),
     [operationsNames.percent]: new AddOperatorCommand(operationsNames.percent, calculator),
     [operationsNames.clear]: new ClearCommand(operationsNames.clear, calculator),
     [operationsNames.historyBack]: new HistoryBackCommand(operationsNames.historyBack, calculator),

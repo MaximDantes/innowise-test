@@ -9,6 +9,6 @@ describe('10 ^ x', () => {
                 commands[operationsNames.tenPowX].execute()
                 return result
             })()
-        ).toBe('10 ^')
+        ).toBe(`10 ${operationsNames.pow}`)
     })
 })

@@ -12,7 +12,7 @@ describe('percent', () => {
                 commands[operationsNames.percent].execute()
                 return result
             })()
-        ).toBe('100%')
+        ).toBe(`100${operationsNames.percent}`)
     })
 
     test('50% =', () => {
@@ -54,7 +54,7 @@ describe('percent', () => {
                 commands[operationsNames.percent].execute()
                 return result
             })()
-        ).toBe('10%')
+        ).toBe(`10${operationsNames.percent}`)
     })
 
     test('100% + 5', () => {
@@ -97,6 +97,6 @@ describe('percent', () => {
                 commands[operationsNames.percent].execute()
                 return result
             })()
-        ).toBe('0.01%')
+        ).toBe(`0.01${operationsNames.percent}`)
     })
 })

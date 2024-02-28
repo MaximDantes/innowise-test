@@ -11,7 +11,7 @@ describe('one div x', () => {
                 commands[operationsNames.oneDivX].execute()
                 return result
             })()
-        ).toBe('1 / 10')
+        ).toBe(`1 ${operationsNames.div} 10`)
     })
 
     test('1 / 10 =', () => {
@@ -37,7 +37,7 @@ describe('one div x', () => {
                 commands[operationsNames.oneDivX].execute()
                 return result
             })()
-        ).toBe('1 / 10')
+        ).toBe(`1 ${operationsNames.div} 10`)
     })
 
     test('empty + 1/x', () => {
@@ -47,7 +47,7 @@ describe('one div x', () => {
                 commands[operationsNames.oneDivX].execute()
                 return result
             })()
-        ).toBe('1 /')
+        ).toBe(`1 ${operationsNames.div}`)
     })
 
     test('empty + 1/x = ', () => {
@@ -58,7 +58,7 @@ describe('one div x', () => {
                 commands[operationsNames.equal].execute()
                 return result
             })()
-        ).toBe('1 /')
+        ).toBe(`1 ${operationsNames.div}`)
     })
 
     test('1 / 5 +', () => {
@@ -70,6 +70,6 @@ describe('one div x', () => {
                 commands[operationsNames.plus].execute()
                 return result
             })()
-        ).toBe('0.2 +')
+        ).toBe(`0.2 ${operationsNames.plus}`)
     })
 })

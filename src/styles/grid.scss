@@ -17,7 +17,7 @@
   border: var(--border) 3px solid;
   border-radius: 10px;
 
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 5px;
 
   &__display {
@@ -25,12 +25,11 @@
     text-align: right;
     font-size: 40px;
     height: 70px;
-    grid-column: span 4;
-    padding: 15px 0;
+    grid-column: span 5;
+    padding: 15px;
     user-select: text;
     overflow: auto;
-    display: flex;
-    flex-direction: row-reverse;
+    display: block;
     white-space: nowrap;
 
     &::-webkit-scrollbar {

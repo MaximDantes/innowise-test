@@ -94,7 +94,7 @@ describe('calculations', () => {
                 commands[operationsNames.equal].execute()
                 return result
             })()
-        ).toBe('5 +')
+        ).toBe(`5 ${operationsNames.plus}`)
     })
 
     test('34.3 -', () => {
@@ -109,7 +109,7 @@ describe('calculations', () => {
                 commands[operationsNames.equal].execute()
                 return result
             })()
-        ).toBe('34.3 -')
+        ).toBe(`34.3 ${operationsNames.minus}`)
     })
 
     test('23 *', () => {
@@ -122,7 +122,7 @@ describe('calculations', () => {
                 commands[operationsNames.equal].execute()
                 return result
             })()
-        ).toBe('23 *')
+        ).toBe(`23 ${operationsNames.mul}`)
     })
 })
 
@@ -172,7 +172,7 @@ describe('change sign', () => {
                 commands[operationsNames.changeSign].execute()
                 return result
             })()
-        ).toBe('3 * -5')
+        ).toBe(`3 ${operationsNames.mul} -5`)
     })
 
     test('3 + 5', () => {
@@ -185,7 +185,7 @@ describe('change sign', () => {
                 commands[operationsNames.changeSign].execute()
                 return result
             })()
-        ).toBe('3 - 5')
+        ).toBe(`3 ${operationsNames.minus} 5`)
     })
 
     test('3 / -5', () => {
@@ -199,7 +199,7 @@ describe('change sign', () => {
                 commands[operationsNames.changeSign].execute()
                 return result
             })()
-        ).toBe('3 / 5')
+        ).toBe(`3 ${operationsNames.div} 5`)
     })
 
     test('3 *', () => {
@@ -211,7 +211,7 @@ describe('change sign', () => {
                 commands[operationsNames.changeSign].execute()
                 return result
             })()
-        ).toBe('3 *')
+        ).toBe(`3 ${operationsNames.mul}`)
     })
 
     test('3 +', () => {
@@ -223,7 +223,7 @@ describe('change sign', () => {
                 commands[operationsNames.changeSign].execute()
                 return result
             })()
-        ).toBe('3 -')
+        ).toBe(`3 ${operationsNames.minus}`)
     })
 
     test('3 -', () => {
@@ -235,6 +235,6 @@ describe('change sign', () => {
                 commands[operationsNames.changeSign].execute()
                 return result
             })()
-        ).toBe('3 +')
+        ).toBe(`3 ${operationsNames.plus}`)
     })
 })

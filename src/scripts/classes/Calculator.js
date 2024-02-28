@@ -1,4 +1,4 @@
-import { operationsNames } from './Operations.js'
+import { getSuperscript, operationsNames } from './Operations.js'
 
 class Calculator {
     constructor() {
@@ -72,6 +72,19 @@ class Calculator {
 
             case operationsNames.percent:
                 this.summary = +this.leftOperand / 100
+                break
+
+            case operationsNames.root:
+                //TODO
+                if (String(this.leftOperand) == '2') {
+                    this.summary = Math.sqrt(this.rightOperand)
+                    break
+                }
+                if (String(this.leftOperand) == '3') {
+                    this.summary = Math.cbrt(this.rightOperand)
+                    break
+                }
+                this.summary = 'TODO'
                 break
 
             default:
@@ -185,7 +198,24 @@ class Calculator {
         }
 
         this.operator = operationsNames.pow
-        this.rightOperand = value.charAt(1)
+        this.rightOperand = value
+
+        this.createSummary()
+        this.callObservers()
+    }
+
+    root(value) {
+        if (!this.leftOperand && value === undefined) return
+
+        if (this.rightOperand) {
+            this.calculate()
+        }
+
+        if (value !== undefined) {
+            this.rightOperand = this.leftOperand
+            this.leftOperand = value
+        }
+        this.operator = operationsNames.root
 
         this.createSummary()
         this.callObservers()
@@ -193,7 +223,15 @@ class Calculator {
 
     createSummary() {
         this.summary = ''
-        if (this.leftOperand) this.summary += this.leftOperand
+        if (this.leftOperand) {
+            if (this.operator !== operationsNames.root) {
+                this.summary += this.leftOperand
+            } else {
+                if (String(this.leftOperand) !== '2') {
+                    this.summary += getSuperscript(this.leftOperand)
+                }
+            }
+        }
         if (this.operator) {
             if (
                 this.operator === operationsNames.plus ||
