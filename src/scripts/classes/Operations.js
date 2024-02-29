@@ -95,42 +95,13 @@ class Operations {
         //all available keys
         this.values = [
             new Operation(new ClearCommand(operationsNames.clear, this.calculator)),
-            new Operation(new HistoryBackCommand(operationsNames.historyBack, this.calculator), [
-                'Backspace',
-                'Delete',
-                'c',
-            ]),
-            new Operation(new AddOperatorCommand(operationsNames.percent, this.calculator)),
-            new Operation(new AddOperatorCommand(operationsNames.div, this.calculator), ['/'], '&#xF7;'),
-
-            new Operation(new AddOperandCommand(operationsNames.seven, this.calculator)),
-            new Operation(new AddOperandCommand(operationsNames.eight, this.calculator)),
-            new Operation(new AddOperandCommand(operationsNames.nine, this.calculator)),
-
-            new Operation(new AddOperatorCommand(operationsNames.mul, this.calculator), [], '&#215;'),
-
-            new Operation(new AddOperandCommand(operationsNames.four, this.calculator)),
-            new Operation(new AddOperandCommand(operationsNames.five, this.calculator)),
-            new Operation(new AddOperandCommand(operationsNames.six, this.calculator)),
-
-            new Operation(new AddOperatorCommand(operationsNames.minus, this.calculator), ['_']),
-
-            new Operation(new AddOperandCommand(operationsNames.one, this.calculator)),
-            new Operation(new AddOperandCommand(operationsNames.two, this.calculator)),
-            new Operation(new AddOperandCommand(operationsNames.three, this.calculator)),
-
-            new Operation(new AddOperatorCommand(operationsNames.plus, this.calculator)),
             new Operation(new ChangeSignCommand(operationsNames.changeSign, this.calculator), [], '&plusmn;'),
-            new Operation(new AddOperandCommand(operationsNames.zero, this.calculator)),
-            new Operation(new DotCommand(operationsNames.dot, this.calculator), [',']),
-            new Operation(new CalculateCommand(operationsNames.equal, this.calculator), ['Enter']),
-
-            new Operation(new AddOperatorCommand(operationsNames.pow, this.calculator)),
-            new Operation(new AddOperatorCommand(operationsNames.factorial, this.calculator)),
-            new Operation(new TenToXPow(operationsNames.tenPowX, this.calculator)),
-            new Operation(new PowCommand(operationsNames.pow, this.calculator, 2), [], 'x^2'),
-            new Operation(new PowCommand(operationsNames.pow, this.calculator, 3), [], 'x^3'),
-            new Operation(new OneDivX(operationsNames.oneDivX, this.calculator), [], '1/x'),
+            new Operation(
+                new RootCommand(operationsNames.root, this.calculator),
+                [],
+                '&#8730;',
+                `${getSuperscript('y')}&#8730;`
+            ),
             new Operation(
                 new RootCommand(operationsNames.root, this.calculator, 2),
                 [],
@@ -143,26 +114,53 @@ class Operations {
                 '&#8730;',
                 `${getSuperscript(3)}&#8730;`
             ),
-            new Operation(
-                new RootCommand(operationsNames.root, this.calculator),
-                [],
-                '&#8730;',
-                `${getSuperscript('y')}&#8730;`
-            ),
+
+            new Operation(new HistoryBackCommand(operationsNames.historyBack, this.calculator), [
+                'Backspace',
+                'Delete',
+                'c',
+            ]),
+            new Operation(new AddOperatorCommand(operationsNames.pow, this.calculator)),
+            new Operation(new TenToXPow(operationsNames.tenPowX, this.calculator)),
+            new Operation(new PowCommand(operationsNames.pow, this.calculator, 2), [], 'x^2'),
+            new Operation(new PowCommand(operationsNames.pow, this.calculator, 3), [], 'x^3'),
 
             new Operation(new MemorySaveCommand(operationsNames.memorySave, this.calculator)),
+            new Operation(new AddOperatorCommand(operationsNames.factorial, this.calculator)),
+            new Operation(new OneDivX(operationsNames.oneDivX, this.calculator), [], '1/x'),
+            new Operation(new AddOperatorCommand(operationsNames.percent, this.calculator)),
+            new Operation(new AddOperatorCommand(operationsNames.div, this.calculator), ['/'], '&#xF7;'),
+
             new Operation(new MemoryClearCommand(operationsNames.memoryClear, this.calculator)),
+            new Operation(new AddOperandCommand(operationsNames.seven, this.calculator)),
+            new Operation(new AddOperandCommand(operationsNames.eight, this.calculator)),
+            new Operation(new AddOperandCommand(operationsNames.nine, this.calculator)),
+            new Operation(new AddOperatorCommand(operationsNames.mul, this.calculator), [], '&#215;'),
+
             new Operation(new MemoryReadCommand(operationsNames.memoryRead, this.calculator)),
+            new Operation(new AddOperandCommand(operationsNames.four, this.calculator)),
+            new Operation(new AddOperandCommand(operationsNames.five, this.calculator)),
+            new Operation(new AddOperandCommand(operationsNames.six, this.calculator)),
+            new Operation(new AddOperatorCommand(operationsNames.minus, this.calculator), ['_']),
+
             new Operation(
                 new MemoryPlusMinusCommand(operationsNames.memoryPlusMinus, this.calculator, operationsNames.minus),
                 [],
                 operationsNames.memoryMinus
             ),
+            new Operation(new AddOperandCommand(operationsNames.one, this.calculator)),
+            new Operation(new AddOperandCommand(operationsNames.two, this.calculator)),
+            new Operation(new AddOperandCommand(operationsNames.three, this.calculator)),
+            new Operation(new AddOperatorCommand(operationsNames.plus, this.calculator)),
+
             new Operation(
                 new MemoryPlusMinusCommand(operationsNames.memoryPlusMinus, this.calculator, operationsNames.plus),
                 [],
                 operationsNames.memoryPlus
             ),
+            new Operation(new AddOperandCommand(operationsNames.zero, this.calculator)),
+            new Operation(new DotCommand(operationsNames.dot, this.calculator), [',']),
+            new Operation(new CalculateCommand(operationsNames.equal, this.calculator), ['Enter']),
         ]
     }
 }

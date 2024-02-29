@@ -13,6 +13,57 @@ describe('root', () => {
         ).toBe(`${operationsNames.root} 4`)
     })
 
+    test('234.445 square root', () => {
+        expect(
+            (() => {
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.two].execute()
+                commands[operationsNames.three].execute()
+                commands[operationsNames.four].execute()
+                commands[operationsNames.dot].execute()
+                commands[operationsNames.four].execute()
+                commands[operationsNames.four].execute()
+                commands[operationsNames.five].execute()
+                commands[operationsNames.squareRoot].execute()
+                commands[operationsNames.equal].execute()
+                return result
+            })()
+        ).toBe(`15.31159691214473`)
+    })
+
+    test('4442.1100 square root', () => {
+        expect(
+            (() => {
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.four].execute()
+                commands[operationsNames.four].execute()
+                commands[operationsNames.four].execute()
+                commands[operationsNames.two].execute()
+                commands[operationsNames.dot].execute()
+                commands[operationsNames.one].execute()
+                commands[operationsNames.one].execute()
+                commands[operationsNames.zero].execute()
+                commands[operationsNames.zero].execute()
+                commands[operationsNames.squareRoot].execute()
+                commands[operationsNames.equal].execute()
+                return result
+            })()
+        ).toBe(`66.64915603366633`)
+    })
+
+    test('64 cube root', () => {
+        expect(
+            (() => {
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.six].execute()
+                commands[operationsNames.four].execute()
+                commands[operationsNames.cubeRoot].execute()
+                commands[operationsNames.equal].execute()
+                return result
+            })()
+        ).toBe(`4`)
+    })
+
     test('5.3 cube root', () => {
         expect(
             (() => {

@@ -37,7 +37,11 @@ class App {
 
             button.classList.add('button')
             if (item.buttonView === '=') {
-                button.classList.add('button_accent')
+                button.classList.add('button--accent')
+            }
+
+            if (item.buttonView === '0') {
+                button.classList.add('button--wide')
             }
 
             button.addEventListener('click', () => {

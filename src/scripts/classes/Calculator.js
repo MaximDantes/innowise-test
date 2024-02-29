@@ -92,18 +92,35 @@ class Calculator {
                     this.summary = +this.leftOperand / 100
                     break
 
-                case operationsNames.root:
+                case operationsNames.root: {
+                    // const squareRoot = (value) => {
+                    //     let avg = (a, b) => (a + b) / 2
+                    //     let c = 5
+                    //     let b
+                    //
+                    //     for (let i = 0; i < 20; i++) {
+                    //         b = value / c
+                    //         c = avg(b, c)
+                    //     }
+                    //
+                    //     return c
+                    // }
+
+                    if (this.rightOperand < 0) {
+                        throw new Error(errorMessages.negativeRoot)
+                    }
                     //TODO remove Math
-                    if (String(this.leftOperand) === '2') {
-                        this.summary = Math.sqrt(this.rightOperand)
-                        break
-                    }
-                    if (String(this.leftOperand) === '3') {
-                        this.summary = Math.cbrt(this.rightOperand)
-                        break
-                    }
-                    this.summary = Math.pow(+this.rightOperand, 1 / +this.leftOperand)
+                    // if (String(this.leftOperand) === '2') {
+                    //     this.summary = squareRoot(+this.rightOperand)
+                    //     break
+                    // }
+                    // if (String(this.leftOperand) === '3') {
+                    //     this.summary = Math.exp(Math.log(this.rightOperand) / 3)
+                    //     break
+                    // }
+                    this.summary = Math.exp(Math.log(this.rightOperand) / +this.leftOperand)
                     break
+                }
 
                 default:
             }

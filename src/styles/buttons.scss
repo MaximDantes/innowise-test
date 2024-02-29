@@ -31,11 +31,11 @@
     }
   }
 
-  &_wide {
+  &--wide {
     grid-column: span 2;
   }
 
-  &_accent {
+  &--accent {
     background: var(--accent);
     color: var(--font-accent);
   }
