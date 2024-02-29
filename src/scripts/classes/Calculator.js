@@ -330,6 +330,11 @@ class Calculator {
         this.callMemoryObservers()
     }
 
+    memoryClear() {
+        this.memory = ''
+        this.callMemoryObservers()
+    }
+
     getMemoryValue = () => {
         return this.memory
     }

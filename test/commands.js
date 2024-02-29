@@ -7,7 +7,7 @@ import {
     ChangeSignCommand,
     ClearCommand,
     DotCommand,
-    HistoryBackCommand,
+    HistoryBackCommand, MemoryClearCommand,
     MemorySaveCommand,
     OneDivX,
     PowCommand,
@@ -48,6 +48,7 @@ export const commands = {
     [operationsNames.clear]: new ClearCommand(operationsNames.clear, calculator),
     [operationsNames.historyBack]: new HistoryBackCommand(operationsNames.historyBack, calculator),
     [operationsNames.memorySave]: new MemorySaveCommand(operationsNames.memorySave, calculator),
+    [operationsNames.memoryClear]: new MemoryClearCommand(operationsNames.memoryClear, calculator),
 }
 
 export let result = ''
