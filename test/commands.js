@@ -9,6 +9,7 @@ import {
     DotCommand,
     HistoryBackCommand,
     MemoryClearCommand,
+    MemoryPlusMinusCommand,
     MemoryReadCommand,
     MemorySaveCommand,
     OneDivX,
@@ -53,6 +54,16 @@ export const commands = {
     [operationsNames.memorySave]: new MemorySaveCommand(operationsNames.memorySave, calculator),
     [operationsNames.memoryClear]: new MemoryClearCommand(operationsNames.memoryClear, calculator),
     [operationsNames.memoryRead]: new MemoryReadCommand(operationsNames.memoryRead, calculator),
+    [operationsNames.memoryMinus]: new MemoryPlusMinusCommand(
+        operationsNames.memoryPlusMinus,
+        calculator,
+        operationsNames.minus
+    ),
+    [operationsNames.memoryPlus]: new MemoryPlusMinusCommand(
+        operationsNames.memoryPlusMinus,
+        calculator,
+        operationsNames.plus
+    ),
 }
 
 export let result = ''

@@ -6,7 +6,9 @@ import {
     ClearCommand,
     DotCommand,
     HistoryBackCommand,
-    MemoryClearCommand, MemoryReadCommand,
+    MemoryClearCommand,
+    MemoryPlusMinusCommand,
+    MemoryReadCommand,
     MemorySaveCommand,
     OneDivX,
     PowCommand,
@@ -56,6 +58,9 @@ export const operationsNames = {
     memorySave: 'MS',
     memoryClear: 'MC',
     memoryRead: 'MR',
+    memoryPlusMinus: 'M+-',
+    memoryPlus: 'M+',
+    memoryMinus: 'M-',
 }
 
 export const getSuperscript = (value) => {
@@ -148,6 +153,16 @@ class Operations {
             new Operation(new MemorySaveCommand(operationsNames.memorySave, this.calculator)),
             new Operation(new MemoryClearCommand(operationsNames.memoryClear, this.calculator)),
             new Operation(new MemoryReadCommand(operationsNames.memoryRead, this.calculator)),
+            new Operation(
+                new MemoryPlusMinusCommand(operationsNames.memoryPlusMinus, this.calculator, operationsNames.minus),
+                [],
+                operationsNames.memoryMinus
+            ),
+            new Operation(
+                new MemoryPlusMinusCommand(operationsNames.memoryPlusMinus, this.calculator, operationsNames.plus),
+                [],
+                operationsNames.memoryPlus
+            ),
         ]
     }
 }

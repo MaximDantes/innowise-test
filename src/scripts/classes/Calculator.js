@@ -36,82 +36,86 @@ class Calculator {
     }
 
     calculate() {
-        if (this.isOperationIncomplete()) return
+        try {
+            if (this.isOperationIncomplete()) return
 
-        this.saveSnapshot()
+            this.saveSnapshot()
 
-        switch (this.operator) {
-            case operationsNames.plus:
-                this.summary = +this.leftOperand + +this.rightOperand
-                break
+            switch (this.operator) {
+                case operationsNames.plus:
+                    this.summary = +this.leftOperand + +this.rightOperand
+                    break
 
-            case operationsNames.minus:
-                this.summary = +this.leftOperand - +this.rightOperand
-                break
+                case operationsNames.minus:
+                    this.summary = +this.leftOperand - +this.rightOperand
+                    break
 
-            case operationsNames.div:
-                if (+this.rightOperand === 0) {
-                    throw new Error(errorMessages.divByZero)
-                }
+                case operationsNames.div:
+                    if (+this.rightOperand === 0) {
+                        throw new Error(errorMessages.divByZero)
+                    }
 
-                this.summary = +this.leftOperand / +this.rightOperand
-                break
+                    this.summary = +this.leftOperand / +this.rightOperand
+                    break
 
-            case operationsNames.mul:
-                this.summary = +this.leftOperand * +this.rightOperand
-                break
+                case operationsNames.mul:
+                    this.summary = +this.leftOperand * +this.rightOperand
+                    break
 
-            case operationsNames.pow: {
-                if (!Number.isInteger(+this.rightOperand)) {
-                    throw new Error(errorMessages.floatPow)
-                }
+                case operationsNames.pow: {
+                    if (!Number.isInteger(+this.rightOperand)) {
+                        throw new Error(errorMessages.floatPow)
+                    }
 
-                let result = 1
-                for (let i = 0; i < +this.rightOperand; i++) {
-                    result *= +this.leftOperand
-                }
-                this.summary = result
-                break
-            }
-
-            case operationsNames.factorial: {
-                if (!Number.isInteger(+this.leftOperand)) {
-                    throw new Error(errorMessages.floatFactorial)
-                }
-
-                let result = 1
-                for (let i = 1; i <= +this.leftOperand; i++) {
-                    result *= i
-                }
-                this.summary = result
-                break
-            }
-
-            case operationsNames.percent:
-                this.summary = +this.leftOperand / 100
-                break
-
-            case operationsNames.root:
-                //TODO remove Math
-                if (String(this.leftOperand) === '2') {
-                    this.summary = Math.sqrt(this.rightOperand)
+                    let result = 1
+                    for (let i = 0; i < +this.rightOperand; i++) {
+                        result *= +this.leftOperand
+                    }
+                    this.summary = result
                     break
                 }
-                if (String(this.leftOperand) === '3') {
-                    this.summary = Math.cbrt(this.rightOperand)
+
+                case operationsNames.factorial: {
+                    if (!Number.isInteger(+this.leftOperand)) {
+                        throw new Error(errorMessages.floatFactorial)
+                    }
+
+                    let result = 1
+                    for (let i = 1; i <= +this.leftOperand; i++) {
+                        result *= i
+                    }
+                    this.summary = result
                     break
                 }
-                this.summary = Math.pow(+this.rightOperand, 1 / +this.leftOperand)
-                break
 
-            default:
+                case operationsNames.percent:
+                    this.summary = +this.leftOperand / 100
+                    break
+
+                case operationsNames.root:
+                    //TODO remove Math
+                    if (String(this.leftOperand) === '2') {
+                        this.summary = Math.sqrt(this.rightOperand)
+                        break
+                    }
+                    if (String(this.leftOperand) === '3') {
+                        this.summary = Math.cbrt(this.rightOperand)
+                        break
+                    }
+                    this.summary = Math.pow(+this.rightOperand, 1 / +this.leftOperand)
+                    break
+
+                default:
+            }
+
+            this.leftOperand = this.summary
+            this.rightOperand = ''
+
+            this.summary = String(this.summary)
+            this.callObservers()
+        } catch (e) {
+            throw new Error(e.message || 'Calculation error')
         }
-
-        this.leftOperand = this.summary
-        this.rightOperand = ''
-
-        this.summary = String(this.summary)
-        this.callObservers()
     }
 
     addOperand(operand) {
@@ -327,6 +331,8 @@ class Calculator {
             this.calculate()
             this.memory = this.summary
         }
+        this.operator = ''
+        this.rightOperand = ''
         this.callMemoryObservers()
     }
 
@@ -341,6 +347,25 @@ class Calculator {
         } else {
             this.rightOperand = this.memory
         }
+        this.createSummary()
+        this.callObservers()
+    }
+
+    memoryPlusMinus(operator) {
+        if (!this.memory) return
+
+        this.calculate()
+
+        this.rightOperand = this.leftOperand
+        this.leftOperand = this.memory
+        this.operator = operator
+        this.calculate()
+        this.memory = this.summary
+
+        this.leftOperand = this.memory
+        this.operator = ''
+        this.rightOperand = ''
+
         this.createSummary()
         this.callObservers()
     }

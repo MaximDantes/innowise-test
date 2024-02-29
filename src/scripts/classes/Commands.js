@@ -153,3 +153,13 @@ export class MemoryReadCommand extends Command {
         this.calculator.memoryRead()
     }
 }
+
+export class MemoryPlusMinusCommand extends Command {
+    constructor(operationName, calculator, value) {
+        super(operationName, calculator, value)
+    }
+
+    execute() {
+        this.calculator.memoryPlusMinus(this.value)
+    }
+}
