@@ -143,3 +143,13 @@ export class MemoryClearCommand extends Command {
         this.calculator.memoryClear()
     }
 }
+
+export class MemoryReadCommand extends Command {
+    constructor(operationName, calculator, value) {
+        super(operationName, calculator, value)
+    }
+
+    execute() {
+        this.calculator.memoryRead()
+    }
+}

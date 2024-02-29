@@ -335,6 +335,16 @@ class Calculator {
         this.callMemoryObservers()
     }
 
+    memoryRead() {
+        if (!this.operator) {
+            this.leftOperand = this.memory
+        } else {
+            this.rightOperand = this.memory
+        }
+        this.createSummary()
+        this.callObservers()
+    }
+
     getMemoryValue = () => {
         return this.memory
     }
