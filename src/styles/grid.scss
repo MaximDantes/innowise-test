@@ -5,6 +5,7 @@
   cursor: pointer;
   background: var(--calculator-background);
   width: 600px;
+  position: relative;
 
   @media screen and (max-width: 512px){
     width: 100%;
@@ -31,6 +32,16 @@
     overflow: auto;
     display: block;
     white-space: nowrap;
+
+    &--memorized {
+      &::before {
+        content: 'M';
+        top: 5px;
+        left: 5px;
+        font-size: 1.5rem;
+        position: absolute;
+      }
+    }
 
     &::-webkit-scrollbar {
       display: none;

@@ -22,6 +22,12 @@ class App {
                 )
                 .join('')
         })
+
+        this.calculator.subscribeMemory((isMemory) => {
+            isMemory
+                ? display.classList.add('calculator__display--memorized')
+                : display.classList.remove('calculator__display--memorized')
+        })
     }
 
     renderButtons() {

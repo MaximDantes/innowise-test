@@ -9,6 +9,7 @@ class Calculator {
         this.summary = ''
         this.memory = ''
         this.observers = []
+        this.memoryObservers = []
         this.caretaker = new CalculatorCaretaker(this)
         this.saveSnapshot()
         return new Proxy(this, calculatorErrorHandler)
@@ -326,6 +327,7 @@ class Calculator {
             this.calculate()
             this.memory = this.summary
         }
+        this.callMemoryObservers()
     }
 
     getMemoryValue = () => {
@@ -342,6 +344,18 @@ class Calculator {
 
     callObservers() {
         this.observers.forEach((item) => item(this.summary))
+    }
+
+    subscribeMemory(observer) {
+        this.memoryObservers.push(observer)
+    }
+
+    unsubscribeMemory(observer) {
+        this.memoryObservers = this.memoryObservers.filter((item) => item !== observer)
+    }
+
+    callMemoryObservers() {
+        this.memoryObservers.forEach((item) => item(!!this.memory))
     }
 
     saveSnapshot() {
