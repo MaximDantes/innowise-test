@@ -7,6 +7,7 @@ class Calculator {
         this.rightOperand = ''
         this.operator = ''
         this.summary = ''
+        this.memory = ''
         this.observers = []
         this.caretaker = new CalculatorCaretaker(this)
         this.saveSnapshot()
@@ -316,6 +317,19 @@ class Calculator {
             this.summary += this.operator
         }
         if (this.rightOperand) this.summary += ' ' + this.rightOperand
+    }
+
+    memorySave() {
+        if (this.isOperationIncomplete()) {
+            this.memory = this.leftOperand || '0'
+        } else {
+            this.calculate()
+            this.memory = this.summary
+        }
+    }
+
+    getMemoryValue = () => {
+        return this.memory
     }
 
     subscribe(observer) {

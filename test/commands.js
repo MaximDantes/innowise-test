@@ -5,15 +5,17 @@ import {
     AddOperatorCommand,
     CalculateCommand,
     ChangeSignCommand,
-    ClearCommand, DotCommand,
+    ClearCommand,
+    DotCommand,
     HistoryBackCommand,
+    MemorySaveCommand,
     OneDivX,
     PowCommand,
     RootCommand,
     TenToXPow,
 } from '../src/scripts/classes/Commands.js'
 
-const calculator = new Calculator()
+export const calculator = new Calculator()
 
 export const commands = {
     [operationsNames.one]: new AddOperandCommand(operationsNames.one, calculator),
@@ -45,6 +47,7 @@ export const commands = {
     [operationsNames.percent]: new AddOperatorCommand(operationsNames.percent, calculator),
     [operationsNames.clear]: new ClearCommand(operationsNames.clear, calculator),
     [operationsNames.historyBack]: new HistoryBackCommand(operationsNames.historyBack, calculator),
+    [operationsNames.memorySave]: new MemorySaveCommand(operationsNames.memorySave, calculator),
 }
 
 export let result = ''

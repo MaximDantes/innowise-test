@@ -3,8 +3,10 @@ import {
     AddOperatorCommand,
     CalculateCommand,
     ChangeSignCommand,
-    ClearCommand, DotCommand,
+    ClearCommand,
+    DotCommand,
     HistoryBackCommand,
+    MemorySaveCommand,
     OneDivX,
     PowCommand,
     RootCommand,
@@ -49,6 +51,8 @@ export const operationsNames = {
 
     clear: 'AC',
     historyBack: 'C',
+
+    memorySave: 'MS',
 }
 
 export const getSuperscript = (value) => {
@@ -137,6 +141,8 @@ class Operations {
                 '&#8730;',
                 `${getSuperscript('y')}&#8730;`
             ),
+
+            new Operation(new MemorySaveCommand(operationsNames.memorySave, this.calculator)),
         ]
     }
 }
