@@ -120,4 +120,17 @@ describe('dot', () => {
             })()
         ).toBe(`-0.4`)
     })
+
+    test('5! = .', () => {
+        expect(
+            (() => {
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.five].execute()
+                commands[operationsNames.factorial].execute()
+                commands[operationsNames.equal].execute()
+                commands[operationsNames.dot].execute()
+                return result
+            })()
+        ).toBe(`120.`)
+    })
 })

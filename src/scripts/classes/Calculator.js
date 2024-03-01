@@ -210,7 +210,7 @@ class Calculator {
         try {
             this.saveSnapshot()
 
-            let operand = this.operator ? this.rightOperand : this.leftOperand
+            let operand = String(this.operator ? this.rightOperand : this.leftOperand)
 
             if (operand.charAt(operand.length - 1) === operationsNames.dot) return
 
