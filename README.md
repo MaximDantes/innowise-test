@@ -1,6 +1,6 @@
 # Task
 
-[Task document](https://drive.google.com/file/d/1QA11JyjkCLalc6BaTKIEAHt81OpOf3rV/view?usp=sharing).
+[Task document](https://drive.google.com/file/d/15jVnBPXaZrjs99KOUxp4TGq6Inau6xq_/view).
 
 ## How to run the app
 
@@ -17,25 +17,19 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Project structure
 
-`src` folder contains `index.js`, `index.html`, `index.scss` files that are used as entry point.
+`src` - `index.js`, `index.html`, `index.scss` files that are used as entry point.
 
-`src/styles` folder contains all SCSS style files.
+`src/styles` - SCSS style files.
 
-`src/scripts` folder contains all JS files.
+`src/scripts` - JS files.
 
-`test` folder contains all Jest tests.
+`src/scripts/common` - shared helpers.
 
-`calculate-string22.js` - to get calculation result from string expression.
-    
-`create-expression-string.js` - to concat previous expression with new math sign or digit.
+`src/scripts/classes` - app classes.
 
-`display.js` - to show calculations result in UI.
-
-`keys.js` - contains all allowed signs that can be used for calculations.
-
-`theme.js` - to change theme and save selected.
+`test` - Jest tests.
 
 ## Deployment
 
-[Here](https://innowise-test.vercel.app/) you find can example of this app.
+[Here](https://innowise-test.vercel.app/) you find can an example of this app.
 
