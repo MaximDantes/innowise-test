@@ -88,4 +88,36 @@ describe('dot', () => {
             })()
         ).toBe(`6`)
     })
+
+    test('1.5.', () => {
+        expect(
+            (() => {
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.one].execute()
+                commands[operationsNames.dot].execute()
+                commands[operationsNames.five].execute()
+                commands[operationsNames.dot].execute()
+                commands[operationsNames.equal].execute()
+                return result
+            })()
+        ).toBe(`1.5`)
+    })
+
+    test('2.2 / 5.5', () => {
+        expect(
+            (() => {
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.two].execute()
+                commands[operationsNames.dot].execute()
+                commands[operationsNames.two].execute()
+                commands[operationsNames.div].execute()
+                commands[operationsNames.five].execute()
+                commands[operationsNames.dot].execute()
+                commands[operationsNames.five].execute()
+                commands[operationsNames.equal].execute()
+                commands[operationsNames.changeSign].execute()
+                return result
+            })()
+        ).toBe(`-0.4`)
+    })
 })

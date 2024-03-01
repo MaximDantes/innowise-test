@@ -109,7 +109,7 @@ class Calculator {
 
                         while (abs(guess ** n - number) > epsilon) {
                             //break loop when it takes too long
-                            if (Date.now() - startTime > 5000) {
+                            if (Date.now() - startTime > 1000) {
                                 throw new Error(errorMessages.cannotFindRoot)
                             }
                             guess = (1 / n) * ((n - 1) * guess + number / guess ** (n - 1))
@@ -127,6 +127,7 @@ class Calculator {
 
             this.leftOperand = this.summary
             this.rightOperand = ''
+            this.operator = ''
 
             this.summary = String(this.summary)
             this.callObservers()
@@ -214,6 +215,8 @@ class Calculator {
             if (operand.charAt(operand.length - 1) === operationsNames.dot) return
 
             if (operand === '') return
+
+            if (operand.includes(operationsNames.dot)) return
 
             operand += operationsNames.dot
 
