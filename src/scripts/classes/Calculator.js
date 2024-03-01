@@ -39,7 +39,15 @@ class Calculator {
         try {
             if (this.isOperationIncomplete()) return
 
-            this.saveSnapshot()
+            if (
+                Number.isNaN(+this.leftOperand) ||
+                Number.isNaN(+this.rightOperand) ||
+                !Number.isFinite(+this.leftOperand) ||
+                !Number.isFinite(+this.rightOperand)
+            )
+                return
+
+                this.saveSnapshot()
 
             switch (this.operator) {
                 case operationsNames.plus:
@@ -65,6 +73,11 @@ class Calculator {
                 case operationsNames.pow: {
                     if (!Number.isInteger(+this.rightOperand)) {
                         throw new Error(errorMessages.floatPow)
+                    }
+
+                    if (+this.rightOperand > 100000) {
+                        this.summary = Infinity
+                        break
                     }
 
                     let result = 1

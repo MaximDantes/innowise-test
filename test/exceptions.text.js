@@ -58,4 +58,26 @@ describe('exceptions', () => {
             })()
         ).toBe(errorMessages.floatFactorial)
     })
+
+    test('2 ^ 4444444444444444', () => {
+        expect(
+            (() => {
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.two].execute()
+                commands[operationsNames.pow].execute()
+                commands[operationsNames.four].execute()
+                commands[operationsNames.four].execute()
+                commands[operationsNames.four].execute()
+                commands[operationsNames.four].execute()
+                commands[operationsNames.four].execute()
+                commands[operationsNames.four].execute()
+                commands[operationsNames.four].execute()
+                commands[operationsNames.four].execute()
+                commands[operationsNames.four].execute()
+                commands[operationsNames.four].execute()
+                commands[operationsNames.equal].execute()
+                return result
+            })()
+        ).toBe('Infinity')
+    })
 })
