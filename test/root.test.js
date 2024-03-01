@@ -48,7 +48,7 @@ describe('root', () => {
                 commands[operationsNames.equal].execute()
                 return result
             })()
-        ).toBe(`66.64915603366633`)
+        ).toBe(`66.64915603366632`)
     })
 
     test('64 cube root', () => {

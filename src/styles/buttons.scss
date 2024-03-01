@@ -1,11 +1,20 @@
 .button {
   padding: 20px;
   border-radius: 10px;
-  font-size: 30px;
+  font-size: 22px;
   font-weight: bold;
   border: var(--border) 3px solid;
   background: var(--button-background);
   position: relative;
+
+  @media screen and (max-width: 512px){
+    font-size: 20px;
+    padding: 10px;
+  }
+
+  @media screen and (max-width: 768px){
+
+  }
 
   &:focus {
     transform: translateY(2px);

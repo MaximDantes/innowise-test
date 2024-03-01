@@ -93,32 +93,32 @@ class Calculator {
                     break
 
                 case operationsNames.root: {
-                    // const squareRoot = (value) => {
-                    //     let avg = (a, b) => (a + b) / 2
-                    //     let c = 5
-                    //     let b
-                    //
-                    //     for (let i = 0; i < 20; i++) {
-                    //         b = value / c
-                    //         c = avg(b, c)
-                    //     }
-                    //
-                    //     return c
-                    // }
+                    const startTime = Date.now()
 
-                    if (this.rightOperand < 0) {
-                        throw new Error(errorMessages.negativeRoot)
+                    const abs = (number) => {
+                        return number < 0 ? number * -1 : number
                     }
-                    //TODO remove Math
-                    // if (String(this.leftOperand) === '2') {
-                    //     this.summary = squareRoot(+this.rightOperand)
-                    //     break
-                    // }
-                    // if (String(this.leftOperand) === '3') {
-                    //     this.summary = Math.exp(Math.log(this.rightOperand) / 3)
-                    //     break
-                    // }
-                    this.summary = Math.exp(Math.log(this.rightOperand) / +this.leftOperand)
+
+                    const root = (number, n) => {
+                        if (number < 0 && n % 2 === 0) {
+                            throw new Error(errorMessages.negativeRoot)
+                        }
+
+                        let guess = number / 2
+                        const epsilon = 1e-12
+
+                        while (abs(guess ** n - number) > epsilon) {
+                            //break loop when it takes too long
+                            if (Date.now() - startTime > 5000) {
+                                throw new Error(errorMessages.cannotFindRoot)
+                            }
+                            guess = (1 / n) * ((n - 1) * guess + number / guess ** (n - 1))
+                        }
+
+                        return guess
+                    }
+
+                    this.summary = root(+this.rightOperand, +this.leftOperand)
                     break
                 }
 
