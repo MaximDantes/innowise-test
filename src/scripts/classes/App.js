@@ -10,7 +10,7 @@ class App {
     }
 
     renderDisplay() {
-        const display = document.querySelector('.calculator__display')
+        const display = document.querySelector('.calculator__result')
 
         this.calculator.subscribe((summary) => {
             display.innerHTML = summary
@@ -46,7 +46,6 @@ class App {
 
             button.addEventListener('click', () => {
                 item.command.execute()
-                button.blur()
             })
 
             document.addEventListener('keydown', (e) => {

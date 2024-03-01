@@ -12,11 +12,7 @@
     padding: 10px;
   }
 
-  @media screen and (max-width: 768px){
-
-  }
-
-  &:focus {
+  &:active {
     transform: translateY(2px);
   }
 

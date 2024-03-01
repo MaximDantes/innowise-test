@@ -24,13 +24,14 @@
   &__display {
     cursor: pointer;
     text-align: right;
-    font-size: 40px;
+    font-size: 32px;
     height: 70px;
     grid-column: span 5;
     padding: 15px;
     user-select: text;
     overflow: auto;
-    display: block;
+    display: flex;
+    flex-direction: row-reverse;
     white-space: nowrap;
 
     &--memorized {
