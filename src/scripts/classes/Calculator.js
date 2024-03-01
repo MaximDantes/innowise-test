@@ -1,5 +1,7 @@
-import { getSuperscript, operationsNames } from './Operations.js'
+import { operationsNames } from './Operations.js'
 import errorMessages from '../common/error-messages.js'
+import { CalculatorCaretaker, calculatorErrorHandler, CalculatorSnapshot } from './Calculator-helpers.js'
+import { getSuperscript } from '../common/get-superscript.js'
 
 class Calculator {
     constructor() {
@@ -39,15 +41,7 @@ class Calculator {
         try {
             if (this.isOperationIncomplete()) return
 
-            if (
-                Number.isNaN(+this.leftOperand) ||
-                Number.isNaN(+this.rightOperand) ||
-                !Number.isFinite(+this.leftOperand) ||
-                !Number.isFinite(+this.rightOperand)
-            )
-                return
-
-                this.saveSnapshot()
+            this.saveSnapshot()
 
             switch (this.operator) {
                 case operationsNames.plus:
@@ -153,14 +147,40 @@ class Calculator {
         try {
             this.saveSnapshot()
 
+            //remove zero from values like 05, 0004, -0004
+            //replace Infinity and NaN by empty string
+            const formatOperand = (prevOperand, newOperand) => {
+                if (
+                    String(prevOperand) === 'Infinity' ||
+                    String(prevOperand) === '-Infinity' ||
+                    String(prevOperand) === 'NaN'
+                ) {
+                    prevOperand = ''
+                }
+
+                if (!prevOperand.includes(operationsNames.dot)) {
+                    const isNegative = prevOperand.charAt(0) === operationsNames.minus
+
+                    prevOperand = isNegative ? prevOperand.slice(1, prevOperand.length) : prevOperand
+
+                    while (prevOperand.charAt(0) === '0') {
+                        prevOperand = prevOperand.slice(1, prevOperand.length)
+                    }
+
+                    prevOperand = isNegative ? operationsNames.minus + prevOperand : prevOperand
+                }
+
+                return prevOperand + newOperand
+            }
+
             if (!this.operator) {
-                this.leftOperand += operand
+                this.leftOperand = formatOperand(this.leftOperand, operand)
             } else {
                 if (this.operator === operationsNames.factorial) {
                     this.calculate()
                 }
 
-                this.rightOperand += operand
+                this.rightOperand = formatOperand(this.rightOperand, operand)
             }
         } catch (e) {
             throw new Error('Add operand error')
@@ -259,7 +279,9 @@ class Calculator {
                 return
             }
 
-            this.rightOperand = +this.rightOperand * -1
+            if (this.rightOperand) {
+                this.rightOperand = +this.rightOperand * -1
+            }
         } catch (e) {
             throw new Error('Change sign error')
         } finally {
@@ -447,62 +469,3 @@ class Calculator {
 }
 
 export default Calculator
-
-class CalculatorSnapshot {
-    constructor(calculator) {
-        this.leftOperand = calculator.leftOperand
-        this.rightOperand = calculator.rightOperand
-        this.operator = calculator.operator
-        this.summary = calculator.summary
-    }
-}
-
-class CalculatorCaretaker {
-    constructor(calculator) {
-        this.history = []
-        this.calculator = calculator
-    }
-
-    save(snapshot) {
-        const prevSnapshot = this.history[this.history.length - 1]
-
-        if (
-            prevSnapshot &&
-            prevSnapshot.leftOperand === snapshot.leftOperand &&
-            prevSnapshot.rightOperand === snapshot.rightOperand &&
-            prevSnapshot.operator === snapshot.operator &&
-            prevSnapshot.summary === snapshot.summary
-        )
-            return
-
-        this.history.push(snapshot)
-    }
-
-    restore() {
-        const snapshot = this.history.pop()
-
-        if (snapshot) {
-            this.calculator.leftOperand = snapshot.leftOperand
-            this.calculator.rightOperand = snapshot.rightOperand
-            this.calculator.operator = snapshot.operator
-            this.calculator.summary = snapshot.summary
-            this.calculator.callObservers()
-        }
-    }
-}
-
-//redirect all errorMessages to Calculator.handleError
-const calculatorErrorHandler = {
-    get(target, prop) {
-        // eslint-disable-next-line no-prototype-builtins
-        return !Calculator.prototype.hasOwnProperty(prop)
-            ? target[prop]
-            : function (...args) {
-                  try {
-                      target[prop].apply(this, args)
-                  } catch (e) {
-                      target.handleError(e)
-                  }
-              }
-    },
-}

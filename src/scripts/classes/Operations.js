@@ -15,6 +15,7 @@ import {
     RootCommand,
     TenToXPow,
 } from './Commands.js'
+import { getSuperscript } from '../common/get-superscript.js'
 
 export const operationsNames = {
     zero: '0',
@@ -61,10 +62,6 @@ export const operationsNames = {
     memoryPlusMinus: 'M+-',
     memoryPlus: 'M+',
     memoryMinus: 'M-',
-}
-
-export const getSuperscript = (value) => {
-    return `<sup>${value}</sup>`
 }
 
 class Operation {

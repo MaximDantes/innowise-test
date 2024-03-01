@@ -51,4 +51,17 @@ describe('change sign', () => {
             })()
         ).toBe(`3 ${operationsNames.mul}`)
     })
+
+    test('8 * +- 8', () => {
+        expect(
+            (() => {
+                commands[operationsNames.clear].execute()
+                commands[operationsNames.eight].execute()
+                commands[operationsNames.mul].execute()
+                commands[operationsNames.changeSign].execute()
+                commands[operationsNames.eight].execute()
+                return result
+            })()
+        ).toBe(`8 ${operationsNames.mul} 8`)
+    })
 })

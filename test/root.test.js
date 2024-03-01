@@ -1,5 +1,6 @@
 import { commands, result } from './commands.js'
-import { getSuperscript, operationsNames } from '../src/scripts/classes/Operations.js'
+import { operationsNames } from '../src/scripts/classes/Operations.js'
+import { getSuperscript } from '../src/scripts/common/get-superscript.js'
 
 describe('root', () => {
     test('4 square root', () => {
