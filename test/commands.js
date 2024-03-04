@@ -1,4 +1,4 @@
-import Calculator from '../src/scripts/classes/Calculator.js'
+import Calculator from '../src/scripts/classes/Calculator/Calculator.js'
 import { operationsNames } from '../src/scripts/classes/Operations.js'
 import {
     AddOperandCommand,

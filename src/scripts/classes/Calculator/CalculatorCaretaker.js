@@ -1,15 +1,4 @@
-import Calculator from './Calculator.js'
-
-export class CalculatorSnapshot {
-    constructor(calculator) {
-        this.leftOperand = calculator.leftOperand
-        this.rightOperand = calculator.rightOperand
-        this.operator = calculator.operator
-        this.summary = calculator.summary
-    }
-}
-
-export class CalculatorCaretaker {
+class CalculatorCaretaker {
     constructor(calculator) {
         this.history = []
         this.calculator = calculator
@@ -43,18 +32,4 @@ export class CalculatorCaretaker {
     }
 }
 
-//redirect all errorMessages to Calculator.handleError
-export const calculatorErrorHandler = {
-    get(target, prop) {
-        // eslint-disable-next-line no-prototype-builtins
-        return !Calculator.prototype.hasOwnProperty(prop)
-            ? target[prop]
-            : function (...args) {
-                  try {
-                      target[prop].apply(this, args)
-                  } catch (e) {
-                      target.handleError(e)
-                  }
-              }
-    },
-}
+export default CalculatorCaretaker

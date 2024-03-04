@@ -1,4 +1,4 @@
-import Calculator from './Calculator.js'
+import Calculator from './Calculator/Calculator.js'
 import Theme from './Theme.js'
 import Operations from './Operations.js'
 

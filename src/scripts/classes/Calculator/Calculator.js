@@ -1,7 +1,9 @@
-import { operationsNames } from './Operations.js'
-import errorMessages from '../common/error-messages.js'
-import { CalculatorCaretaker, calculatorErrorHandler, CalculatorSnapshot } from './Calculator-helpers.js'
-import { getSuperscript } from '../common/get-superscript.js'
+import { operationsNames } from '../Operations.js'
+import errorMessages from '../../common/error-messages.js'
+import calculatorErrorHandler from './calculator-error-handler.js'
+import CalculatorSnapshot from './CalculatorSnapshot.js'
+import CalculatorCaretaker from './CalculatorCaretaker.js'
+import { getSuperscript } from '../../common/get-superscript.js'
 
 class Calculator {
     constructor() {
