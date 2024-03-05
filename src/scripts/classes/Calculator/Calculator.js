@@ -4,6 +4,9 @@ import calculatorErrorHandler from './calculator-error-handler.js'
 import CalculatorSnapshot from './CalculatorSnapshot.js'
 import CalculatorCaretaker from './CalculatorCaretaker.js'
 import { getSuperscript } from '../../common/get-superscript.js'
+import calculateRoot from './calculate-root.js'
+import calculatePow from './calculate-pow.js'
+import calculateFactorial from './calculate-factorial.js'
 
 class Calculator {
     constructor() {
@@ -67,33 +70,12 @@ class Calculator {
                     break
 
                 case operationsNames.pow: {
-                    if (!Number.isInteger(+this.rightOperand)) {
-                        throw new Error(errorMessages.floatPow)
-                    }
-
-                    if (+this.rightOperand > 100000) {
-                        this.summary = Infinity
-                        break
-                    }
-
-                    let result = 1
-                    for (let i = 0; i < +this.rightOperand; i++) {
-                        result *= +this.leftOperand
-                    }
-                    this.summary = result
+                    this.summary = calculatePow(+this.leftOperand, +this.rightOperand)
                     break
                 }
 
                 case operationsNames.factorial: {
-                    if (!Number.isInteger(+this.leftOperand)) {
-                        throw new Error(errorMessages.floatFactorial)
-                    }
-
-                    let result = 1
-                    for (let i = 1; i <= +this.leftOperand; i++) {
-                        result *= i
-                    }
-                    this.summary = result
+                    this.summary = calculateFactorial(+this.leftOperand)
                     break
                 }
 
@@ -102,32 +84,7 @@ class Calculator {
                     break
 
                 case operationsNames.root: {
-                    const startTime = Date.now()
-
-                    const abs = (number) => {
-                        return number < 0 ? number * -1 : number
-                    }
-
-                    const root = (number, n) => {
-                        if (number < 0 && n % 2 === 0) {
-                            throw new Error(errorMessages.negativeRoot)
-                        }
-
-                        let guess = number / 2
-                        const epsilon = 1e-12
-
-                        while (abs(guess ** n - number) > epsilon) {
-                            //break loop when it takes too long
-                            if (Date.now() - startTime > 1000) {
-                                throw new Error(errorMessages.cannotFindRoot)
-                            }
-                            guess = (1 / n) * ((n - 1) * guess + number / guess ** (n - 1))
-                        }
-
-                        return guess
-                    }
-
-                    this.summary = root(+this.rightOperand, +this.leftOperand)
+                    this.summary = calculateRoot(+this.rightOperand, +this.leftOperand)
                     break
                 }
 
