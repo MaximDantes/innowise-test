@@ -16,8 +16,7 @@ class OneDivXCommand extends Command {
             this.calculator.leftOperand = '1'
             this.calculator.operator = operationsNames.div
         } catch (e) {
-            //TODO show error
-            throw new Error('One div X error')
+            this.calculator.handleError(new Error())
         } finally {
             this.calculator.createSummary()
             this.calculator.callObservers()

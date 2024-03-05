@@ -1,15 +1,15 @@
-import { commands, result } from './commands.js'
-import { operationsNames } from '../src/scripts/classes/Operations.js'
+import { testCommands, testResult } from './test-commands.js'
+import { numbersNames, operationsNames } from '../src/scripts/classes/Operations.js'
 
 describe('one div x', () => {
     test('1 / 10', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.one].execute()
-                commands[operationsNames.zero].execute()
-                commands[operationsNames.oneDivX].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.one].execute()
+                testCommands[numbersNames.zero].execute()
+                testCommands[operationsNames.oneDivX].execute()
+                return testResult
             })()
         ).toBe(`1 ${operationsNames.div} 10`)
     })
@@ -17,12 +17,12 @@ describe('one div x', () => {
     test('1 / 10 =', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.one].execute()
-                commands[operationsNames.zero].execute()
-                commands[operationsNames.oneDivX].execute()
-                commands[operationsNames.equal].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.one].execute()
+                testCommands[numbersNames.zero].execute()
+                testCommands[operationsNames.oneDivX].execute()
+                testCommands[operationsNames.equal].execute()
+                return testResult
             })()
         ).toBe('0.1')
     })
@@ -30,12 +30,12 @@ describe('one div x', () => {
     test('1 / 10 + 1/x', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.one].execute()
-                commands[operationsNames.zero].execute()
-                commands[operationsNames.oneDivX].execute()
-                commands[operationsNames.oneDivX].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.one].execute()
+                testCommands[numbersNames.zero].execute()
+                testCommands[operationsNames.oneDivX].execute()
+                testCommands[operationsNames.oneDivX].execute()
+                return testResult
             })()
         ).toBe(`1 ${operationsNames.div} 10`)
     })
@@ -43,9 +43,9 @@ describe('one div x', () => {
     test('empty + 1/x', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.oneDivX].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[operationsNames.oneDivX].execute()
+                return testResult
             })()
         ).toBe(`1 ${operationsNames.div}`)
     })
@@ -53,10 +53,10 @@ describe('one div x', () => {
     test('empty + 1/x = ', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.oneDivX].execute()
-                commands[operationsNames.equal].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[operationsNames.oneDivX].execute()
+                testCommands[operationsNames.equal].execute()
+                return testResult
             })()
         ).toBe(`1 ${operationsNames.div}`)
     })
@@ -64,11 +64,11 @@ describe('one div x', () => {
     test('1 / 5 +', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.five].execute()
-                commands[operationsNames.oneDivX].execute()
-                commands[operationsNames.plus].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.five].execute()
+                testCommands[operationsNames.oneDivX].execute()
+                testCommands[operationsNames.plus].execute()
+                return testResult
             })()
         ).toBe(`0.2 ${operationsNames.plus}`)
     })

@@ -1,15 +1,15 @@
-import { commands, result } from './commands.js'
-import { operationsNames } from '../src/scripts/classes/Operations.js'
+import { testCommands, testResult } from './test-commands.js'
+import { numbersNames, operationsNames } from '../src/scripts/classes/Operations.js'
 
 describe('dot', () => {
     test('2.7', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.dot].execute()
-                commands[operationsNames.seven].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[operationsNames.dot].execute()
+                testCommands[numbersNames.seven].execute()
+                return testResult
             })()
         ).toBe(`2.7`)
     })
@@ -17,12 +17,12 @@ describe('dot', () => {
     test('2..7', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.dot].execute()
-                commands[operationsNames.dot].execute()
-                commands[operationsNames.seven].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[operationsNames.dot].execute()
+                testCommands[operationsNames.dot].execute()
+                testCommands[numbersNames.seven].execute()
+                return testResult
             })()
         ).toBe(`2.7`)
     })
@@ -30,9 +30,9 @@ describe('dot', () => {
     test('empty .', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.dot].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[operationsNames.dot].execute()
+                return testResult
             })()
         ).toBe(``)
     })
@@ -40,11 +40,11 @@ describe('dot', () => {
     test('0.5', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.zero].execute()
-                commands[operationsNames.dot].execute()
-                commands[operationsNames.five].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.zero].execute()
+                testCommands[operationsNames.dot].execute()
+                testCommands[numbersNames.five].execute()
+                return testResult
             })()
         ).toBe(`0.5`)
     })
@@ -52,11 +52,11 @@ describe('dot', () => {
     test('5 / .', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.five].execute()
-                commands[operationsNames.div].execute()
-                commands[operationsNames.dot].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.five].execute()
+                testCommands[operationsNames.div].execute()
+                testCommands[operationsNames.dot].execute()
+                return testResult
             })()
         ).toBe(`5 ${operationsNames.div}`)
     })
@@ -64,13 +64,13 @@ describe('dot', () => {
     test('8 * 2.2', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.eight].execute()
-                commands[operationsNames.mul].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.dot].execute()
-                commands[operationsNames.two].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.eight].execute()
+                testCommands[operationsNames.mul].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[operationsNames.dot].execute()
+                testCommands[numbersNames.two].execute()
+                return testResult
             })()
         ).toBe(`8 ${operationsNames.mul} 2.2`)
     })
@@ -78,13 +78,13 @@ describe('dot', () => {
     test('1. + 5', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.one].execute()
-                commands[operationsNames.dot].execute()
-                commands[operationsNames.plus].execute()
-                commands[operationsNames.five].execute()
-                commands[operationsNames.equal].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.one].execute()
+                testCommands[operationsNames.dot].execute()
+                testCommands[operationsNames.plus].execute()
+                testCommands[numbersNames.five].execute()
+                testCommands[operationsNames.equal].execute()
+                return testResult
             })()
         ).toBe(`6`)
     })
@@ -92,13 +92,13 @@ describe('dot', () => {
     test('1.5.', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.one].execute()
-                commands[operationsNames.dot].execute()
-                commands[operationsNames.five].execute()
-                commands[operationsNames.dot].execute()
-                commands[operationsNames.equal].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.one].execute()
+                testCommands[operationsNames.dot].execute()
+                testCommands[numbersNames.five].execute()
+                testCommands[operationsNames.dot].execute()
+                testCommands[operationsNames.equal].execute()
+                return testResult
             })()
         ).toBe(`1.5`)
     })
@@ -106,17 +106,17 @@ describe('dot', () => {
     test('2.2 / 5.5', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.dot].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.div].execute()
-                commands[operationsNames.five].execute()
-                commands[operationsNames.dot].execute()
-                commands[operationsNames.five].execute()
-                commands[operationsNames.equal].execute()
-                commands[operationsNames.changeSign].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[operationsNames.dot].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[operationsNames.div].execute()
+                testCommands[numbersNames.five].execute()
+                testCommands[operationsNames.dot].execute()
+                testCommands[numbersNames.five].execute()
+                testCommands[operationsNames.equal].execute()
+                testCommands[operationsNames.changeSign].execute()
+                return testResult
             })()
         ).toBe(`-0.4`)
     })
@@ -124,12 +124,12 @@ describe('dot', () => {
     test('5! = .', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.five].execute()
-                commands[operationsNames.factorial].execute()
-                commands[operationsNames.equal].execute()
-                commands[operationsNames.dot].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.five].execute()
+                testCommands[operationsNames.factorial].execute()
+                testCommands[operationsNames.equal].execute()
+                testCommands[operationsNames.dot].execute()
+                return testResult
             })()
         ).toBe(`120.`)
     })

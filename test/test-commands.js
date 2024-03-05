@@ -16,21 +16,21 @@ import MemoryClearCommand from '../src/scripts/classes/Commands/MemoryClearComma
 import MemoryReadCommand from '../src/scripts/classes/Commands/MemoryReadCommand.js'
 import MemoryPlusMinusCommand from '../src/scripts/classes/Commands/MemoryPlusMinusComand.js'
 
-import { operationsNames } from '../src/scripts/classes/Operations.js'
+import { numbersNames, operationsNames } from '../src/scripts/classes/Operations.js'
 
 export const calculator = new Calculator()
 
-export const commands = {
-    [operationsNames.one]: new AddOperandCommand(operationsNames.one, calculator),
-    [operationsNames.two]: new AddOperandCommand(operationsNames.two, calculator),
-    [operationsNames.three]: new AddOperandCommand(operationsNames.three, calculator),
-    [operationsNames.four]: new AddOperandCommand(operationsNames.four, calculator),
-    [operationsNames.five]: new AddOperandCommand(operationsNames.five, calculator),
-    [operationsNames.six]: new AddOperandCommand(operationsNames.six, calculator),
-    [operationsNames.seven]: new AddOperandCommand(operationsNames.seven, calculator),
-    [operationsNames.eight]: new AddOperandCommand(operationsNames.eight, calculator),
-    [operationsNames.nine]: new AddOperandCommand(operationsNames.nine, calculator),
-    [operationsNames.zero]: new AddOperandCommand(operationsNames.zero, calculator),
+export const testCommands = {
+    [numbersNames.one]: new AddOperandCommand(numbersNames.one, calculator),
+    [numbersNames.two]: new AddOperandCommand(numbersNames.two, calculator),
+    [numbersNames.three]: new AddOperandCommand(numbersNames.three, calculator),
+    [numbersNames.four]: new AddOperandCommand(numbersNames.four, calculator),
+    [numbersNames.five]: new AddOperandCommand(numbersNames.five, calculator),
+    [numbersNames.six]: new AddOperandCommand(numbersNames.six, calculator),
+    [numbersNames.seven]: new AddOperandCommand(numbersNames.seven, calculator),
+    [numbersNames.eight]: new AddOperandCommand(numbersNames.eight, calculator),
+    [numbersNames.nine]: new AddOperandCommand(numbersNames.nine, calculator),
+    [numbersNames.zero]: new AddOperandCommand(numbersNames.zero, calculator),
     [operationsNames.dot]: new DotCommand(operationsNames.dot, calculator),
     [operationsNames.plus]: new AddOperatorCommand(operationsNames.plus, calculator),
     [operationsNames.minus]: new AddOperatorCommand(operationsNames.minus, calculator),
@@ -66,10 +66,10 @@ export const commands = {
     ),
 }
 
-export let result = ''
+export let testResult = ''
 
-const getSummary = (summary) => {
-    result = summary
+const getTestSummary = (summary) => {
+    testResult = summary
 }
 
-calculator.subscribe(getSummary)
+calculator.subscribe(getTestSummary)

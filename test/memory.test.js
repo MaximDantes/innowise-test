@@ -1,14 +1,14 @@
-import { calculator, commands, result } from './commands.js'
-import { operationsNames } from '../src/scripts/classes/Operations.js'
+import { calculator, testCommands, testResult } from './test-commands.js'
+import { numbersNames, operationsNames } from '../src/scripts/classes/Operations.js'
 
 describe('memory save', () => {
     test('10 MS', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.one].execute()
-                commands[operationsNames.zero].execute()
-                commands[operationsNames.memorySave].execute()
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.one].execute()
+                testCommands[numbersNames.zero].execute()
+                testCommands[operationsNames.memorySave].execute()
                 return calculator.getMemoryValue()
             })()
         ).toBe(`10`)
@@ -17,12 +17,12 @@ describe('memory save', () => {
     test('5 - 12 MS', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.five].execute()
-                commands[operationsNames.minus].execute()
-                commands[operationsNames.one].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.memorySave].execute()
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.five].execute()
+                testCommands[operationsNames.minus].execute()
+                testCommands[numbersNames.one].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[operationsNames.memorySave].execute()
                 return calculator.getMemoryValue()
             })()
         ).toBe(`-7`)
@@ -31,8 +31,8 @@ describe('memory save', () => {
     test('empty MS', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.memorySave].execute()
+                testCommands[operationsNames.clear].execute()
+                testCommands[operationsNames.memorySave].execute()
                 return calculator.getMemoryValue()
             })()
         ).toBe(`0`)
@@ -41,10 +41,10 @@ describe('memory save', () => {
     test('5 - MS', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.five].execute()
-                commands[operationsNames.minus].execute()
-                commands[operationsNames.memorySave].execute()
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.five].execute()
+                testCommands[operationsNames.minus].execute()
+                testCommands[operationsNames.memorySave].execute()
                 return calculator.getMemoryValue()
             })()
         ).toBe(`5`)
@@ -53,10 +53,10 @@ describe('memory save', () => {
     test('4! MS', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.four].execute()
-                commands[operationsNames.factorial].execute()
-                commands[operationsNames.memorySave].execute()
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.four].execute()
+                testCommands[operationsNames.factorial].execute()
+                testCommands[operationsNames.memorySave].execute()
                 return calculator.getMemoryValue()
             })()
         ).toBe(`24`)
@@ -67,8 +67,8 @@ describe('memory clear', () => {
     test('empty MC', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.memoryClear].execute()
+                testCommands[operationsNames.clear].execute()
+                testCommands[operationsNames.memoryClear].execute()
                 return calculator.getMemoryValue()
             })()
         ).toBe(``)
@@ -77,12 +77,12 @@ describe('memory clear', () => {
     test('5 + 5 MS MC', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.five].execute()
-                commands[operationsNames.plus].execute()
-                commands[operationsNames.five].execute()
-                commands[operationsNames.memorySave].execute()
-                commands[operationsNames.memoryClear].execute()
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.five].execute()
+                testCommands[operationsNames.plus].execute()
+                testCommands[numbersNames.five].execute()
+                testCommands[operationsNames.memorySave].execute()
+                testCommands[operationsNames.memoryClear].execute()
                 return calculator.getMemoryValue()
             })()
         ).toBe(``)
@@ -93,9 +93,9 @@ describe('memory read', () => {
     test('empty MR', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.memoryClear].execute()
-                commands[operationsNames.memoryRead].execute()
+                testCommands[operationsNames.clear].execute()
+                testCommands[operationsNames.memoryClear].execute()
+                testCommands[operationsNames.memoryRead].execute()
                 return calculator.getMemoryValue()
             })()
         ).toBe(``)
@@ -104,12 +104,12 @@ describe('memory read', () => {
     test('5 MS AC MR', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.five].execute()
-                commands[operationsNames.memorySave].execute()
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.memoryRead].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.five].execute()
+                testCommands[operationsNames.memorySave].execute()
+                testCommands[operationsNames.clear].execute()
+                testCommands[operationsNames.memoryRead].execute()
+                return testResult
             })()
         ).toBe(`5`)
     })
@@ -117,14 +117,14 @@ describe('memory read', () => {
     test('5 + 5 MS AC MR', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.five].execute()
-                commands[operationsNames.plus].execute()
-                commands[operationsNames.five].execute()
-                commands[operationsNames.memorySave].execute()
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.memoryRead].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.five].execute()
+                testCommands[operationsNames.plus].execute()
+                testCommands[numbersNames.five].execute()
+                testCommands[operationsNames.memorySave].execute()
+                testCommands[operationsNames.clear].execute()
+                testCommands[operationsNames.memoryRead].execute()
+                return testResult
             })()
         ).toBe(`10`)
     })
@@ -132,16 +132,16 @@ describe('memory read', () => {
     test('1.1 / 4 MS AC MR', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.one].execute()
-                commands[operationsNames.dot].execute()
-                commands[operationsNames.one].execute()
-                commands[operationsNames.div].execute()
-                commands[operationsNames.four].execute()
-                commands[operationsNames.memorySave].execute()
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.memoryRead].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.one].execute()
+                testCommands[operationsNames.dot].execute()
+                testCommands[numbersNames.one].execute()
+                testCommands[operationsNames.div].execute()
+                testCommands[numbersNames.four].execute()
+                testCommands[operationsNames.memorySave].execute()
+                testCommands[operationsNames.clear].execute()
+                testCommands[operationsNames.memoryRead].execute()
+                return testResult
             })()
         ).toBe(`0.275`)
     })
@@ -149,15 +149,15 @@ describe('memory read', () => {
     test('2 MS AC 5 + MR =', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.memorySave].execute()
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.five].execute()
-                commands[operationsNames.plus].execute()
-                commands[operationsNames.memoryRead].execute()
-                commands[operationsNames.equal].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[operationsNames.memorySave].execute()
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.five].execute()
+                testCommands[operationsNames.plus].execute()
+                testCommands[operationsNames.memoryRead].execute()
+                testCommands[operationsNames.equal].execute()
+                return testResult
             })()
         ).toBe(`7`)
     })
@@ -165,23 +165,23 @@ describe('memory read', () => {
     test('33 * 22 MS 15 * 17 = - MR =', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.three].execute()
-                commands[operationsNames.three].execute()
-                commands[operationsNames.mul].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.memorySave].execute()
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.one].execute()
-                commands[operationsNames.five].execute()
-                commands[operationsNames.mul].execute()
-                commands[operationsNames.one].execute()
-                commands[operationsNames.seven].execute()
-                commands[operationsNames.minus].execute()
-                commands[operationsNames.memoryRead].execute()
-                commands[operationsNames.equal].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.three].execute()
+                testCommands[numbersNames.three].execute()
+                testCommands[operationsNames.mul].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[operationsNames.memorySave].execute()
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.one].execute()
+                testCommands[numbersNames.five].execute()
+                testCommands[operationsNames.mul].execute()
+                testCommands[numbersNames.one].execute()
+                testCommands[numbersNames.seven].execute()
+                testCommands[operationsNames.minus].execute()
+                testCommands[operationsNames.memoryRead].execute()
+                testCommands[operationsNames.equal].execute()
+                return testResult
             })()
         ).toBe(`-471`)
     })
@@ -191,16 +191,16 @@ describe('memory plus minus', () => {
     test('100% MS AC 2 + M+', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.one].execute()
-                commands[operationsNames.zero].execute()
-                commands[operationsNames.zero].execute()
-                commands[operationsNames.percent].execute()
-                commands[operationsNames.memorySave].execute()
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.plus].execute()
-                commands[operationsNames.memoryPlus].execute()
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.one].execute()
+                testCommands[numbersNames.zero].execute()
+                testCommands[numbersNames.zero].execute()
+                testCommands[operationsNames.percent].execute()
+                testCommands[operationsNames.memorySave].execute()
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[operationsNames.plus].execute()
+                testCommands[operationsNames.memoryPlus].execute()
                 return calculator.getMemoryValue()
             })()
         ).toBe(`3`)
@@ -209,13 +209,13 @@ describe('memory plus minus', () => {
     test('25 / 5 MS M+', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.five].execute()
-                commands[operationsNames.div].execute()
-                commands[operationsNames.five].execute()
-                commands[operationsNames.memorySave].execute()
-                commands[operationsNames.memoryPlus].execute()
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[numbersNames.five].execute()
+                testCommands[operationsNames.div].execute()
+                testCommands[numbersNames.five].execute()
+                testCommands[operationsNames.memorySave].execute()
+                testCommands[operationsNames.memoryPlus].execute()
                 return calculator.getMemoryValue()
             })()
         ).toBe(`10`)
@@ -224,12 +224,12 @@ describe('memory plus minus', () => {
     test('5 MS AC 3 M+ memory', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.five].execute()
-                commands[operationsNames.memorySave].execute()
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.three].execute()
-                commands[operationsNames.memoryPlus].execute()
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.five].execute()
+                testCommands[operationsNames.memorySave].execute()
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.three].execute()
+                testCommands[operationsNames.memoryPlus].execute()
                 return calculator.getMemoryValue()
             })()
         ).toBe(`8`)
@@ -238,13 +238,13 @@ describe('memory plus minus', () => {
     test('1 MS AC 2 M+', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.one].execute()
-                commands[operationsNames.memorySave].execute()
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.memoryPlus].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.one].execute()
+                testCommands[operationsNames.memorySave].execute()
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[operationsNames.memoryPlus].execute()
+                return testResult
             })()
         ).toBe(`3`)
     })
@@ -252,13 +252,13 @@ describe('memory plus minus', () => {
     test('2 MS + 2 M-', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.memorySave].execute()
-                commands[operationsNames.plus].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.memoryMinus].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[operationsNames.memorySave].execute()
+                testCommands[operationsNames.plus].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[operationsNames.memoryMinus].execute()
+                return testResult
             })()
         ).toBe(`-2`)
     })
@@ -266,15 +266,15 @@ describe('memory plus minus', () => {
     test('2 MS AC 8 / 2 M+', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.memorySave].execute()
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.eight].execute()
-                commands[operationsNames.div].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.memoryPlus].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[operationsNames.memorySave].execute()
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.eight].execute()
+                testCommands[operationsNames.div].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[operationsNames.memoryPlus].execute()
+                return testResult
             })()
         ).toBe(`6`)
     })
@@ -282,12 +282,12 @@ describe('memory plus minus', () => {
     test('4! MS M+', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.four].execute()
-                commands[operationsNames.factorial].execute()
-                commands[operationsNames.memorySave].execute()
-                commands[operationsNames.memoryPlus].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.four].execute()
+                testCommands[operationsNames.factorial].execute()
+                testCommands[operationsNames.memorySave].execute()
+                testCommands[operationsNames.memoryPlus].execute()
+                return testResult
             })()
         ).toBe(`48`)
     })
@@ -295,15 +295,15 @@ describe('memory plus minus', () => {
     test('40% MS AC 1 M-', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.four].execute()
-                commands[operationsNames.zero].execute()
-                commands[operationsNames.percent].execute()
-                commands[operationsNames.memorySave].execute()
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.one].execute()
-                commands[operationsNames.memoryMinus].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.four].execute()
+                testCommands[numbersNames.zero].execute()
+                testCommands[operationsNames.percent].execute()
+                testCommands[operationsNames.memorySave].execute()
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.one].execute()
+                testCommands[operationsNames.memoryMinus].execute()
+                return testResult
             })()
         ).toBe(`-0.6`)
     })
@@ -311,14 +311,14 @@ describe('memory plus minus', () => {
     test('4 R MS AC 5 M-', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.four].execute()
-                commands[operationsNames.squareRoot].execute()
-                commands[operationsNames.memorySave].execute()
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.five].execute()
-                commands[operationsNames.memoryMinus].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.four].execute()
+                testCommands[operationsNames.squareRoot].execute()
+                testCommands[operationsNames.memorySave].execute()
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.five].execute()
+                testCommands[operationsNames.memoryMinus].execute()
+                return testResult
             })()
         ).toBe(`-3`)
     })

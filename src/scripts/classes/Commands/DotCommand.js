@@ -1,5 +1,6 @@
 import Command from './Commands.js'
 import { operationsNames } from '../Operations.js'
+import errorMessages from '../../common/error-messages.js'
 
 class DotCommand extends Command {
     constructor(operationName, calculator, value) {
@@ -24,8 +25,7 @@ class DotCommand extends Command {
                 ? (this.calculator.rightOperand = operand)
                 : (this.calculator.leftOperand = operand)
         } catch (e) {
-            //TODO display error
-            this.calculator.handleError(new Error('Add dot error'))
+            this.calculator.handleError(new Error(errorMessages.addDotError))
         } finally {
             this.calculator.createSummary()
             this.calculator.callObservers()

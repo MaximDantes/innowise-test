@@ -1,14 +1,14 @@
-import { commands, result } from './commands.js'
-import { operationsNames } from '../src/scripts/classes/Operations.js'
+import { testCommands, testResult } from './test-commands.js'
+import { numbersNames, operationsNames } from '../src/scripts/classes/Operations.js'
 
 describe('cube and square', () => {
     test('5 ^ 2', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.five].execute()
-                commands[operationsNames.square].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.five].execute()
+                testCommands[operationsNames.square].execute()
+                return testResult
             })()
         ).toBe(`5 ${operationsNames.pow} 2`)
     })
@@ -16,12 +16,12 @@ describe('cube and square', () => {
     test('3.6 ^ 3', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.three].execute()
-                commands[operationsNames.dot].execute()
-                commands[operationsNames.six].execute()
-                commands[operationsNames.cube].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.three].execute()
+                testCommands[operationsNames.dot].execute()
+                testCommands[numbersNames.six].execute()
+                testCommands[operationsNames.cube].execute()
+                return testResult
             })()
         ).toBe(`3.6 ${operationsNames.pow} 3`)
     })
@@ -29,12 +29,12 @@ describe('cube and square', () => {
     test('14 ^ 2 =', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.one].execute()
-                commands[operationsNames.four].execute()
-                commands[operationsNames.square].execute()
-                commands[operationsNames.equal].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.one].execute()
+                testCommands[numbersNames.four].execute()
+                testCommands[operationsNames.square].execute()
+                testCommands[operationsNames.equal].execute()
+                return testResult
             })()
         ).toBe('196')
     })
@@ -42,13 +42,13 @@ describe('cube and square', () => {
     test('3.5 ^ 3 =', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.three].execute()
-                commands[operationsNames.dot].execute()
-                commands[operationsNames.five].execute()
-                commands[operationsNames.cube].execute()
-                commands[operationsNames.equal].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.three].execute()
+                testCommands[operationsNames.dot].execute()
+                testCommands[numbersNames.five].execute()
+                testCommands[operationsNames.cube].execute()
+                testCommands[operationsNames.equal].execute()
+                return testResult
             })()
         ).toBe('42.875')
     })
@@ -56,12 +56,12 @@ describe('cube and square', () => {
     test('2 + 2 ^ 2', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.plus].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.square].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[operationsNames.plus].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[operationsNames.square].execute()
+                return testResult
             })()
         ).toBe(`4 ${operationsNames.pow} 2`)
     })
@@ -69,13 +69,13 @@ describe('cube and square', () => {
     test('2 + 2 ^ 3 =', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.plus].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.cube].execute()
-                commands[operationsNames.equal].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[operationsNames.plus].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[operationsNames.cube].execute()
+                testCommands[operationsNames.equal].execute()
+                return testResult
             })()
         ).toBe('64')
     })
@@ -83,9 +83,9 @@ describe('cube and square', () => {
     test('^ 3 =', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.cube].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[operationsNames.cube].execute()
+                return testResult
             })()
         ).toBe('')
     })
@@ -93,9 +93,9 @@ describe('cube and square', () => {
     test('^ 2 =', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.square].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[operationsNames.square].execute()
+                return testResult
             })()
         ).toBe('')
     })

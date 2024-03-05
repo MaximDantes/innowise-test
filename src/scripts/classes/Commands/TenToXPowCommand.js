@@ -1,5 +1,6 @@
 import Command from './Commands.js'
 import { operationsNames } from '../Operations.js'
+import errorMessages from '../../common/error-messages.js'
 
 class TenToXPowCommand extends Command {
     constructor(operationName, calculator, value) {
@@ -15,8 +16,7 @@ class TenToXPowCommand extends Command {
             this.calculator.operator = operationsNames.pow
             this.calculator.rightOperand = ''
         } catch (e) {
-            //TODO show error
-            throw new Error('Ten to X pow error')
+            this.calculator.handleError(new Error(errorMessages.tenToXPowError))
         } finally {
             this.calculator.createSummary()
             this.calculator.callObservers()

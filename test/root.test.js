@@ -1,15 +1,15 @@
-import { commands, result } from './commands.js'
-import { operationsNames } from '../src/scripts/classes/Operations.js'
+import { testCommands, testResult } from './test-commands.js'
+import { operationsNames, numbersNames } from '../src/scripts/classes/Operations.js'
 import { getSuperscript } from '../src/scripts/common/get-superscript.js'
 
 describe('root', () => {
     test('4 square root', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.four].execute()
-                commands[operationsNames.squareRoot].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.four].execute()
+                testCommands[operationsNames.squareRoot].execute()
+                return testResult
             })()
         ).toBe(`${operationsNames.root} 4`)
     })
@@ -17,17 +17,17 @@ describe('root', () => {
     test('234.445 square root', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.three].execute()
-                commands[operationsNames.four].execute()
-                commands[operationsNames.dot].execute()
-                commands[operationsNames.four].execute()
-                commands[operationsNames.four].execute()
-                commands[operationsNames.five].execute()
-                commands[operationsNames.squareRoot].execute()
-                commands[operationsNames.equal].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[numbersNames.three].execute()
+                testCommands[numbersNames.four].execute()
+                testCommands[operationsNames.dot].execute()
+                testCommands[numbersNames.four].execute()
+                testCommands[numbersNames.four].execute()
+                testCommands[numbersNames.five].execute()
+                testCommands[operationsNames.squareRoot].execute()
+                testCommands[operationsNames.equal].execute()
+                return testResult
             })()
         ).toBe(`15.31159691214473`)
     })
@@ -35,19 +35,19 @@ describe('root', () => {
     test('4442.1100 square root', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.four].execute()
-                commands[operationsNames.four].execute()
-                commands[operationsNames.four].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.dot].execute()
-                commands[operationsNames.one].execute()
-                commands[operationsNames.one].execute()
-                commands[operationsNames.zero].execute()
-                commands[operationsNames.zero].execute()
-                commands[operationsNames.squareRoot].execute()
-                commands[operationsNames.equal].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.four].execute()
+                testCommands[numbersNames.four].execute()
+                testCommands[numbersNames.four].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[operationsNames.dot].execute()
+                testCommands[numbersNames.one].execute()
+                testCommands[numbersNames.one].execute()
+                testCommands[numbersNames.zero].execute()
+                testCommands[numbersNames.zero].execute()
+                testCommands[operationsNames.squareRoot].execute()
+                testCommands[operationsNames.equal].execute()
+                return testResult
             })()
         ).toBe(`66.64915603366632`)
     })
@@ -55,12 +55,12 @@ describe('root', () => {
     test('64 cube root', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.six].execute()
-                commands[operationsNames.four].execute()
-                commands[operationsNames.cubeRoot].execute()
-                commands[operationsNames.equal].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.six].execute()
+                testCommands[numbersNames.four].execute()
+                testCommands[operationsNames.cubeRoot].execute()
+                testCommands[operationsNames.equal].execute()
+                return testResult
             })()
         ).toBe(`4`)
     })
@@ -68,12 +68,12 @@ describe('root', () => {
     test('5.3 cube root', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.five].execute()
-                commands[operationsNames.dot].execute()
-                commands[operationsNames.three].execute()
-                commands[operationsNames.cubeRoot].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.five].execute()
+                testCommands[operationsNames.dot].execute()
+                testCommands[numbersNames.three].execute()
+                testCommands[operationsNames.cubeRoot].execute()
+                return testResult
             })()
         ).toBe(`${getSuperscript(3)}${operationsNames.root} 5.3`)
     })
@@ -81,11 +81,11 @@ describe('root', () => {
     test('10 root', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.one].execute()
-                commands[operationsNames.zero].execute()
-                commands[operationsNames.root].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.one].execute()
+                testCommands[numbersNames.zero].execute()
+                testCommands[operationsNames.root].execute()
+                return testResult
             })()
         ).toBe(`${getSuperscript(10)}${operationsNames.root}`)
     })
@@ -93,9 +93,9 @@ describe('root', () => {
     test('empty + square root', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.squareRoot].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[operationsNames.squareRoot].execute()
+                return testResult
             })()
         ).toBe(operationsNames.root)
     })
@@ -103,9 +103,9 @@ describe('root', () => {
     test('empty + cube root', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.cubeRoot].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[operationsNames.cubeRoot].execute()
+                return testResult
             })()
         ).toBe(getSuperscript(3) + operationsNames.root)
     })

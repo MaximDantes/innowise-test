@@ -103,6 +103,8 @@ class Calculator {
     }
 
     createSummary() {
+        if (Object.values(errorMessages).includes(this.summary)) return
+
         this.summary = ''
 
         if (!this.leftOperand) return

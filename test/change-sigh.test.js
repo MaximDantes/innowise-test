@@ -1,14 +1,14 @@
-import { commands, result } from './commands.js'
-import { operationsNames } from '../src/scripts/classes/Operations.js'
+import { testCommands, testResult } from './test-commands.js'
+import { numbersNames, operationsNames } from '../src/scripts/classes/Operations.js'
 
 describe('change sign', () => {
     test('4', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.four].execute()
-                commands[operationsNames.changeSign].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.four].execute()
+                testCommands[operationsNames.changeSign].execute()
+                return testResult
             })()
         ).toBe(`-4`)
     })
@@ -16,13 +16,13 @@ describe('change sign', () => {
     test('-2.2', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.minus].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.dot].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.changeSign].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[operationsNames.minus].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[operationsNames.dot].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[operationsNames.changeSign].execute()
+                return testResult
             })()
         ).toBe(`2.2`)
     })
@@ -30,12 +30,12 @@ describe('change sign', () => {
     test('3 / 2', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.three].execute()
-                commands[operationsNames.div].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.changeSign].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.three].execute()
+                testCommands[operationsNames.div].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[operationsNames.changeSign].execute()
+                return testResult
             })()
         ).toBe(`3 ${operationsNames.div} -2`)
     })
@@ -43,11 +43,11 @@ describe('change sign', () => {
     test('3 *', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.three].execute()
-                commands[operationsNames.mul].execute()
-                commands[operationsNames.changeSign].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.three].execute()
+                testCommands[operationsNames.mul].execute()
+                testCommands[operationsNames.changeSign].execute()
+                return testResult
             })()
         ).toBe(`3 ${operationsNames.mul}`)
     })
@@ -55,12 +55,12 @@ describe('change sign', () => {
     test('8 * +- 8', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.eight].execute()
-                commands[operationsNames.mul].execute()
-                commands[operationsNames.changeSign].execute()
-                commands[operationsNames.eight].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.eight].execute()
+                testCommands[operationsNames.mul].execute()
+                testCommands[operationsNames.changeSign].execute()
+                testCommands[numbersNames.eight].execute()
+                return testResult
             })()
         ).toBe(`8 ${operationsNames.mul} 8`)
     })

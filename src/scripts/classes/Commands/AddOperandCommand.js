@@ -1,5 +1,6 @@
 import Command from './Commands.js'
 import { operationsNames } from '../Operations.js'
+import errorMessages from '../../common/error-messages.js'
 
 class AddOperandCommand extends Command {
     constructor(operationName, calculator, value) {
@@ -47,8 +48,7 @@ class AddOperandCommand extends Command {
 
             this.calculator.rightOperand = formatOperand(this.calculator.rightOperand, this.operationName)
         } catch (e) {
-            //TODO show error
-            throw new Error('Add operand error')
+            this.calculator.handleError(new Error(errorMessages.addOperandError))
         } finally {
             this.calculator.createSummary()
             this.calculator.callObservers()

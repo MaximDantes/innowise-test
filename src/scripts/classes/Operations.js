@@ -16,7 +16,7 @@ import MemoryPlusMinusCommand from './Commands/MemoryPlusMinusComand.js'
 
 import { getSuperscript } from '../common/get-superscript.js'
 
-export const operationsNames = {
+export const numbersNames = {
     zero: '0',
     one: '1',
     two: '2',
@@ -27,7 +27,9 @@ export const operationsNames = {
     seven: '7',
     eight: '8',
     nine: '9',
+}
 
+export const operationsNames = {
     dot: '.',
 
     plus: '+',
@@ -128,15 +130,15 @@ class Operations {
             new Operation(new AddOperatorCommand(operationsNames.div, this.calculator), ['/'], '&#xF7;'),
 
             new Operation(new MemoryClearCommand(operationsNames.memoryClear, this.calculator)),
-            new Operation(new AddOperandCommand(operationsNames.seven, this.calculator)),
-            new Operation(new AddOperandCommand(operationsNames.eight, this.calculator)),
-            new Operation(new AddOperandCommand(operationsNames.nine, this.calculator)),
+            new Operation(new AddOperandCommand(numbersNames.seven, this.calculator)),
+            new Operation(new AddOperandCommand(numbersNames.eight, this.calculator)),
+            new Operation(new AddOperandCommand(numbersNames.nine, this.calculator)),
             new Operation(new AddOperatorCommand(operationsNames.mul, this.calculator), [], '&#215;'),
 
             new Operation(new MemoryReadCommand(operationsNames.memoryRead, this.calculator)),
-            new Operation(new AddOperandCommand(operationsNames.four, this.calculator)),
-            new Operation(new AddOperandCommand(operationsNames.five, this.calculator)),
-            new Operation(new AddOperandCommand(operationsNames.six, this.calculator)),
+            new Operation(new AddOperandCommand(numbersNames.four, this.calculator)),
+            new Operation(new AddOperandCommand(numbersNames.five, this.calculator)),
+            new Operation(new AddOperandCommand(numbersNames.six, this.calculator)),
             new Operation(new AddOperatorCommand(operationsNames.minus, this.calculator), ['_']),
 
             new Operation(
@@ -144,9 +146,9 @@ class Operations {
                 [],
                 operationsNames.memoryMinus
             ),
-            new Operation(new AddOperandCommand(operationsNames.one, this.calculator)),
-            new Operation(new AddOperandCommand(operationsNames.two, this.calculator)),
-            new Operation(new AddOperandCommand(operationsNames.three, this.calculator)),
+            new Operation(new AddOperandCommand(numbersNames.one, this.calculator)),
+            new Operation(new AddOperandCommand(numbersNames.two, this.calculator)),
+            new Operation(new AddOperandCommand(numbersNames.three, this.calculator)),
             new Operation(new AddOperatorCommand(operationsNames.plus, this.calculator)),
 
             new Operation(
@@ -154,7 +156,7 @@ class Operations {
                 [],
                 operationsNames.memoryPlus
             ),
-            new Operation(new AddOperandCommand(operationsNames.zero, this.calculator)),
+            new Operation(new AddOperandCommand(numbersNames.zero, this.calculator)),
             new Operation(new DotCommand(operationsNames.dot, this.calculator), [',']),
             new Operation(new CalculateCommand(operationsNames.equal, this.calculator), ['Enter']),
         ]

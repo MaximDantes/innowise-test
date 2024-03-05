@@ -1,13 +1,13 @@
-import { commands, result } from './commands.js'
-import { operationsNames } from '../src/scripts/classes/Operations.js'
+import { testCommands, testResult } from './test-commands.js'
+import { numbersNames, operationsNames } from '../src/scripts/classes/Operations.js'
 
 describe('prevent to set math sign in first position', () => {
     test('empty +', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.plus].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[operationsNames.plus].execute()
+                return testResult
             })()
         ).toBe('')
     })
@@ -15,9 +15,9 @@ describe('prevent to set math sign in first position', () => {
     test('empty /', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.div].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[operationsNames.div].execute()
+                return testResult
             })()
         ).toBe('')
     })
@@ -25,9 +25,9 @@ describe('prevent to set math sign in first position', () => {
     test('empty *', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.mul].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[operationsNames.mul].execute()
+                return testResult
             })()
         ).toBe('')
     })
@@ -35,9 +35,9 @@ describe('prevent to set math sign in first position', () => {
     test('empty ^', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.pow].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[operationsNames.pow].execute()
+                return testResult
             })()
         ).toBe('')
     })
@@ -45,9 +45,9 @@ describe('prevent to set math sign in first position', () => {
     test('empty -', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.minus].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[operationsNames.minus].execute()
+                return testResult
             })()
         ).toBe(operationsNames.minus)
     })
@@ -57,10 +57,10 @@ describe('format minus', () => {
     test('- -', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.minus].execute()
-                commands[operationsNames.minus].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[operationsNames.minus].execute()
+                testCommands[operationsNames.minus].execute()
+                return testResult
             })()
         ).toBe('')
     })
@@ -68,11 +68,11 @@ describe('format minus', () => {
     test('2 + -', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.plus].execute()
-                commands[operationsNames.minus].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[operationsNames.plus].execute()
+                testCommands[operationsNames.minus].execute()
+                return testResult
             })()
         ).toBe(`2 ${operationsNames.minus}`)
     })
@@ -80,11 +80,11 @@ describe('format minus', () => {
     test('2 * /', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.mul].execute()
-                commands[operationsNames.div].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[operationsNames.mul].execute()
+                testCommands[operationsNames.div].execute()
+                return testResult
             })()
         ).toBe(`2 ${operationsNames.div}`)
     })
@@ -92,11 +92,11 @@ describe('format minus', () => {
     test('2 + +', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.plus].execute()
-                commands[operationsNames.plus].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[operationsNames.plus].execute()
+                testCommands[operationsNames.plus].execute()
+                return testResult
             })()
         ).toBe(`2 ${operationsNames.plus}`)
     })
@@ -104,11 +104,11 @@ describe('format minus', () => {
     test('2 - -', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.minus].execute()
-                commands[operationsNames.minus].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[operationsNames.minus].execute()
+                testCommands[operationsNames.minus].execute()
+                return testResult
             })()
         ).toBe(`2 ${operationsNames.plus}`)
     })
@@ -116,11 +116,11 @@ describe('format minus', () => {
     test('2 * -', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.mul].execute()
-                commands[operationsNames.minus].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[operationsNames.mul].execute()
+                testCommands[operationsNames.minus].execute()
+                return testResult
             })()
         ).toBe(`2 ${operationsNames.mul} ${operationsNames.minus}`)
     })
@@ -128,10 +128,10 @@ describe('format minus', () => {
     test('01', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.zero].execute()
-                commands[operationsNames.one].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.zero].execute()
+                testCommands[numbersNames.one].execute()
+                return testResult
             })()
         ).toBe(`1`)
     })
@@ -139,12 +139,12 @@ describe('format minus', () => {
     test('0005', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.zero].execute()
-                commands[operationsNames.zero].execute()
-                commands[operationsNames.zero].execute()
-                commands[operationsNames.five].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.zero].execute()
+                testCommands[numbersNames.zero].execute()
+                testCommands[numbersNames.zero].execute()
+                testCommands[numbersNames.five].execute()
+                return testResult
             })()
         ).toBe(`5`)
     })
@@ -152,13 +152,13 @@ describe('format minus', () => {
     test('-0003', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.minus].execute()
-                commands[operationsNames.zero].execute()
-                commands[operationsNames.zero].execute()
-                commands[operationsNames.zero].execute()
-                commands[operationsNames.three].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[operationsNames.minus].execute()
+                testCommands[numbersNames.zero].execute()
+                testCommands[numbersNames.zero].execute()
+                testCommands[numbersNames.zero].execute()
+                testCommands[numbersNames.three].execute()
+                return testResult
             })()
         ).toBe(`-3`)
     })
@@ -166,19 +166,19 @@ describe('format minus', () => {
     test('99 ^ 999999', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.nine].execute()
-                commands[operationsNames.nine].execute()
-                commands[operationsNames.pow].execute()
-                commands[operationsNames.nine].execute()
-                commands[operationsNames.nine].execute()
-                commands[operationsNames.nine].execute()
-                commands[operationsNames.nine].execute()
-                commands[operationsNames.nine].execute()
-                commands[operationsNames.nine].execute()
-                commands[operationsNames.equal].execute()
-                commands[operationsNames.one].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.nine].execute()
+                testCommands[numbersNames.nine].execute()
+                testCommands[operationsNames.pow].execute()
+                testCommands[numbersNames.nine].execute()
+                testCommands[numbersNames.nine].execute()
+                testCommands[numbersNames.nine].execute()
+                testCommands[numbersNames.nine].execute()
+                testCommands[numbersNames.nine].execute()
+                testCommands[numbersNames.nine].execute()
+                testCommands[operationsNames.equal].execute()
+                testCommands[numbersNames.one].execute()
+                return testResult
             })()
         ).toBe(`1`)
     })

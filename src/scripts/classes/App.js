@@ -31,7 +31,7 @@ class App {
     }
 
     renderButtons() {
-        this.operations.values.map((item) => {
+        const buttons = this.operations.values.map((item) => {
             const button = document.createElement('button')
             button.innerHTML = item.buttonView
 
@@ -54,9 +54,11 @@ class App {
                 }
             })
 
-            const calculator = document.querySelector('.calculator')
-            calculator.appendChild(button)
+            return button
         })
+
+        const calculator = document.querySelector('.calculator')
+        calculator.append(...buttons)
     }
 
     setTheme() {

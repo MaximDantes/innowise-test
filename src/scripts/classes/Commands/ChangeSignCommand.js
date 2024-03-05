@@ -1,5 +1,6 @@
 import Command from './Commands.js'
 import { operationsNames } from '../Operations.js'
+import errorMessages from '../../common/error-messages.js'
 
 class ChangeSignCommand extends Command {
     constructor(operationName, calculator, value) {
@@ -27,8 +28,7 @@ class ChangeSignCommand extends Command {
                 this.calculator.rightOperand = +this.calculator.rightOperand * -1
             }
         } catch (e) {
-            //TODO show error
-            throw new Error('Change sign error')
+            this.calculator.handleError(new Error(errorMessages.changeSignError))
         } finally {
             this.calculator.createSummary()
             this.calculator.callObservers()

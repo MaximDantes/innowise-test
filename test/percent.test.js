@@ -1,16 +1,16 @@
-import { commands, result } from './commands.js'
-import { operationsNames } from '../src/scripts/classes/Operations.js'
+import { testCommands, testResult } from './test-commands.js'
+import { numbersNames, operationsNames } from '../src/scripts/classes/Operations.js'
 
 describe('percent', () => {
     test('100%', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.one].execute()
-                commands[operationsNames.zero].execute()
-                commands[operationsNames.zero].execute()
-                commands[operationsNames.percent].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.one].execute()
+                testCommands[numbersNames.zero].execute()
+                testCommands[numbersNames.zero].execute()
+                testCommands[operationsNames.percent].execute()
+                return testResult
             })()
         ).toBe(`100${operationsNames.percent}`)
     })
@@ -18,12 +18,12 @@ describe('percent', () => {
     test('50% =', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.five].execute()
-                commands[operationsNames.zero].execute()
-                commands[operationsNames.percent].execute()
-                commands[operationsNames.equal].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.five].execute()
+                testCommands[numbersNames.zero].execute()
+                testCommands[operationsNames.percent].execute()
+                testCommands[operationsNames.equal].execute()
+                return testResult
             })()
         ).toBe('0.5')
     })
@@ -31,15 +31,15 @@ describe('percent', () => {
     test('12.34% =', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.one].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.dot].execute()
-                commands[operationsNames.three].execute()
-                commands[operationsNames.four].execute()
-                commands[operationsNames.percent].execute()
-                commands[operationsNames.equal].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.one].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[operationsNames.dot].execute()
+                testCommands[numbersNames.three].execute()
+                testCommands[numbersNames.four].execute()
+                testCommands[operationsNames.percent].execute()
+                testCommands[operationsNames.equal].execute()
+                return testResult
             })()
         ).toBe('0.1234')
     })
@@ -47,12 +47,12 @@ describe('percent', () => {
     test('5 + 5 % =', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.five].execute()
-                commands[operationsNames.plus].execute()
-                commands[operationsNames.five].execute()
-                commands[operationsNames.percent].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.five].execute()
+                testCommands[operationsNames.plus].execute()
+                testCommands[numbersNames.five].execute()
+                testCommands[operationsNames.percent].execute()
+                return testResult
             })()
         ).toBe(`10${operationsNames.percent}`)
     })
@@ -60,14 +60,14 @@ describe('percent', () => {
     test('100% + 5', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.one].execute()
-                commands[operationsNames.zero].execute()
-                commands[operationsNames.zero].execute()
-                commands[operationsNames.percent].execute()
-                commands[operationsNames.plus].execute()
-                commands[operationsNames.five].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.one].execute()
+                testCommands[numbersNames.zero].execute()
+                testCommands[numbersNames.zero].execute()
+                testCommands[operationsNames.percent].execute()
+                testCommands[operationsNames.plus].execute()
+                testCommands[numbersNames.five].execute()
+                return testResult
             })()
         ).toBe('1 + 5')
     })
@@ -75,15 +75,15 @@ describe('percent', () => {
     test('100% + 5 =', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.one].execute()
-                commands[operationsNames.zero].execute()
-                commands[operationsNames.zero].execute()
-                commands[operationsNames.percent].execute()
-                commands[operationsNames.plus].execute()
-                commands[operationsNames.five].execute()
-                commands[operationsNames.equal].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.one].execute()
+                testCommands[numbersNames.zero].execute()
+                testCommands[numbersNames.zero].execute()
+                testCommands[operationsNames.percent].execute()
+                testCommands[operationsNames.plus].execute()
+                testCommands[numbersNames.five].execute()
+                testCommands[operationsNames.equal].execute()
+                return testResult
             })()
         ).toBe('6')
     })
@@ -91,11 +91,11 @@ describe('percent', () => {
     test('1% %', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.one].execute()
-                commands[operationsNames.percent].execute()
-                commands[operationsNames.percent].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.one].execute()
+                testCommands[operationsNames.percent].execute()
+                testCommands[operationsNames.percent].execute()
+                return testResult
             })()
         ).toBe(`0.01${operationsNames.percent}`)
     })

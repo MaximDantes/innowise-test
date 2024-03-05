@@ -1,17 +1,17 @@
-import { commands, result } from './commands.js'
-import { operationsNames } from '../src/scripts/classes/Operations.js'
+import { testCommands, testResult } from './test-commands.js'
+import { numbersNames, operationsNames } from '../src/scripts/classes/Operations.js'
 import errorMessages from '../src/scripts/common/error-messages.js'
 
 describe('exceptions', () => {
     test('4 / 0', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.four].execute()
-                commands[operationsNames.div].execute()
-                commands[operationsNames.zero].execute()
-                commands[operationsNames.equal].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.four].execute()
+                testCommands[operationsNames.div].execute()
+                testCommands[numbersNames.zero].execute()
+                testCommands[operationsNames.equal].execute()
+                return testResult
             })()
         ).toBe(errorMessages.divByZero)
     })
@@ -19,13 +19,13 @@ describe('exceptions', () => {
     test('4 / 0 + 2', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.four].execute()
-                commands[operationsNames.div].execute()
-                commands[operationsNames.zero].execute()
-                commands[operationsNames.plus].execute()
-                commands[operationsNames.two].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.four].execute()
+                testCommands[operationsNames.div].execute()
+                testCommands[numbersNames.zero].execute()
+                testCommands[operationsNames.plus].execute()
+                testCommands[numbersNames.two].execute()
+                return testResult
             })()
         ).toBe('2')
     })
@@ -33,14 +33,14 @@ describe('exceptions', () => {
     test('2 ^ 2.2', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.pow].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.dot].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.equal].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[operationsNames.pow].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[operationsNames.dot].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[operationsNames.equal].execute()
+                return testResult
             })()
         ).toBe(errorMessages.floatPow)
     })
@@ -48,13 +48,13 @@ describe('exceptions', () => {
     test('1.6!', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.one].execute()
-                commands[operationsNames.dot].execute()
-                commands[operationsNames.six].execute()
-                commands[operationsNames.factorial].execute()
-                commands[operationsNames.equal].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.one].execute()
+                testCommands[operationsNames.dot].execute()
+                testCommands[numbersNames.six].execute()
+                testCommands[operationsNames.factorial].execute()
+                testCommands[operationsNames.equal].execute()
+                return testResult
             })()
         ).toBe(errorMessages.floatFactorial)
     })
@@ -62,21 +62,21 @@ describe('exceptions', () => {
     test('2 ^ 4444444444444444', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.two].execute()
-                commands[operationsNames.pow].execute()
-                commands[operationsNames.four].execute()
-                commands[operationsNames.four].execute()
-                commands[operationsNames.four].execute()
-                commands[operationsNames.four].execute()
-                commands[operationsNames.four].execute()
-                commands[operationsNames.four].execute()
-                commands[operationsNames.four].execute()
-                commands[operationsNames.four].execute()
-                commands[operationsNames.four].execute()
-                commands[operationsNames.four].execute()
-                commands[operationsNames.equal].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.two].execute()
+                testCommands[operationsNames.pow].execute()
+                testCommands[numbersNames.four].execute()
+                testCommands[numbersNames.four].execute()
+                testCommands[numbersNames.four].execute()
+                testCommands[numbersNames.four].execute()
+                testCommands[numbersNames.four].execute()
+                testCommands[numbersNames.four].execute()
+                testCommands[numbersNames.four].execute()
+                testCommands[numbersNames.four].execute()
+                testCommands[numbersNames.four].execute()
+                testCommands[numbersNames.four].execute()
+                testCommands[operationsNames.equal].execute()
+                return testResult
             })()
         ).toBe('Infinity')
     })

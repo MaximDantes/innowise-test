@@ -1,14 +1,14 @@
-import { commands, result } from './commands.js'
-import { operationsNames } from '../src/scripts/classes/Operations.js'
+import { testCommands, testResult } from './test-commands.js'
+import { numbersNames, operationsNames } from '../src/scripts/classes/Operations.js'
 
 describe('factorial', () => {
     test('1', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.one].execute()
-                commands[operationsNames.factorial].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.one].execute()
+                testCommands[operationsNames.factorial].execute()
+                return testResult
             })()
         ).toBe(`1${operationsNames.factorial}`)
     })
@@ -16,11 +16,11 @@ describe('factorial', () => {
     test('4!', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.four].execute()
-                commands[operationsNames.factorial].execute()
-                commands[operationsNames.equal].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.four].execute()
+                testCommands[operationsNames.factorial].execute()
+                testCommands[operationsNames.equal].execute()
+                return testResult
             })()
         ).toBe('24')
     })
@@ -28,11 +28,11 @@ describe('factorial', () => {
     test('4! + ', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.four].execute()
-                commands[operationsNames.factorial].execute()
-                commands[operationsNames.plus].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.four].execute()
+                testCommands[operationsNames.factorial].execute()
+                testCommands[operationsNames.plus].execute()
+                return testResult
             })()
         ).toBe(`24 ${operationsNames.plus}`)
     })
@@ -40,12 +40,12 @@ describe('factorial', () => {
     test('15!', () => {
         expect(
             (() => {
-                commands[operationsNames.clear].execute()
-                commands[operationsNames.one].execute()
-                commands[operationsNames.five].execute()
-                commands[operationsNames.factorial].execute()
-                commands[operationsNames.equal].execute()
-                return result
+                testCommands[operationsNames.clear].execute()
+                testCommands[numbersNames.one].execute()
+                testCommands[numbersNames.five].execute()
+                testCommands[operationsNames.factorial].execute()
+                testCommands[operationsNames.equal].execute()
+                return testResult
             })()
         ).toBe('1307674368000')
     })
