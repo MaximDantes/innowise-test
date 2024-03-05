@@ -145,216 +145,6 @@ class Calculator {
         }
     }
 
-    addOperand(operand) {
-        try {
-            this.saveSnapshot()
-
-            //remove zero from values like 05, 0004, -0004
-            //replace Infinity and NaN by empty string
-            const formatOperand = (prevOperand, newOperand) => {
-                if (
-                    String(prevOperand) === 'Infinity' ||
-                    String(prevOperand) === '-Infinity' ||
-                    String(prevOperand) === 'NaN'
-                ) {
-                    prevOperand = ''
-                }
-
-                if (!prevOperand.includes(operationsNames.dot)) {
-                    const isNegative = prevOperand.charAt(0) === operationsNames.minus
-
-                    prevOperand = isNegative ? prevOperand.slice(1, prevOperand.length) : prevOperand
-
-                    while (prevOperand.charAt(0) === '0') {
-                        prevOperand = prevOperand.slice(1, prevOperand.length)
-                    }
-
-                    prevOperand = isNegative ? operationsNames.minus + prevOperand : prevOperand
-                }
-
-                return prevOperand + newOperand
-            }
-
-            if (!this.operator) {
-                this.leftOperand = formatOperand(this.leftOperand, operand)
-            } else {
-                if (this.operator === operationsNames.factorial) {
-                    this.calculate()
-                }
-
-                this.rightOperand = formatOperand(this.rightOperand, operand)
-            }
-        } catch (e) {
-            throw new Error('Add operand error')
-        } finally {
-            this.createSummary()
-            this.callObservers()
-        }
-    }
-
-    addOperator(operator) {
-        try {
-            this.saveSnapshot()
-
-            if (this.leftOperand === operationsNames.minus) {
-                this.leftOperand = ''
-                return
-            }
-
-            if (!this.leftOperand) {
-                if (operator !== operationsNames.minus) return
-
-                this.leftOperand += operationsNames.minus
-                return
-            }
-
-            if (!this.operator) {
-                this.operator = operator
-            } else {
-                if (operator !== operationsNames.minus) {
-                    this.calculate()
-                    this.operator = operator
-                } else {
-                    if (this.isOperationIncomplete()) {
-                        if (this.operator === operationsNames.minus) {
-                            this.operator = operationsNames.plus
-                            return
-                        }
-
-                        if (this.operator === operationsNames.plus) {
-                            this.operator = operationsNames.minus
-                            return
-                        }
-
-                        this.rightOperand += operationsNames.minus
-                    } else {
-                        this.calculate()
-                        this.operator = operator
-                    }
-                }
-            }
-        } catch (e) {
-            throw new Error('Add operator error')
-        } finally {
-            this.createSummary()
-            this.callObservers()
-        }
-    }
-
-    dot() {
-        try {
-            this.saveSnapshot()
-
-            let operand = String(this.operator ? this.rightOperand : this.leftOperand)
-
-            if (operand.charAt(operand.length - 1) === operationsNames.dot) return
-
-            if (operand === '') return
-
-            if (operand.includes(operationsNames.dot)) return
-
-            operand += operationsNames.dot
-
-            this.operator ? (this.rightOperand = operand) : (this.leftOperand = operand)
-        } catch (e) {
-            throw new Error('Add dot error')
-        } finally {
-            this.createSummary()
-            this.callObservers()
-        }
-    }
-
-    changeSign() {
-        try {
-            if (!this.operator && this.leftOperand) {
-                this.leftOperand = +this.leftOperand * -1
-                return
-            }
-
-            if (this.operator === operationsNames.plus) {
-                this.operator = operationsNames.minus
-                return
-            }
-
-            if (this.operator === operationsNames.minus) {
-                this.operator = operationsNames.plus
-                return
-            }
-
-            if (this.rightOperand) {
-                this.rightOperand = +this.rightOperand * -1
-            }
-        } catch (e) {
-            throw new Error('Change sign error')
-        } finally {
-            this.createSummary()
-            this.callObservers()
-        }
-    }
-
-    tenToXPow() {
-        try {
-            if (this.leftOperand === '10' && this.operator === operationsNames.pow) {
-                return
-            }
-            this.leftOperand = '10'
-            this.operator = operationsNames.pow
-            this.rightOperand = ''
-        } catch (e) {
-            throw new Error('Ten to X pow error')
-        } finally {
-            this.createSummary()
-            this.callObservers()
-        }
-    }
-
-    oneDivX() {
-        try {
-            if (this.leftOperand === '1' && this.operator === operationsNames.div) {
-                return
-            }
-            this.rightOperand = this.leftOperand
-            this.leftOperand = '1'
-            this.operator = operationsNames.div
-        } catch (e) {
-            throw new Error('One div X error')
-        } finally {
-            this.createSummary()
-            this.callObservers()
-        }
-    }
-
-    pow(value) {
-        if (!this.leftOperand) return
-
-        if (this.rightOperand) {
-            this.calculate()
-        }
-
-        this.operator = operationsNames.pow
-        this.rightOperand = value
-
-        this.createSummary()
-        this.callObservers()
-    }
-
-    root(value) {
-        if (!this.leftOperand && value === undefined) return
-
-        if (this.rightOperand) {
-            this.calculate()
-        }
-
-        if (value !== undefined) {
-            this.rightOperand = this.leftOperand
-            this.leftOperand = value
-        }
-        this.operator = operationsNames.root
-
-        this.createSummary()
-        this.callObservers()
-    }
-
     createSummary() {
         this.summary = ''
         if (this.leftOperand) {
@@ -381,62 +171,12 @@ class Calculator {
         if (this.rightOperand) this.summary += ' ' + this.rightOperand
     }
 
-    memorySave() {
-        if (this.isOperationIncomplete()) {
-            this.memory = this.leftOperand || '0'
-        } else {
-            this.calculate()
-            this.memory = this.summary
-        }
-        this.operator = ''
-        this.rightOperand = ''
-        this.callMemoryObservers()
-    }
-
-    memoryClear() {
-        this.memory = ''
-        this.callMemoryObservers()
-    }
-
-    memoryRead() {
-        if (!this.operator) {
-            this.leftOperand = this.memory
-        } else {
-            this.rightOperand = this.memory
-        }
-        this.createSummary()
-        this.callObservers()
-    }
-
-    memoryPlusMinus(operator) {
-        if (!this.memory) return
-
-        this.calculate()
-
-        this.rightOperand = this.leftOperand
-        this.leftOperand = this.memory
-        this.operator = operator
-        this.calculate()
-        this.memory = this.summary
-
-        this.leftOperand = this.memory
-        this.operator = ''
-        this.rightOperand = ''
-
-        this.createSummary()
-        this.callObservers()
-    }
-
     getMemoryValue = () => {
         return this.memory
     }
 
     subscribe(observer) {
         this.observers.push(observer)
-    }
-
-    unsubscribe(observer) {
-        this.observers = this.observers.filter((item) => item !== observer)
     }
 
     callObservers() {
@@ -447,20 +187,12 @@ class Calculator {
         this.memoryObservers.push(observer)
     }
 
-    unsubscribeMemory(observer) {
-        this.memoryObservers = this.memoryObservers.filter((item) => item !== observer)
-    }
-
     callMemoryObservers() {
         this.memoryObservers.forEach((item) => item(!!this.memory))
     }
 
     saveSnapshot() {
         this.caretaker.save(new CalculatorSnapshot(this))
-    }
-
-    restore() {
-        this.caretaker.restore()
     }
 
     handleError(e) {

@@ -1,20 +1,19 @@
-import {
-    AddOperandCommand,
-    AddOperatorCommand,
-    CalculateCommand,
-    ChangeSignCommand,
-    ClearCommand,
-    DotCommand,
-    HistoryBackCommand,
-    MemoryClearCommand,
-    MemoryPlusMinusCommand,
-    MemoryReadCommand,
-    MemorySaveCommand,
-    OneDivX,
-    PowCommand,
-    RootCommand,
-    TenToXPow,
-} from './Commands.js'
+import CalculateCommand from './Commands/CalculateCommand.js'
+import AddOperatorCommand from './Commands/AddOperatorCommand.js'
+import AddOperandCommand from './Commands/AddOperandCommand.js'
+import ClearCommand from './Commands/ClearCommand.js'
+import HistoryBackCommand from './Commands/HistoryBackCommand.js'
+import ChangeSignCommand from './Commands/ChangeSignCommand.js'
+import PowCommand from './Commands/PowCommand.js'
+import OneDivXCommand from './Commands/OneDivXCommand.js'
+import TenToXPowCommand from './Commands/TenToXPowCommand.js'
+import RootCommandCommand from './Commands/RootCommand.js'
+import DotCommand from './Commands/DotCommand.js'
+import MemorySaveCommand from './Commands/MemorySaveCommand.js'
+import MemoryClearCommand from './Commands/MemoryClearCommand.js'
+import MemoryReadCommand from './Commands/MemoryReadCommand.js'
+import MemoryPlusMinusCommand from './Commands/MemoryPlusMinusComand.js'
+
 import { getSuperscript } from '../common/get-superscript.js'
 
 export const operationsNames = {
@@ -94,19 +93,19 @@ class Operations {
             new Operation(new ClearCommand(operationsNames.clear, this.calculator)),
             new Operation(new ChangeSignCommand(operationsNames.changeSign, this.calculator), [], '&plusmn;'),
             new Operation(
-                new RootCommand(operationsNames.root, this.calculator),
+                new RootCommandCommand(operationsNames.root, this.calculator),
                 [],
                 '&#8730;',
                 `${getSuperscript('y')}&#8730;`
             ),
             new Operation(
-                new RootCommand(operationsNames.root, this.calculator, 2),
+                new RootCommandCommand(operationsNames.root, this.calculator, 2),
                 [],
                 '&#8730;',
                 `${getSuperscript(2)}&#8730;`
             ),
             new Operation(
-                new RootCommand(operationsNames.root, this.calculator, 3),
+                new RootCommandCommand(operationsNames.root, this.calculator, 3),
                 [],
                 '&#8730;',
                 `${getSuperscript(3)}&#8730;`
@@ -118,13 +117,13 @@ class Operations {
                 'c',
             ]),
             new Operation(new AddOperatorCommand(operationsNames.pow, this.calculator)),
-            new Operation(new TenToXPow(operationsNames.tenPowX, this.calculator)),
+            new Operation(new TenToXPowCommand(operationsNames.tenPowX, this.calculator)),
             new Operation(new PowCommand(operationsNames.pow, this.calculator, 2), [], 'x^2'),
             new Operation(new PowCommand(operationsNames.pow, this.calculator, 3), [], 'x^3'),
 
             new Operation(new MemorySaveCommand(operationsNames.memorySave, this.calculator)),
             new Operation(new AddOperatorCommand(operationsNames.factorial, this.calculator)),
-            new Operation(new OneDivX(operationsNames.oneDivX, this.calculator), [], '1/x'),
+            new Operation(new OneDivXCommand(operationsNames.oneDivX, this.calculator), [], '1/x'),
             new Operation(new AddOperatorCommand(operationsNames.percent, this.calculator)),
             new Operation(new AddOperatorCommand(operationsNames.div, this.calculator), ['/'], '&#xF7;'),
 
