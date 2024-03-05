@@ -38,13 +38,14 @@ class AddOperandCommand extends Command {
 
             if (!this.calculator.operator) {
                 this.calculator.leftOperand = formatOperand(this.calculator.leftOperand, this.operationName)
-            } else {
-                if (this.calculator.operator === operationsNames.factorial) {
-                    this.calculator.calculate()
-                }
-
-                this.calculator.rightOperand = formatOperand(this.calculator.rightOperand, this.operationName)
+                return
             }
+
+            if (this.calculator.operator === operationsNames.factorial) {
+                this.calculator.calculate()
+            }
+
+            this.calculator.rightOperand = formatOperand(this.calculator.rightOperand, this.operationName)
         } catch (e) {
             //TODO show error
             throw new Error('Add operand error')

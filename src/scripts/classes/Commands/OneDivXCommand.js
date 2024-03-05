@@ -11,6 +11,7 @@ class OneDivXCommand extends Command {
             if (this.calculator.leftOperand === '1' && this.calculator.operator === operationsNames.div) {
                 return
             }
+
             this.calculator.rightOperand = this.calculator.leftOperand
             this.calculator.leftOperand = '1'
             this.calculator.operator = operationsNames.div

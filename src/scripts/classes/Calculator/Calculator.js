@@ -104,27 +104,31 @@ class Calculator {
 
     createSummary() {
         this.summary = ''
-        if (this.leftOperand) {
-            if (this.operator !== operationsNames.root) {
-                this.summary += this.leftOperand
-            } else {
-                if (String(this.leftOperand) !== '2') {
-                    this.summary += getSuperscript(this.leftOperand)
-                }
-            }
+
+        if (!this.leftOperand) return
+
+        if (this.operator === operationsNames.root && String(this.leftOperand) !== '2') {
+            this.summary += getSuperscript(this.leftOperand)
         }
-        if (this.operator) {
-            if (
-                this.operator === operationsNames.plus ||
-                this.operator === operationsNames.minus ||
-                this.operator === operationsNames.mul ||
-                this.operator === operationsNames.div ||
-                this.operator === operationsNames.pow
-            ) {
-                this.summary += ' '
-            }
-            this.summary += this.operator
+
+        if (this.operator !== operationsNames.root) {
+            this.summary += this.leftOperand
         }
+
+        if (!this.operator) return
+
+        if (
+            this.operator === operationsNames.plus ||
+            this.operator === operationsNames.minus ||
+            this.operator === operationsNames.mul ||
+            this.operator === operationsNames.div ||
+            this.operator === operationsNames.pow
+        ) {
+            this.summary += ' '
+        }
+
+        this.summary += this.operator
+
         if (this.rightOperand) this.summary += ' ' + this.rightOperand
     }
 
