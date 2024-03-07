@@ -9,9 +9,20 @@ const calculatePow = (number, power) => {
         return Infinity
     }
 
+    if (power < -100000) {
+        return 0
+    }
+
     let result = 1
-    for (let i = 0; i < power; i++) {
-        result *= number
+
+    if (power >= 0) {
+        for (let i = 0; i < power; i++) {
+            result *= number
+        }
+    } else {
+        for (let i = 0; i > power; i--) {
+            result /= number
+        }
     }
 
     return result
