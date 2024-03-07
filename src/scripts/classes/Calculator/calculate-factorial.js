@@ -5,8 +5,11 @@ const calculateFactorial = (number) => {
         throw new Error(errorMessages.floatFactorial)
     }
 
-    let result = 1
-    for (let i = 1; i <= number; i++) {
+    let result = number >= 0 ? 1 : -1
+
+    const absNumber = number >= 0 ? number : number * -1
+
+    for (let i = 1; i <= absNumber; i++) {
         result *= i
     }
 
