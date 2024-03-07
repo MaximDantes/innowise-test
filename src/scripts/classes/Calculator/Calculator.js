@@ -7,6 +7,7 @@ import { getSuperscript } from '../../common/get-superscript.js'
 import calculateRoot from './calculate-root.js'
 import calculatePow from './calculate-pow.js'
 import calculateFactorial from './calculate-factorial.js'
+import simpleCalculations from './simple-calculations.js'
 
 class Calculator {
     constructor() {
@@ -50,23 +51,19 @@ class Calculator {
 
             switch (this.operator) {
                 case operationsNames.plus:
-                    this.summary = +this.leftOperand + +this.rightOperand
+                    this.summary = simpleCalculations.plus(+this.leftOperand, +this.rightOperand)
                     break
 
                 case operationsNames.minus:
-                    this.summary = +this.leftOperand - +this.rightOperand
+                    this.summary = simpleCalculations.minus(+this.leftOperand, +this.rightOperand)
                     break
 
                 case operationsNames.div:
-                    if (+this.rightOperand === 0) {
-                        throw new Error(errorMessages.divByZero)
-                    }
-
-                    this.summary = +this.leftOperand / +this.rightOperand
+                    this.summary = simpleCalculations.div(+this.leftOperand, +this.rightOperand)
                     break
 
                 case operationsNames.mul:
-                    this.summary = +this.leftOperand * +this.rightOperand
+                    this.summary = simpleCalculations.mul(+this.leftOperand, +this.rightOperand)
                     break
 
                 case operationsNames.pow: {
@@ -80,7 +77,7 @@ class Calculator {
                 }
 
                 case operationsNames.percent:
-                    this.summary = +this.leftOperand / 100
+                    this.summary = simpleCalculations.percent(+this.leftOperand)
                     break
 
                 case operationsNames.root: {
